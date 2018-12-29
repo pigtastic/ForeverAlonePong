@@ -1,5 +1,6 @@
 package de.pictastic.singlePong;
 
+import java.awt.CardLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -15,14 +16,17 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
-public class Game extends JPanel implements KeyListener, ActionListener {
+public class Game extends JPanel implements  ActionListener, KeyListener {
 	
 	private int height, width;
 	//ball speed
 	private Timer t = new Timer(5, this);
 	private boolean first;
 	
-	private HashSet<String> keys = new HashSet<String>();
+	public HashSet<String> keys = new HashSet<String>();
+	
+	private CardLayout cardlayout;
+	private JPanel panel;
 	
 	// pad
 	private final int SPEED = 1;
@@ -36,13 +40,16 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 	// score
 	private int  score;
 	
-	public Game() {
-		addKeyListener(this);
+	public Game(JPanel pnlMain, CardLayout cardlayout) {
+		
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
+		addKeyListener(this);
 		first = true;
 		t.setInitialDelay(100);
 		t.start();
+		this.cardlayout=cardlayout;
+		this.panel = pnlMain;
 		
 	}
 	
@@ -75,8 +82,8 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 		g2d.fill(ball);
 		
 		// scores
-		String scoreB = "Score: " + new Integer(score).toString();
-		g2d.drawString(scoreB, 10, height / 2);
+		String scoreTemp = "Score: " + new Integer(score).toString();
+		g2d.drawString(scoreTemp, 10, height / 2);
 	}
 	
 	@Override
@@ -92,18 +99,19 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 		}
 		// down wall
 		if (ballY - ballSize > height) {
-			t.stop();
-			MainFrame.panel=new Replay();
-			Main.main(null);
+			
+			first=true;
+			cardlayout.show(panel, "StartMenu");
+			Main.main.validate();
 			
 		
 		}
 		//  pad
-		else
-		if (ballY + ballSize >= height - padH - inset && velY > 0)
+		if (ballY + ballSize == height - padH - inset && velY > 0)
 			if (ballX + ballSize >= PadX && ballX <= PadX + padW) {
 				velY = -velY;
 				score++;
+				
 			}
 				
 
@@ -126,7 +134,6 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 		repaint();
 		
 	}
-
 	@Override
 	public void keyTyped(KeyEvent e) {}
 
@@ -136,9 +143,11 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 		switch (code) {
 		case KeyEvent.VK_LEFT:
 			keys.add("LEFT");
+			System.out.println("left");
 			break;
 		case KeyEvent.VK_RIGHT:
 			keys.add("RIGHT");
+			System.out.println("right");
 			break;
 		}
 	}
@@ -155,4 +164,6 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 			break;
 		}
 	}
+
+
 }

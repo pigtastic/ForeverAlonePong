@@ -9,46 +9,37 @@ import javax.swing.JPanel;
 
 //Panel nach GameOver  
 
-public class Replay extends JPanel implements KeyListener{
+public class Replay extends JPanel implements KeyListener {
 //	erneutspielen?
 //	nein? Highscores anzeigen
-	
+
 //	Highscoreeintrag?
 	public Replay() {
 		add(new JLabel("this is ReplayPane"));
-		JButton start = new JButton("Start again");
-		add(start);
-		start.addActionListener(l->{
-			MainFrame.panel=new Game();
-			Main.main(null);
-			
-		});
+		add(new JLabel("Press Space to Replay"));
+
 	}
-	
-	
-	
-	
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		int code = e.getKeyCode();
+		System.out.println("test");
+		if (code == KeyEvent.VK_SPACE) {
+			System.out.println("leertaste gedrückt");
+		}
 
-		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-
-	
-
 
 }

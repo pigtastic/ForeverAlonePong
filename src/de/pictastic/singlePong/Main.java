@@ -5,12 +5,14 @@ import javax.swing.JPanel;
 
 
 public class Main {
-
+static JFrame main;
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		JFrame main = new MainFrame();
+		
+		main = new MainFrame();
+
 	}
 	
 

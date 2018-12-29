@@ -29,8 +29,7 @@ public class Highscores extends JPanel
 		JButton start = new JButton("Go Back to Start");
 		add(start);
 		start.addActionListener(l->{
-			MainFrame.panel=new StartMenu();
-			Main.main(null);
+
 			
 		});
     }
