@@ -1,6 +1,7 @@
 package de.pictastic.singlePong;
 
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -82,8 +83,10 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		g2d.fill(ball);
 		
 		// scores
-		String scoreTemp = "Score: " + new Integer(score).toString();
-		g2d.drawString(scoreTemp, 10, height / 2);
+		String scoreTemp = new Integer(score).toString();
+		g2d.setFont(new Font(g2d.getFont().getFontName(),Font.PLAIN,80));
+		g2d.drawString(scoreTemp, width - 70*scoreTemp.length(), 90);
+		
 	}
 	
 	@Override
@@ -143,11 +146,9 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		switch (code) {
 		case KeyEvent.VK_LEFT:
 			keys.add("LEFT");
-			System.out.println("left");
 			break;
 		case KeyEvent.VK_RIGHT:
 			keys.add("RIGHT");
-			System.out.println("right");
 			break;
 		}
 	}
