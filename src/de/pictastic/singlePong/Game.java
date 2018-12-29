@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 
@@ -20,7 +21,7 @@ import javax.swing.Timer;
 public class Game extends JPanel implements  ActionListener, KeyListener {
 	
 	private int height, width;
-	private Timer t = new Timer(5, this);
+	private Timer t = new Timer(10, this);
 	private boolean first;
 	
 	public HashSet<String> keys = new HashSet<String>();
@@ -29,13 +30,13 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 	private JPanel panel;
 	
 	// pad
-	private final int SPEED = 1;
+	private final int SPEED = 2;
 	private int padH = 10, padW = 40;
 	private int PadX;
 	private int inset = 10;
 	
 	// ball
-	private double ballX, ballY, velX = 1, velY = 1, ballSize = 20, ballSpeed=1.5;
+	private double ballX, ballY, velX = 1, velY = 1, ballSize = 20, ballSpeed=1;
 	
 	// score
 	private int  score;
@@ -56,7 +57,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		if (first) {
 			PadX = width / 2 - padW / 2;
 			ballX = width / 2 - ballSize / 2;
-			ballY = height / 2 - ballSize / 2;
+			ballY = 40 - ballSize / 2;
 			t.start();
 			first = false;
 		}
@@ -81,11 +82,16 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		Ellipse2D ball = new Ellipse2D.Double(ballX, ballY, ballSize, ballSize);
 		g2d.fill(ball);
 		
-		// scores
+		// score
 		String scoreTemp = new Integer(score).toString();
 		g2d.setFont(new Font(g2d.getFont().getFontName(),Font.PLAIN,80));
 		g2d.drawString(scoreTemp, width - 70*scoreTemp.length(), 90);
 		
+//		triangle
+		Line2D leftSide = new Line2D.Double(0,height,width/2,0);
+		Line2D rightSide = new Line2D.Double(width,height,width/2,0);
+		g2d.draw(leftSide);
+		g2d.draw(rightSide);
 	}
 	
 	@Override
