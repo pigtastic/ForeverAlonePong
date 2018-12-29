@@ -20,7 +20,6 @@ import javax.swing.Timer;
 public class Game extends JPanel implements  ActionListener, KeyListener {
 	
 	private int height, width;
-	//ball speed
 	private Timer t = new Timer(5, this);
 	private boolean first;
 	
@@ -36,7 +35,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 	private int inset = 10;
 	
 	// ball
-	private double ballX, ballY, velX = 1, velY = 1, ballSize = 20;
+	private double ballX, ballY, velX = 1, velY = 1, ballSize = 20, ballSpeed=1.5;
 	
 	// score
 	private int  score;
@@ -48,7 +47,6 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		addKeyListener(this);
 		first = true;
 		t.setInitialDelay(100);
-		t.start();
 		this.cardlayout=cardlayout;
 		this.panel = pnlMain;
 		
@@ -59,6 +57,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 			PadX = width / 2 - padW / 2;
 			ballX = width / 2 - ballSize / 2;
 			ballY = height / 2 - ballSize / 2;
+			t.start();
 			first = false;
 		}
 		
@@ -102,7 +101,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		}
 		// down wall
 		if (ballY - ballSize > height) {
-			
+			t.stop();
 			first=true;
 			cardlayout.show(panel, "StartMenu");
 			Main.main.validate();
@@ -110,7 +109,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		
 		}
 		//  pad
-		if (ballY + ballSize == height - padH - inset && velY > 0)
+		if (ballY + ballSize >= height - padH - inset && ballY + ballSize <= height - padH - inset+1 && velY > 0)
 			if (ballX + ballSize >= PadX && ballX <= PadX + padW) {
 				velY = -velY;
 				score++;
@@ -119,8 +118,8 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 				
 
 
-		ballX += velX;
-		ballY += velY;
+		ballX += velX*ballSpeed;
+		ballY += velY*ballSpeed;
 		
 		// pressed keys
 		if (keys.size() == 1) {
