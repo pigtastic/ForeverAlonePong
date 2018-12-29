@@ -2,13 +2,11 @@ package de.pictastic.singlePong;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Collections;
 
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * displays the highscores list on this system after the game
@@ -16,8 +14,11 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class Highscores extends JPanel implements ActionListener {
 	private JButton start;
 
-	private LinkedList<Highscore> highscores;
-
+	private ArrayList<Highscore> scores = new ArrayList<Highscore>();
+/**
+ * 
+ * @param playedHighscore
+ */
 	public Highscores(Highscore playedHighscore) {
 		start = new JButton("Go Back to Start");
 		add(start);
@@ -32,8 +33,16 @@ public class Highscores extends JPanel implements ActionListener {
 		}
 	}
 
-	public static void addNewScore() {
-		throw new NotImplementedException();
+	/**
+	 * Fügt den Score zur Highscoreliste hinzu, wenn dieser in der Top10 ist.
+	 * Entfernt bei Bedarf den aus Platz 11. fallenden Score.
+	 * @param score
+	 */
+	public void addNewScore(Highscore score) {
+		scores.add(score);
+		Collections.sort(scores);
+		scores.subList(0, 9);
 	}
 
+	
 }
