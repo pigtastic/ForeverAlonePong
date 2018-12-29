@@ -1,4 +1,4 @@
-package de.pictastic.singlePong;
+package de.pictastic.foreverAlonePong;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

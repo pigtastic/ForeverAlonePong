@@ -1,4 +1,4 @@
-package de.pictastic.singlePong;
+package de.pictastic.foreverAlonePong;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

@@ -1,4 +1,4 @@
-package de.pictastic.singlePong;
+package de.pictastic.foreverAlonePong;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
