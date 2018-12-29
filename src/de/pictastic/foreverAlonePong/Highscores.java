@@ -1,5 +1,4 @@
-package de.pictastic.singlePong;
-
+package de.pictastic.foreverAlonePong;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +23,9 @@ public class Highscores extends JPanel implements ActionListener {
  * 
  * @param panel
  * @param cardLayout
- * @param playedHighscore
+ * @param playedHighscore not used 
  */
-	public Highscores(JPanel panel, CardLayout cardLayout, Highscore playedHighscore) {
+	public Highscores(JPanel panel, CardLayout cardLayout) {
 		add(new JLabel("Higscores"));
 		this.cardLayout=cardLayout;
 		this.panel=panel;
@@ -41,7 +40,8 @@ public class Highscores extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(start)) {
-
+			cardLayout.show(panel, "StartMenu");
+			Main.main.validate();
 		}
 	}
 

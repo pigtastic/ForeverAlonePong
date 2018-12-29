@@ -1,4 +1,4 @@
-package de.pictastic.singlePong;
+package de.pictastic.foreverAlonePong;
 
 import java.awt.CardLayout;
 import java.awt.Font;
