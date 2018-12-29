@@ -1,4 +1,5 @@
 package de.pictastic.foreverAlonePong;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -15,14 +16,18 @@ public class Highscores extends JPanel implements ActionListener{
 	
     private LinkedList<Highscore> highscores;
 
-
-    public Highscores(Highscore playedHighscore)
-    {
+	JPanel panel;
+	CardLayout cardLayout;
+	//Constructor
+	public Highscores(JPanel panel, CardLayout cardLayout) {
+		this.cardLayout = cardLayout;
+		this.panel = panel;
 		start = new JButton("Go Back to Start");
 		add(start);
 		start.addActionListener(this);
-		
-    }
+	}
+	
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

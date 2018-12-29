@@ -11,23 +11,32 @@ public class MainFrame extends JFrame{
 	private Game g;
 	
 	public MainFrame() {
-		
+		//Frame Settings
 		setTitle("Pong");
 		setSize(400, 700);
 		setResizable(true);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setFocusable(true);
+		add(pnlMain);
+		
+		//Layout Settings Main Panel
 		cardlayout = new CardLayout();
 		pnlMain.setLayout(cardlayout);
-		pnlMain.add(new StartMenu(pnlMain, cardlayout),"StartMenu");
+		
+		//add Panels to MainPanel
 		g = new Game(pnlMain, cardlayout);
-		addKeyListener(g);
-		setFocusable(true);
+		
+		pnlMain.add(new StartMenu(pnlMain, cardlayout),"StartMenu");
 		pnlMain.add(g,"Game");
+		pnlMain.add(new Highscores(pnlMain, cardlayout), "Highscores");
+		
+		//show default Panel
 		cardlayout.show(pnlMain, "StartMenu");
-		add(pnlMain);
 		validate();
-//		requestFocusInWindow();
+		
+		//add Listeners
+		addKeyListener(g);
 	}
 	
 
