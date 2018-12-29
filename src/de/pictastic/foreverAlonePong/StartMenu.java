@@ -88,15 +88,15 @@ public class StartMenu extends JPanel implements ActionListener {
 	 * Add Components to GridBagLayout
 	 * 
 	 * @param gbl
-	 * @param c
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
+	 * @param comp component that should be added
+	 * @param x column
+	 * @param y row
+	 * @param width Component span x
+	 * @param height Component span y
 	 * @param weightx
 	 * @param weighty
 	 */
-	void addComponent(GridBagLayout gbl, Component c, int x, int y, int width, int height, double weightx,
+	void addComponent(GridBagLayout gbl, Component comp, int x, int y, int width, int height, double weightx,
 			double weighty) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -107,8 +107,8 @@ public class StartMenu extends JPanel implements ActionListener {
 		gbc.gridheight = height;
 		gbc.weightx = weightx;
 		gbc.weighty = weighty;
-		gbl.setConstraints(c, gbc);
-		this.add(c);
+		gbl.setConstraints(comp, gbc);
+		this.add(comp);
 	}
 
 	@Override
