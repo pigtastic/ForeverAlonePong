@@ -28,6 +28,7 @@ public class StartMenu extends JPanel implements ActionListener {
 	JLabel fail = new JLabel("Hier werden nachher fails angezeigt");
 	JButton playbtn = new JButton("PLAY");
 	JButton highscoresbtn = new JButton("HIGHSCORES");
+	private String playername;
 
 	
 	//Constructor
@@ -113,6 +114,7 @@ public class StartMenu extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(playbtn)) {
 			cardLayout.show(panel, "Game");
+			playername = playerinput.getText();
 			Main.main.validate();
 		}
 		if(e.getSource().equals(highscoresbtn)) {
@@ -121,5 +123,15 @@ public class StartMenu extends JPanel implements ActionListener {
 		}
 
 	}
+
+	public String getPlayername() {
+		return playername;
+	}
+
+	public void setPlayername(String playername) {
+		this.playername = playername;
+	}
+	
+	
 
 }

@@ -8,7 +8,11 @@ import javax.swing.JPanel;
 public class MainFrame extends JFrame{
 	private CardLayout cardlayout;
 	private JPanel pnlMain=new JPanel();
+	private Highscores s;
+	private StartMenu sm;
 	private Game g;
+	private Replay r;
+	
 	
 	public MainFrame() {
 		//Frame Settings
@@ -26,10 +30,14 @@ public class MainFrame extends JFrame{
 		
 		//add Panels to MainPanel
 		g = new Game(pnlMain, cardlayout);
+		s = new Highscores(pnlMain, cardlayout);
+		sm = new StartMenu(pnlMain, cardlayout);
+		r = new Replay(pnlMain, cardlayout);
 		
-		pnlMain.add(new StartMenu(pnlMain, cardlayout),"StartMenu");
+		pnlMain.add(sm,"StartMenu");
 		pnlMain.add(g,"Game");
-		pnlMain.add(new Highscores(pnlMain, cardlayout), "Highscores");
+		pnlMain.add(s, "Highscores");
+		pnlMain.add(r, "Replay");
 		
 		//show default Panel
 		cardlayout.show(pnlMain, "StartMenu");
@@ -38,9 +46,9 @@ public class MainFrame extends JFrame{
 		//add Listeners
 		addKeyListener(g);
 	}
-	
 
 	
-
-
+	public void addScoreToHighscoreList () {
+	s.addNewScore(new Highscore(sm.getPlayername(), g.getScore()));
+	}
 }

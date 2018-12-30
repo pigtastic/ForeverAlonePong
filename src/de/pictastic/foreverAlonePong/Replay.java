@@ -1,5 +1,8 @@
 package de.pictastic.foreverAlonePong;
 
+import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -9,14 +12,27 @@ import javax.swing.JPanel;
 
 //Panel nach GameOver  
 
-public class Replay extends JPanel implements KeyListener {
+public class Replay extends JPanel implements KeyListener, ActionListener {
+
+	// Panel and Layout
+	private JPanel panel;
+	private CardLayout cardlayout;
+
+	//Button
+	private JButton button = new JButton ("Replay");
+	
 //	erneutspielen?
 //	nein? Highscores anzeigen
 
 //	Highscoreeintrag?
-	public Replay() {
+	public Replay(JPanel panel, CardLayout cardlayout) {
+		this.cardlayout = cardlayout;
+		this.panel = panel;
 		add(new JLabel("this is ReplayPane"));
 		add(new JLabel("Press Space to Replay"));
+		add(button);
+		button.addActionListener(this);
+		addKeyListener(this);
 
 	}
 
@@ -29,9 +45,10 @@ public class Replay extends JPanel implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
-		System.out.println("test");
 		if (code == KeyEvent.VK_SPACE) {
-			System.out.println("leertaste gedrückt");
+			System.out.println(code);
+			cardlayout.show(panel, "Game");
+			Main.main.validate();
 		}
 
 	}
@@ -40,6 +57,15 @@ public class Replay extends JPanel implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(button)) {
+			cardlayout.show(panel, "Game");
+			Main.main.validate();
+		}
+		
 	}
 
 }

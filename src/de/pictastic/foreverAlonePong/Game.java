@@ -109,9 +109,8 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		if (ballY - ballSize > height) {
 			t.stop();
 			first=true;
-			cardlayout.show(panel, "StartMenu");
+			cardlayout.show(panel, "Replay");
 			Main.main.validate();
-			
 		
 		}
 		//  pad
@@ -171,5 +170,15 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		}
 	}
 
+	public int getScore() {
+		return score;
+	}
 
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+
+	
+	
 }
