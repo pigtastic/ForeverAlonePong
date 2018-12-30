@@ -15,8 +15,9 @@ public static JFrame main;
 	        UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"); 
 	    } catch(Exception ignored){}
 		main = new MainFrame();
-
 	}
+	
+
 	
 
 

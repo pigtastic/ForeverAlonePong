@@ -59,7 +59,10 @@ public class Highscores extends JPanel implements ActionListener {
 		GridBagLayout gbl = new GridBagLayout();
 		setLayout(gbl);
 
-//		scores.add(new Highscore("Marvin", 5));
+		scores.add(new Highscore("Marvin", 5));
+		scores.add(new Highscore("Marvin", 6));
+		scores.add(new Highscore("Marvin", 8));
+		scores.add(new Highscore("Marvin", 9));
 
 		// Panel Components
 
@@ -88,9 +91,9 @@ public class Highscores extends JPanel implements ActionListener {
 		scoreList.setFont(new Font("Helvetica", Font.PLAIN, 20));
 		
 		//add Component
-		addComponent(this, gbl, headline, 0, 1, 3, 1, 0.0, 0.0, new Insets(10, 20, 0, 20));
+		addComponent(this, gbl, headline, 0, 1, 3, 1, 0.0, 0.0, new Insets(25, 20, 15, 20));
 		addComponent(this, gbl, scrollPane, 0, 2, 3, 2, 0.0, 0.5);
-		addComponent(this, gbl, backbtn, 0, 4, 3, 1, 0.0, 0.0, new Insets(0, 20, 20, 20));
+		addComponent(this, gbl, backbtn, 0, 4, 3, 1, 0.0, 0.0, new Insets(10, 20, 20, 20));
 
 
 		// add Listeners

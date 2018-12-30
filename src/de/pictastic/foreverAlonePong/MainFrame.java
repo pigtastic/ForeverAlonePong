@@ -12,6 +12,7 @@ public class MainFrame extends JFrame{
 	private StartMenu sm;
 	private Game g;
 	private Replay r;
+	String test;
 	
 	
 	public MainFrame() {
@@ -45,6 +46,7 @@ public class MainFrame extends JFrame{
 		
 		//add Listeners
 		addKeyListener(g);
+		addKeyListener(r);
 	}
 
 	

@@ -19,7 +19,7 @@ public class Replay extends JPanel implements KeyListener, ActionListener {
 	private CardLayout cardlayout;
 
 	//Button
-	private JButton button = new JButton ("Replay");
+	private JButton button = new JButton ("Back to Start");
 	
 //	erneutspielen?
 //	nein? Highscores anzeigen
@@ -28,7 +28,6 @@ public class Replay extends JPanel implements KeyListener, ActionListener {
 	public Replay(JPanel panel, CardLayout cardlayout) {
 		this.cardlayout = cardlayout;
 		this.panel = panel;
-		add(new JLabel("this is ReplayPane"));
 		add(new JLabel("Press Space to Replay"));
 		add(button);
 		button.addActionListener(this);
@@ -46,7 +45,6 @@ public class Replay extends JPanel implements KeyListener, ActionListener {
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 		if (code == KeyEvent.VK_SPACE) {
-			System.out.println(code);
 			cardlayout.show(panel, "Game");
 			Main.main.validate();
 		}
@@ -62,7 +60,7 @@ public class Replay extends JPanel implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(button)) {
-			cardlayout.show(panel, "Game");
+			cardlayout.show(panel, "StartMenu");
 			Main.main.validate();
 		}
 		
