@@ -55,13 +55,9 @@ public class MainFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (Main.condition.getCondition().equals("AFTERGAME")) {
-			addScoreToHighscoreList();
+			s.addNewScore(new Highscore(sm.getPlayername(), g.getScore()));
 			Main.condition.setCondition("BEFOREGAME");
 		}
-	}
-
-	public void addScoreToHighscoreList() {
-		s.addNewScore(new Highscore(sm.getPlayername(), g.getScore()));
 	}
 
 }
