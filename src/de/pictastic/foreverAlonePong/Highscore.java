@@ -13,4 +13,11 @@ public class Highscore implements Comparable<Highscore> {
 	public int compareTo(Highscore o) {
 		return this.score - o.score;
 	}
+
+	@Override
+	public String toString() {
+		return "Highscore [playerName=" + playerName + ", score=" + score + "]";
+	}
+	
+	
 }
