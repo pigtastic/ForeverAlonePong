@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
@@ -36,7 +37,7 @@ public class Highscores extends JPanel implements ActionListener {
 
 
 	// Liste zur Highscoreanzeige
-	private ArrayList<Highscore> scores = new ArrayList<Highscore>();
+	private List<Highscore> scores = new ArrayList<Highscore>();
 	private DefaultListModel<String> scoreModel = new DefaultListModel<String>();
 	private JList<String> scoreList = new JList<String>(scoreModel);
 
@@ -59,10 +60,17 @@ public class Highscores extends JPanel implements ActionListener {
 		GridBagLayout gbl = new GridBagLayout();
 		setLayout(gbl);
 
-		scores.add(new Highscore("Marvin", 5));
+		scores.add(new Highscore("Marvin", 9));
 		scores.add(new Highscore("Marvin", 6));
 		scores.add(new Highscore("Marvin", 8));
 		scores.add(new Highscore("Marvin", 9));
+		scores.add(new Highscore("Marvin", 9));
+		scores.add(new Highscore("Marvin", 9));
+		scores.add(new Highscore("Marvin", 9));
+		scores.add(new Highscore("Marvin", 9));
+		scores.add(new Highscore("Marvin", 0));
+		scores.add(new Highscore("Marvin", 9));
+		Collections.sort(scores);
 
 		// Panel Components
 
@@ -164,8 +172,12 @@ public class Highscores extends JPanel implements ActionListener {
 		scores.add(score);
 		Collections.sort(scores);
 		if (scores.size()>10) {
-		scores.subList(0, 9);
+		scores = scores.subList(0, 10);
 		}
+		scoreModel.removeAllElements();
+		scores.forEach(a -> {
+			scoreModel.addElement(a.toString() );
+		});
 	}
 
 }

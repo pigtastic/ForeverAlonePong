@@ -61,6 +61,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 			ballY = 40 - ballSize / 2;
 			t.start();
 			first = false;
+			score = 0;
 		}
 		
 	}
