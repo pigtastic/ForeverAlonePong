@@ -1,6 +1,7 @@
 package de.pictastic.foreverAlonePong;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -51,6 +52,8 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		t.setInitialDelay(100);
 		this.cardlayout=cardlayout;
 		this.panel = pnlMain;
+		setBackground(Color.BLACK);
+		setForeground(Color.WHITE);
 		
 	}
 	
@@ -94,6 +97,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		Line2D rightSide = new Line2D.Double(width,height,width/2,0);
 		g2d.draw(leftSide);
 		g2d.draw(rightSide);
+		
 	}
 	
 	@Override

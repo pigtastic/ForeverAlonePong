@@ -20,18 +20,16 @@ import javax.swing.SwingConstants;
 
 public class StartMenu extends JPanel implements ActionListener {
 
-	
 	JPanel panel;
 	CardLayout cardLayout;
-	
+
 	JTextField playerinput = new JTextField(10);
 	JLabel fail = new JLabel("Hier werden nachher fails angezeigt");
 	JButton playbtn = new JButton("PLAY");
 	JButton highscoresbtn = new JButton("HIGHSCORES");
 	private String playername;
 
-	
-	//Constructor
+	// Constructor
 	public StartMenu(JPanel panel, CardLayout cardLayout) {
 		this.cardLayout = cardLayout;
 		this.panel = panel;
@@ -39,7 +37,6 @@ public class StartMenu extends JPanel implements ActionListener {
 		// Panel Settings
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
-		
 
 		// Layout Settings
 		GridBagLayout gbl = new GridBagLayout();
@@ -68,46 +65,51 @@ public class StartMenu extends JPanel implements ActionListener {
 		highscoresbtn.setForeground(Color.WHITE);
 		highscoresbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
 
-
 		// Add Panel Components
-		addComponent(this, gbl, new JLabel(""),0,0,3,1,0.0,0.5);
-		addComponent(this, gbl, headline1,   0, 1, 3, 1, 0.0, 0.0);
-		addComponent(this, gbl, headline2,   0, 2, 3, 1, 0.0, 0.0);
-		addComponent(this, gbl, new JLabel(""),0,3,3,1,0.0,1.0);
-		addComponent(this, gbl, player,      0, 4, 1, 1, 0.0, 0.0);
-		addComponent(this, gbl, playerinput, 1, 4, 1, 1, 0.0, 0.0);
-		addComponent(this, gbl, fail,0,5,3,1,0.0,0.0);
-		addComponent(this, gbl, new JLabel(""),0,6,3,1,0.0,0.2);
-		addComponent(this, gbl, playbtn,0,7,3,1,0.0,0.0);
-		addComponent(this, gbl, new JLabel(""),0,8,3,1,0.0,0.2);
-		addComponent(this, gbl, highscoresbtn,0,9,3,1,0.0,0.0);
-		addComponent(this, gbl, new JLabel(""),0,10,3,1,0.0,1.0);
-		
+		addComponent(gbl, new JLabel(""), 0, 0, 3, 1, 0.0, 0.5);
+		addComponent(gbl, headline1, 0, 1, 3, 1, 0.0, 0.0);
+		addComponent(gbl, headline2, 0, 2, 3, 1, 0.0, 0.0);
+		addComponent(gbl, new JLabel(""), 0, 3, 3, 1, 0.0, 1.0);
+		addComponent(gbl, player, 0, 4, 1, 1, 0.0, 0.0);
+		addComponent(gbl, playerinput, 1, 4, 1, 1, 0.0, 0.0);
+		addComponent(gbl, fail, 0, 5, 3, 1, 0.0, 0.0);
+		addComponent(gbl, new JLabel(""), 0, 6, 3, 1, 0.0, 0.2);
+		addComponent(gbl, playbtn, 0, 7, 3, 1, 0.0, 0.0);
+		addComponent(gbl, new JLabel(""), 0, 8, 3, 1, 0.0, 0.2);
+		addComponent(gbl, highscoresbtn, 0, 9, 3, 1, 0.0, 0.0);
+		addComponent(gbl, new JLabel(""), 0, 10, 3, 1, 0.0, 1.0);
+
 		// Add Listeners
 		playbtn.addActionListener(this);
 		highscoresbtn.addActionListener(this);
-		
-
-
 
 	}
 
-	/*
-	 * Adds Components to an GridBagLayout
+	/**
+	 * Add Components to GridBagLayout
+	 * 
+	 * @param gbl
+	 * @param comp    component that should be added
+	 * @param x       column
+	 * @param y       row
+	 * @param width   Component span x
+	 * @param height  Component span y
+	 * @param weightx
+	 * @param weighty
 	 */
-	static void addComponent(JPanel panel, GridBagLayout gbl, Component c, int x, int y, int width, int height,
-			double weightx, double weighty) {
+	void addComponent(GridBagLayout gbl, Component comp, int x, int y, int width, int height, double weightx,
+			double weighty) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.insets= new Insets(0, 20, 0, 20);
+		gbc.insets = new Insets(0, 20, 0, 20);
 		gbc.gridx = x;
 		gbc.gridy = y;
 		gbc.gridwidth = width;
 		gbc.gridheight = height;
 		gbc.weightx = weightx;
 		gbc.weighty = weighty;
-		gbl.setConstraints(c, gbc);
-		panel.add(c);
+		gbl.setConstraints(comp, gbc);
+		this.add(comp);
 	}
 
 	@Override
@@ -117,7 +119,7 @@ public class StartMenu extends JPanel implements ActionListener {
 			playername = playerinput.getText();
 			Main.main.validate();
 		}
-		if(e.getSource().equals(highscoresbtn)) {
+		if (e.getSource().equals(highscoresbtn)) {
 			cardLayout.show(panel, "Highscores");
 			Main.main.validate();
 		}
@@ -131,7 +133,5 @@ public class StartMenu extends JPanel implements ActionListener {
 	public void setPlayername(String playername) {
 		this.playername = playername;
 	}
-	
-	
 
 }
