@@ -46,14 +46,15 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 	private Line2D rightSide;
 	
 	public Game(JPanel pnlMain, CardLayout cardlayout) {
+		this.cardlayout=cardlayout;
+		this.panel = pnlMain;
 		
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 		addKeyListener(this);
 		first = true;
 		t.setInitialDelay(100);
-		this.cardlayout=cardlayout;
-		this.panel = pnlMain;
+
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
 		
@@ -130,13 +131,11 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		}
 		//left triangle side
 		if(intersection(ballX,ballY,leftSide)&&velX<0) {
-			velX = velY;
-			velY = velX;
+			//winkel?
 		}
 		//right triangle side
 		if(intersection(ballX+ballSize,ballY+ballSize,rightSide)&&velX>0) {
-			velX = velY;
-			velY = velX;
+			//winkel?
 		}
 		
 		// top wall
@@ -148,10 +147,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		
 		// down wall
 		if (ballY - ballSize > height) {
-			t.stop();
-			first=true;
-			cardlayout.show(panel, "StartMenu");
-			Main.main.validate();
+			gameLose();
 			
 		
 		}
@@ -183,6 +179,19 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		repaint();
 		
 	}
+	
+	/**
+	 * Method that is called when game is lost
+	 */
+	private void gameLose() {
+		t.stop();
+		first=true;
+		cardlayout.show(panel, "Replay");
+		MainFrame.activePane="Replay";
+		Main.main.validate();
+	}
+	
+	
 	@Override
 	public void keyTyped(KeyEvent e) {}
 

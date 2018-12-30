@@ -40,26 +40,30 @@ public class StartMenu extends JPanel implements ActionListener {
 		// Layout Settings
 		GridBagLayout gbl = new GridBagLayout();
 		setLayout(gbl);
-		GridBagConstraints gbc = new GridBagConstraints();
 
 		// Panel Components
 		JLabel headline1 = new JLabel("FOREVERALONE");
-		JLabel headline2 = new JLabel("PONG");
 		headline1.setForeground(Color.WHITE);
 		headline1.setFont(new Font("Helvetica", Font.PLAIN, 20));
 		headline1.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel headline2 = new JLabel("PONG");
 		headline2.setForeground(Color.WHITE);
 		headline2.setFont(new Font("Helvetica", Font.PLAIN, 70));
 		headline2.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		JLabel player = new JLabel("Player");
 		player.setForeground(Color.WHITE);
 		player.setFont(new Font("Helvetica", Font.PLAIN, 20));
 		player.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		fail.setForeground(Color.RED);
 		fail.setFont(new Font("Helvetica", Font.PLAIN, 16));
+		
 		playbtn.setBackground(Color.BLACK);
 		playbtn.setForeground(Color.WHITE);
 		playbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
+		
 		highscoresbtn.setBackground(Color.BLACK);
 		highscoresbtn.setForeground(Color.WHITE);
 		highscoresbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -96,7 +100,7 @@ public class StartMenu extends JPanel implements ActionListener {
 	 * @param weightx
 	 * @param weighty
 	 */
-	void addComponent(GridBagLayout gbl, Component comp, int x, int y, int width, int height, double weightx,
+	private void addComponent(GridBagLayout gbl, Component comp, int x, int y, int width, int height, double weightx,
 			double weighty) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;

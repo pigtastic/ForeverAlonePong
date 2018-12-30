@@ -9,6 +9,8 @@ public class MainFrame extends JFrame{
 	private CardLayout cardlayout;
 	private JPanel pnlMain=new JPanel();
 	private Game g;
+	private Replay r;
+	static public String activePane;
 	
 	public MainFrame() {
 		//Frame Settings
@@ -26,18 +28,23 @@ public class MainFrame extends JFrame{
 		
 		//add Panels to MainPanel
 		g = new Game(pnlMain, cardlayout);
+		r = new Replay(pnlMain, cardlayout);
 		
 		pnlMain.add(new StartMenu(pnlMain, cardlayout),"StartMenu");
 		pnlMain.add(g,"Game");
 		pnlMain.add(new Highscores(pnlMain, cardlayout), "Highscores");
+		pnlMain.add(r, "Replay");
 		
 		//show default Panel
-		cardlayout.show(pnlMain, "StartMenu");
+		cardlayout.show(pnlMain, "Replay");
+		activePane="StartMenu";
 		validate();
 		
 		//add Listeners
 		addKeyListener(g);
+		addKeyListener(r);
 	}
+	
 	
 
 	
