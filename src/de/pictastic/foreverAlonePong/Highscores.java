@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
 /**
  * Displays the highscores list on this system after the game.
  */
-public class HighscoresPanel extends JPanel implements ActionListener {
+public class Highscores extends JPanel implements ActionListener {
 
 	//Panel and Layout
 	private JPanel panel;
@@ -47,7 +47,7 @@ public class HighscoresPanel extends JPanel implements ActionListener {
 	 * @param cardLayout
 	 * @param playedHighscore not used
 	 */
-	public HighscoresPanel(JPanel panel, CardLayout cardLayout) {
+	public Highscores(JPanel panel, CardLayout cardLayout) {
 		this.cardLayout = cardLayout;
 		this.panel = panel;
 
