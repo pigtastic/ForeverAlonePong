@@ -1,8 +1,8 @@
 package de.pictastic.foreverAlonePong;
 
 public class Highscore implements Comparable<Highscore> {
-	public final String playerName;
-	public final int score;
+	private final String playerName;
+	private final int score;
 
 	public Highscore(String playerName, int score) {
 		this.playerName = playerName;
@@ -16,8 +16,16 @@ public class Highscore implements Comparable<Highscore> {
 
 	@Override
 	public String toString() {
-		return "Highscore [playerName=" + playerName + ", score=" + score + "]";
+		return playerName + ": " + score;
+
 	}
-	
-	
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
 }

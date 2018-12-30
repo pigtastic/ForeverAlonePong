@@ -11,8 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,17 +26,19 @@ import javax.swing.SwingConstants;
  */
 public class Highscores extends JPanel implements ActionListener {
 
+	//Panel and Layout
 	private JPanel panel;
 	private CardLayout cardLayout;
-
-	private JLabel headline1 = new JLabel();
+	
+	//Components
+	private JLabel headline = new JLabel();
 	private JButton backbtn;
 
-	private ArrayList<Highscore> scores = new ArrayList<Highscore>();
-	
+
 	// Liste zur Highscoreanzeige
-	DefaultListModel scoreModel = new DefaultListModel();
-	JList scoreList = new JList(scoreModel);
+	private ArrayList<Highscore> scores = new ArrayList<Highscore>();
+	private DefaultListModel<String> scoreModel = new DefaultListModel<String>();
+	private JList<String> scoreList = new JList<String>(scoreModel);
 
 	/**
 	 * Konstruktor des Highscores JPanel.
@@ -57,34 +59,46 @@ public class Highscores extends JPanel implements ActionListener {
 		GridBagLayout gbl = new GridBagLayout();
 		setLayout(gbl);
 
-		scores.add(new Highscore("Marvin", 5));
+//		scores.add(new Highscore("Marvin", 5));
 
 		// Panel Components
-		JLabel headline1 = new JLabel("Highscores");
-		headline1.setForeground(Color.WHITE);
-		headline1.setFont(new Font("Helvetica", Font.PLAIN, 70));
-		headline1.setHorizontalAlignment(SwingConstants.CENTER);
+
+		// Headline
+		headline = new JLabel("Highscores");
+		headline.setForeground(Color.WHITE);
+		headline.setFont(new Font("Helvetica", Font.PLAIN, 70));
+		headline.setHorizontalAlignment(SwingConstants.CENTER);
+
+		// Backbutton
 		backbtn = new JButton("Go Back to Start");
 		backbtn.setBackground(Color.BLACK);
 		backbtn.setForeground(Color.WHITE);
 		backbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
+
+		// JList Scores
 		
 		scores.forEach(a -> {
-			scoreModel.addElement(a.toString());
+			scoreModel.addElement(a.toString() );
 		});
 		JScrollPane scrollPane = new JScrollPane(scoreList);
+		DefaultListCellRenderer renderer = (DefaultListCellRenderer) scoreList.getCellRenderer();
+		renderer.setHorizontalAlignment(JLabel.CENTER);
 
 		scoreList.setBackground(Color.BLACK);
 		scoreList.setForeground(Color.WHITE);
-		scoreList.setFont(new Font("Helvetica", Font.PLAIN, 10));
+		scoreList.setFont(new Font("Helvetica", Font.PLAIN, 20));
+		
+		JLabel space = new JLabel("");
+		space.setBackground(Color.GREEN);
+		
 
 		
-		
-		addComponent(this, gbl, new JLabel(""), 0, 0, 3, 1, 0.0, 0.5);
-		addComponent(this, gbl, headline1, 0, 1, 3, 1, 0.0, 0.0);
-		addComponent(this, gbl, scrollPane, 0, 2, 3, 2, 0.0, 0.5);
-		addComponent(this, gbl, backbtn, 0, 3, 3, 1, 0.0, 0.0);
-		addComponent(this, gbl, new JLabel(""), 0, 4, 3, 1, 0.0, 1.0);
+		//add Component
+		addComponent(this, gbl, space, 0, 0, 1, 1, 0.0, 1);
+		addComponent(this, gbl, headline, 0, 1, 3, 1, 0.0, 0.0);
+		addComponent(this, gbl, scrollPane, 0, 2, 3, 2, 0.0, 0.0);
+		addComponent(this, gbl, backbtn, 0, 3, 2, 1, 0.0, 0.5);
+		addComponent(this, gbl, space, 0, 4, 1, 10, 0.0, 1.0);
 
 		// add Listeners
 		backbtn.addActionListener(this);
