@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 public class MainFrame extends JFrame{
 	private CardLayout cardlayout;
 	private JPanel pnlMain=new JPanel();
-	private Highscores s;
+	private HighscoresPanel s;
 	private StartMenu sm;
 	private Game g;
 	private Replay r;
@@ -31,7 +31,7 @@ public class MainFrame extends JFrame{
 		
 		//add Panels to MainPanel
 		g = new Game(pnlMain, cardlayout);
-		s = new Highscores(pnlMain, cardlayout);
+		s = new HighscoresPanel(pnlMain, cardlayout);
 		sm = new StartMenu(pnlMain, cardlayout);
 		r = new Replay(pnlMain, cardlayout);
 		
