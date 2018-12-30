@@ -6,7 +6,7 @@ import javax.swing.UIManager;
 
 
 public class Main {
-static JFrame main;
+public static JFrame main;
 	/**
 	 * @param args
 	 */

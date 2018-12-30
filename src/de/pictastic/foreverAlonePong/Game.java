@@ -110,6 +110,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 			t.stop();
 			first=true;
 			cardlayout.show(panel, "Replay");
+			//Von hier müsste ich auf Main.main.addScoreToHighscoreList() zugreifen, geht aber nicht!
 			Main.main.validate();
 		
 		}
