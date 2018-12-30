@@ -22,16 +22,13 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 /**
- * displays the highscores list on this system after the game
+ * Displays the highscores list on this system after the game.
  */
 public class Highscores extends JPanel implements ActionListener {
 
 	//Panel and Layout
 	private JPanel panel;
 	private CardLayout cardLayout;
-	
-	//Constraints
-	GridBagConstraints gbc = new GridBagConstraints();
 	
 	//Components
 	private JLabel headline = new JLabel();
@@ -69,6 +66,7 @@ public class Highscores extends JPanel implements ActionListener {
 		// Headline
 		headline = new JLabel("Highscores");
 		headline.setForeground(Color.WHITE);
+		headline.setBackground(Color.BLUE);
 		headline.setFont(new Font("Helvetica", Font.PLAIN, 70));
 		headline.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -89,23 +87,11 @@ public class Highscores extends JPanel implements ActionListener {
 		scoreList.setForeground(Color.WHITE);
 		scoreList.setFont(new Font("Helvetica", Font.PLAIN, 20));
 		
-		JLabel space = new JLabel("");
-		space.setBackground(Color.GREEN);
-		
-		
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
-		gbc.gridheight = 2;
-		gbc.insets = new Insets(5, 5, 0, 5);
-		add(headline, gbc);
-		
-
-		
 		//add Component
-//		addComponent(this, gbl, space, 0, 0, 1, 1, 0.0, 1);
-//		addComponent(this, gbl, headline, 0, 1, 3, 1, 0.0, 0.0);
-//		addComponent(this, gbl, scrollPane, 0, 2, 3, 2, 0.0, 0.0);
-//		addComponent(this, gbl, backbtn, 0, 3, 2, 1, 0.0, 0.5);
-//		addComponent(this, gbl, space, 0, 4, 1, 10, 0.0, 1.0);
+		addComponent(this, gbl, headline, 0, 1, 3, 1, 0.0, 0.0, new Insets(10, 20, 0, 20));
+		addComponent(this, gbl, scrollPane, 0, 2, 3, 2, 0.0, 0.5);
+		addComponent(this, gbl, backbtn, 0, 4, 3, 1, 0.0, 0.0, new Insets(0, 20, 20, 20));
+
 
 		// add Listeners
 		backbtn.addActionListener(this);
@@ -120,6 +106,34 @@ public class Highscores extends JPanel implements ActionListener {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(0, 20, 0, 20);
+		gbc.gridx = x;
+		gbc.gridy = y;
+		gbc.gridwidth = width;
+		gbc.gridheight = height;
+		gbc.weightx = weightx;
+		gbc.weighty = weighty;
+		gbl.setConstraints(c, gbc);
+		panel.add(c);
+	}
+	/**
+	 * Adds Components to an GridBagLayout. Requires an Insets;
+	 * 
+	 * @param panel
+	 * @param gbl
+	 * @param c
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @param weightx
+	 * @param weighty
+	 * @param inset
+	 */
+	static void addComponent(JPanel panel, GridBagLayout gbl, Component c, int x, int y, int width, int height,
+			double weightx, double weighty, Insets insets) {
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.insets = insets;
 		gbc.gridx = x;
 		gbc.gridy = y;
 		gbc.gridwidth = width;
