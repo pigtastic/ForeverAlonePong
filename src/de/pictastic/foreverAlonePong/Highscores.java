@@ -60,18 +60,6 @@ public class Highscores extends JPanel implements ActionListener {
 		GridBagLayout gbl = new GridBagLayout();
 		setLayout(gbl);
 
-		scores.add(new Highscore("Marvin", 9));
-		scores.add(new Highscore("Marvin", 6));
-		scores.add(new Highscore("Marvin", 8));
-		scores.add(new Highscore("Marvin", 9));
-		scores.add(new Highscore("Marvin", 9));
-		scores.add(new Highscore("Marvin", 9));
-		scores.add(new Highscore("Marvin", 9));
-		scores.add(new Highscore("Marvin", 9));
-		scores.add(new Highscore("Marvin", 0));
-		scores.add(new Highscore("Marvin", 9));
-		Collections.sort(scores);
-
 		// Panel Components
 
 		// Headline
