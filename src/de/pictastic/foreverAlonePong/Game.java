@@ -13,6 +13,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
+import java.util.concurrent.locks.Condition;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -110,7 +111,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 			t.stop();
 			first=true;
 			cardlayout.show(panel, "Replay");
-			//Von hier müsste ich auf Main.main.addScoreToHighscoreList() zugreifen, geht aber nicht!
+			Main.condition.setCondition("AFTERGAME");
 			Main.main.validate();
 		
 		}

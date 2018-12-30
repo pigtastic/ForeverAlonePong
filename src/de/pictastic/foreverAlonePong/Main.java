@@ -7,6 +7,7 @@ import javax.swing.UIManager;
 
 public class Main {
 public static JFrame main;
+public static FrameCondition condition = new FrameCondition();
 	/**
 	 * @param args
 	 */

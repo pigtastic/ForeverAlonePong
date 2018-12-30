@@ -163,7 +163,9 @@ public class Highscores extends JPanel implements ActionListener {
 	public void addNewScore(Highscore score) {
 		scores.add(score);
 		Collections.sort(scores);
+		if (scores.size()>10) {
 		scores.subList(0, 9);
+		}
 	}
 
 }
