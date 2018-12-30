@@ -30,6 +30,9 @@ public class Highscores extends JPanel implements ActionListener {
 	private JPanel panel;
 	private CardLayout cardLayout;
 	
+	//Constraints
+	GridBagConstraints gbc = new GridBagConstraints();
+	
 	//Components
 	private JLabel headline = new JLabel();
 	private JButton backbtn;
@@ -76,14 +79,12 @@ public class Highscores extends JPanel implements ActionListener {
 		backbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
 
 		// JList Scores
-		
 		scores.forEach(a -> {
 			scoreModel.addElement(a.toString() );
 		});
 		JScrollPane scrollPane = new JScrollPane(scoreList);
 		DefaultListCellRenderer renderer = (DefaultListCellRenderer) scoreList.getCellRenderer();
 		renderer.setHorizontalAlignment(JLabel.CENTER);
-
 		scoreList.setBackground(Color.BLACK);
 		scoreList.setForeground(Color.WHITE);
 		scoreList.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -91,14 +92,20 @@ public class Highscores extends JPanel implements ActionListener {
 		JLabel space = new JLabel("");
 		space.setBackground(Color.GREEN);
 		
+		
+		gbc.gridwidth = GridBagConstraints.REMAINDER;
+		gbc.gridheight = 2;
+		gbc.insets = new Insets(5, 5, 0, 5);
+		add(headline, gbc);
+		
 
 		
 		//add Component
-		addComponent(this, gbl, space, 0, 0, 1, 1, 0.0, 1);
-		addComponent(this, gbl, headline, 0, 1, 3, 1, 0.0, 0.0);
-		addComponent(this, gbl, scrollPane, 0, 2, 3, 2, 0.0, 0.0);
-		addComponent(this, gbl, backbtn, 0, 3, 2, 1, 0.0, 0.5);
-		addComponent(this, gbl, space, 0, 4, 1, 10, 0.0, 1.0);
+//		addComponent(this, gbl, space, 0, 0, 1, 1, 0.0, 1);
+//		addComponent(this, gbl, headline, 0, 1, 3, 1, 0.0, 0.0);
+//		addComponent(this, gbl, scrollPane, 0, 2, 3, 2, 0.0, 0.0);
+//		addComponent(this, gbl, backbtn, 0, 3, 2, 1, 0.0, 0.5);
+//		addComponent(this, gbl, space, 0, 4, 1, 10, 0.0, 1.0);
 
 		// add Listeners
 		backbtn.addActionListener(this);
