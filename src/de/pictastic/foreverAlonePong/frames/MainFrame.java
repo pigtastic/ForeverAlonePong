@@ -12,6 +12,7 @@ import javax.swing.Timer;
 import de.pictastic.foreverAlonePong.classes.HighscoreWriter;
 
 public class MainFrame extends JFrame implements ActionListener {
+	private static String activePane;
 	private CardLayout cardlayout;
 	private JPanel pnlMain = new JPanel();
 	private Highscores s;
@@ -67,6 +68,14 @@ public class MainFrame extends JFrame implements ActionListener {
 			}
 			Main.condition.setCondition("BEFOREGAME");
 		}
+	}
+	
+	public static void setActivePane(String s) {
+		activePane=s;
+	}
+	
+	public static String getActivePane() {
+		return activePane;
 	}
 
 }
