@@ -14,7 +14,6 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
-import java.util.concurrent.locks.Condition;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -42,16 +41,19 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 	
 	// score
 	private int  score;
+	private Line2D leftSide;
+	private Line2D rightSide;
 	
 	public Game(JPanel pnlMain, CardLayout cardlayout) {
+		this.cardlayout=cardlayout;
+		this.panel = pnlMain;
 		
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 		addKeyListener(this);
 		first = true;
 		t.setInitialDelay(100);
-		this.cardlayout=cardlayout;
-		this.panel = pnlMain;
+
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
 		
@@ -93,31 +95,62 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		g2d.drawString(scoreTemp, width - 70*scoreTemp.length(), 90);
 		
 //		triangle
-		Line2D leftSide = new Line2D.Double(0,height,width/2,0);
-		Line2D rightSide = new Line2D.Double(width,height,width/2,0);
+		leftSide = new Line2D.Double(0,height,width/2,0);
+		rightSide = new Line2D.Double(width,height,width/2,0);
 		g2d.draw(leftSide);
 		g2d.draw(rightSide);
 		
 	}
 	
+
+	private boolean intersection(double x, double y, Line2D side) {
+		//Startpunkt
+		double x1= side.getX1();
+		double y1= side.getY1();
+		//Endpunkt
+		double x2= side.getX2();
+		double y2= side.getY2();
+		//Geradensteigung
+		double m = (y2-y1)/(x2-x1);
+		//Geradengleichung
+		double linearEquation=m*(x-x1)+y1;
+		if(linearEquation-y<3&&linearEquation-y>-3){
+			return true;
+		}
+		else return false;
+	}
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// side walls
 		if (ballX < 0 || ballX > width - ballSize) {
-			velX = -velX;
+			velX=-velX;
+
+			
 		}
+		//left triangle side
+		if(intersection(ballX,ballY,leftSide)&&velX<0) {
+			//winkel?
+		}
+		//right triangle side
+		if(intersection(ballX+ballSize,ballY+ballSize,rightSide)&&velX>0) {
+			//winkel?
+		}
+		
 		// top wall
 		if (ballY < 0) {
 			velY = -velY;
 			
 		}
+		
+		
 		// down wall
 		if (ballY - ballSize > height) {
-			t.stop();
-			first=true;
-			cardlayout.show(panel, "Replay");
-			Main.condition.setCondition("AFTERGAME");
-			Main.main.validate();
+
+			gameLose();
+			
+
 		
 		}
 		//  pad
@@ -148,6 +181,20 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		repaint();
 		
 	}
+	
+	/**
+	 * Method that is called when game is lost
+	 */
+	private void gameLose() {
+		t.stop();
+		first=true;
+		cardlayout.show(panel, "Replay");
+		MainFrame.setActivePane("Replay");
+		Main.main.validate();
+		Main.condition.setCondition("AFTERGAME");
+	}
+	
+	
 	@Override
 	public void keyTyped(KeyEvent e) {}
 
