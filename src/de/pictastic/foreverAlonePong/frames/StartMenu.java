@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong;
+package de.pictastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.awt.Color;

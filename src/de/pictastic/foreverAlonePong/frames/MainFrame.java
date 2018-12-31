@@ -1,12 +1,15 @@
-package de.pictastic.foreverAlonePong;
+package de.pictastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import de.pictastic.foreverAlonePong.classes.HighscoreWriter;
 
 public class MainFrame extends JFrame implements ActionListener {
 	private CardLayout cardlayout;
@@ -56,6 +59,12 @@ public class MainFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (Main.condition.getCondition().equals("AFTERGAME")) {
 			s.addNewScore(new Highscore(sm.getPlayername(), g.getScore()));
+			try {
+				HighscoreWriter.writeScores(s.getScores());
+			} catch (IOException e1) {
+				System.out.println("Scores konnten nicht gespeichert werden!");
+				e1.printStackTrace();
+			}
 			Main.condition.setCondition("BEFOREGAME");
 		}
 	}

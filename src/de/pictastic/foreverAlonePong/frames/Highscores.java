@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong;
+package de.pictastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,19 +23,20 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import de.pictastic.foreverAlonePong.classes.HighscoreReader;
+
 /**
  * Displays the highscores list on this system after the game.
  */
 public class Highscores extends JPanel implements ActionListener {
 
-	//Panel and Layout
+	// Panel and Layout
 	private JPanel panel;
 	private CardLayout cardLayout;
-	
-	//Components
+
+	// Components
 	private JLabel headline = new JLabel();
 	private JButton backbtn;
-
 
 	// Liste zur Highscoreanzeige
 	private List<Highscore> scores = new ArrayList<Highscore>();
@@ -47,6 +49,8 @@ public class Highscores extends JPanel implements ActionListener {
 	 * @param panel
 	 * @param cardLayout
 	 * @param playedHighscore not used
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
 	public Highscores(JPanel panel, CardLayout cardLayout) {
 		this.cardLayout = cardLayout;
@@ -75,22 +79,26 @@ public class Highscores extends JPanel implements ActionListener {
 		backbtn.setForeground(Color.WHITE);
 		backbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
 
-		// JList Scores
+		// add Scores to JList
+		try {
+			scores = HighscoreReader.importScores();
+		} catch (NumberFormatException | IOException e) {
+			System.out.println("Higscore-Import fehlgeschlagen");
+			e.printStackTrace();
+		}
 		scores.forEach(a -> {
-			scoreModel.addElement(a.toString() );
+			scoreModel.addElement(a.toString());
 		});
-		JScrollPane scrollPane = new JScrollPane(scoreList);
 		DefaultListCellRenderer renderer = (DefaultListCellRenderer) scoreList.getCellRenderer();
 		renderer.setHorizontalAlignment(JLabel.CENTER);
 		scoreList.setBackground(Color.BLACK);
 		scoreList.setForeground(Color.WHITE);
-		scoreList.setFont(new Font("Helvetica", Font.PLAIN, 20));
-		
-		//add Component
-		addComponent(this, gbl, headline, 0, 1, 3, 1, 0.0, 0.0, new Insets(25, 20, 15, 20));
-		addComponent(this, gbl, scrollPane, 0, 2, 3, 2, 0.0, 0.5);
-		addComponent(this, gbl, backbtn, 0, 4, 3, 1, 0.0, 0.0, new Insets(10, 20, 20, 20));
+		scoreList.setFont(new Font("Helvetica", Font.PLAIN, 30));
 
+		// add Component
+		addComponent(this, gbl, headline, 0, 1, 3, 1, 0.0, 0.0, new Insets(25, 20, 15, 20));
+		addComponent(this, gbl, scoreList, 0, 2, 3, 2, 0.0, 0.5);
+		addComponent(this, gbl, backbtn, 0, 4, 3, 1, 0.0, 0.0, new Insets(10, 20, 20, 20));
 
 		// add Listeners
 		backbtn.addActionListener(this);
@@ -114,19 +122,9 @@ public class Highscores extends JPanel implements ActionListener {
 		gbl.setConstraints(c, gbc);
 		panel.add(c);
 	}
-	/**
+
+	/*
 	 * Adds Components to an GridBagLayout. Requires an Insets;
-	 * 
-	 * @param panel
-	 * @param gbl
-	 * @param c
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 * @param weightx
-	 * @param weighty
-	 * @param inset
 	 */
 	static void addComponent(JPanel panel, GridBagLayout gbl, Component c, int x, int y, int width, int height,
 			double weightx, double weighty, Insets insets) {
@@ -159,13 +157,54 @@ public class Highscores extends JPanel implements ActionListener {
 	public void addNewScore(Highscore score) {
 		scores.add(score);
 		Collections.sort(scores);
-		if (scores.size()>10) {
-		scores = scores.subList(0, 10);
+		if (scores.size() > 10) {
+			scores = scores.subList(0, 10);
 		}
 		scoreModel.removeAllElements();
 		scores.forEach(a -> {
-			scoreModel.addElement(a.toString() );
+			scoreModel.addElement(a.toString());
 		});
-	}
+//		JLabel topscorer;
+//		for (int i = 0; i < scores.size(); i++) {
+//			switch (i) {
+//			case 0:
+//				topscorer = new JLabel(scores.get(i).toString());
+//				topscorer.setFont(new Font("Helvetica", Font.PLAIN, 55));
+//				break;
+//			case 1:
+//				topscorer = new JLabel(scores.get(i).toString());
+//				topscorer.setFont(new Font("Helvetica", Font.PLAIN, 50));
+//				break;
+//			case 2:
+//				topscorer = new JLabel(scores.get(i).toString());
+//				topscorer.setFont(new Font("Helvetica", Font.PLAIN, 45));
+//				break;
+//			default:
+//				topscorer = new JLabel(scores.get(i).toString());
+//				break;
+//			}
+//			scoreModel.addElement(topscorer.toString());
+//	}
+		}
 
-}
+	//Getter and Setter
+	
+	/**
+	 * 
+	 * @return a list of Highscores
+	 */
+	public List<Highscore> getScores() {
+		return scores;
+	}
+	
+	/**
+	 * Set a List as Highscores.
+	 * @param scores
+	 */
+	public void setScores(List<Highscore> scores) {
+		this.scores = scores;
+	}
+	
+	
+	
+	}
