@@ -49,6 +49,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		// show default Panel
 		cardlayout.show(pnlMain, "StartMenu");
+		setActivePane("StartMenu");
 		validate();
 
 		// add Listeners
