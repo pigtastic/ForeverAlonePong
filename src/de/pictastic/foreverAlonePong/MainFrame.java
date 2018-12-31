@@ -20,6 +20,7 @@ public class MainFrame extends JFrame{
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setFocusable(true);
+		setLocationRelativeTo(null);
 		add(pnlMain);
 		
 		//Layout Settings Main Panel
@@ -36,7 +37,7 @@ public class MainFrame extends JFrame{
 		pnlMain.add(r, "Replay");
 		
 		//show default Panel
-		cardlayout.show(pnlMain, "Replay");
+		cardlayout.show(pnlMain, "StartMenu");
 		activePane="StartMenu";
 		validate();
 		

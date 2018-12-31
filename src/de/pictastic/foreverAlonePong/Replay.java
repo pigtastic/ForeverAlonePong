@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -12,6 +13,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.UIDefaults;
 
 //Panel nach GameOver  
 
@@ -37,15 +39,6 @@ public class Replay extends DefaultJPanel implements KeyListener {
 		headline.setForeground(Color.WHITE);
 		headline.setFont(new Font("Helvetica", Font.PLAIN, 50));
 		headline.setHorizontalAlignment(SwingConstants.CENTER);
-//		JTextArea info = new JTextArea("Hier kommt info rein zu highscore oder sonstiges");
-//		info.setEditable(false);
-//		
-//		info.setBackground(Color.BLACK);
-//		info.setForeground(Color.WHITE);
-//		info.setFont(new Font("Helvetica", Font.PLAIN, 20));
-//		info.setLineWrap(true);
-//		info.setWrapStyleWord(true);
-//		info.setBorder(BorderFactory.createEtchedBorder());
 	
         JEditorPane info = new JEditorPane(); 
         info.setBackground(Color.BLACK);
@@ -54,7 +47,14 @@ public class Replay extends DefaultJPanel implements KeyListener {
         info.setFont(new Font("Helvetica", Font.PLAIN, 20));
         info.setContentType("text/plain"); 
         info.setEditable(false);
+        info.setEnabled(true);
         info.setText("Hier kommt später info zum Highscore oder sonst was rein");
+        Color bgColor = new Color(0,0,0);
+        UIDefaults defaults = new UIDefaults();
+        defaults.put("EditorPane[Enabled].backgroundPainter", bgColor);
+        info.putClientProperty("Nimbus.Overrides", defaults);
+        info.putClientProperty("Nimbus.Overrides.InheritDefaults", true);
+        info.setBackground(bgColor);
         
 		highscoresbtn.setBackground(Color.BLACK);
 		highscoresbtn.setForeground(Color.WHITE);
@@ -69,9 +69,10 @@ public class Replay extends DefaultJPanel implements KeyListener {
 		addComponent(gbl, headline, 0, 1, 1, 1, 0.0, 1.0);
 		addComponent(gbl, new JLabel(""), 0, 2, 1, 1, 0.0, 0.5);
 		addComponent(gbl, info, 0, 3, 1, 1, 1.0, 0.0);
-		addComponent(gbl, highscoresbtn, 0, 4, 1, 1, 1.0, 0.0);
-		addComponent(gbl, replay, 0, 5, 1, 1, 1.0, 0.0);
-		addComponent(gbl, new JLabel(""), 0, 6, 1, 1, 0.0, 1.0);
+		addComponent(gbl, new JLabel(""), 0, 4, 1, 1, 0.0, 0.5);
+		addComponent(gbl, highscoresbtn, 0, 5, 1, 1, 1.0, 0.0,new Insets(20, 0, 20, 0));
+		addComponent(gbl, replay, 0, 6, 1, 1, 1.0, 0.0);
+		addComponent(gbl, new JLabel(""), 0, 7, 1, 1, 0.0, 1.0);
 
 	}
 	
