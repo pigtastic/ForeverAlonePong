@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong;
+package de.pictastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -14,8 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIDefaults;
-
-import de.pictastic.foreverAlonePong.MainFrame;
 
 //Panel nach GameOver  
 
@@ -88,12 +86,12 @@ public class Replay extends DefaultJPanel implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(MainFrame.activePane.equals("Replay")) {
+		if(MainFrame.getActivePane().equals("Replay")) {
 		int code = e.getKeyCode();
 		if (code == KeyEvent.VK_SPACE) {
 			cardlayout.show(panel, "Game");
 			Main.main.validate();
-			MainFrame.activePane="Game";
+			MainFrame.setActivePane("Game");
 		}
 		}
 
