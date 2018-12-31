@@ -63,10 +63,10 @@ public class Highscores extends JPanel implements ActionListener {
 		// Panel Components
 
 		// Headline
-		headline = new JLabel("Highscores");
+		headline = new JLabel("HIGHSCORES");
 		headline.setForeground(Color.WHITE);
 		headline.setBackground(Color.BLUE);
-		headline.setFont(new Font("Helvetica", Font.PLAIN, 70));
+		headline.setFont(new Font("Helvetica", Font.PLAIN, 50));
 		headline.setHorizontalAlignment(SwingConstants.CENTER);
 
 		// Backbutton

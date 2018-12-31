@@ -44,7 +44,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		pnlMain.add(r, "Replay");
 
 		// show default Panel
-		cardlayout.show(pnlMain, "StartMenu");
+		cardlayout.show(pnlMain, "Highscores");
 		validate();
 
 		// add Listeners
