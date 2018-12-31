@@ -2,25 +2,20 @@ package de.pictastic.foreverAlonePong;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 //Panel nach GameOver  
 
-public class Replay extends JPanel implements KeyListener {
+public class Replay extends DefaultJPanel implements KeyListener {
 	
 	private CardLayout cardlayout;
 	private JPanel panel;
@@ -28,12 +23,10 @@ public class Replay extends JPanel implements KeyListener {
 	private JButton highscoresbtn = new JButton("HIGHSCORES");
 	
 	public Replay(JPanel pnlMain, CardLayout cardlayout) {
+
 		this.cardlayout=cardlayout;
 		this.panel = pnlMain;
-		
-		//Panel Settings
-		setBackground(Color.BLACK);
-		setForeground(Color.WHITE);
+
 		
 		// Layout Settings
 		GridBagLayout gbl = new GridBagLayout();
@@ -82,32 +75,7 @@ public class Replay extends JPanel implements KeyListener {
 
 	}
 	
-	/**
-	 * Add Components to GridBagLayout
-	 * 
-	 * @param gbl
-	 * @param comp component that should be added
-	 * @param x column
-	 * @param y row
-	 * @param width Component span x
-	 * @param height Component span y
-	 * @param weightx
-	 * @param weighty
-	 */
-	private void addComponent(GridBagLayout gbl, Component comp, int x, int y, int width, int height, double weightx,
-			double weighty) {
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.insets = new Insets(0, 20, 0, 20);
-		gbc.gridx = x;
-		gbc.gridy = y;
-		gbc.gridwidth = width;
-		gbc.gridheight = height;
-		gbc.weightx = weightx;
-		gbc.weighty = weighty;
-		gbl.setConstraints(comp, gbc);
-		this.add(comp);
-	}
+
 	
 	@Override
 	public void keyTyped(KeyEvent e) {

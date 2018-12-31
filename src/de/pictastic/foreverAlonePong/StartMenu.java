@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 
 //Panel zum Start des Spiels mit player namenseingabe für Highscore
 
-public class StartMenu extends JPanel implements ActionListener {
+public class StartMenu extends DefaultJPanel implements ActionListener {
 
 	private JPanel panel;
 	private CardLayout cardLayout;
@@ -32,10 +32,6 @@ public class StartMenu extends JPanel implements ActionListener {
 	public StartMenu(JPanel panel, CardLayout cardLayout) {
 		this.cardLayout = cardLayout;
 		this.panel = panel;
-
-		// Panel Settings
-		setBackground(Color.BLACK);
-		setForeground(Color.WHITE);
 
 		// Layout Settings
 		GridBagLayout gbl = new GridBagLayout();
@@ -88,32 +84,7 @@ public class StartMenu extends JPanel implements ActionListener {
 
 	}
 
-	/**
-	 * Add Components to GridBagLayout
-	 * 
-	 * @param gbl
-	 * @param comp component that should be added
-	 * @param x column
-	 * @param y row
-	 * @param width Component span x
-	 * @param height Component span y
-	 * @param weightx
-	 * @param weighty
-	 */
-	private void addComponent(GridBagLayout gbl, Component comp, int x, int y, int width, int height, double weightx,
-			double weighty) {
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.insets = new Insets(0, 20, 0, 20);
-		gbc.gridx = x;
-		gbc.gridy = y;
-		gbc.gridwidth = width;
-		gbc.gridheight = height;
-		gbc.weightx = weightx;
-		gbc.weighty = weighty;
-		gbl.setConstraints(comp, gbc);
-		this.add(comp);
-	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
