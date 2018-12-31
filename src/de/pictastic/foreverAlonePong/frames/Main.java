@@ -1,8 +1,10 @@
-package de.pictastic.foreverAlonePong;
+package de.pictastic.foreverAlonePong.frames;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+
+import de.pictastic.foreverAlonePong.classes.FrameCondition;
 
 
 public class Main {

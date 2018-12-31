@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong;
+package de.pictastic.foreverAlonePong.classes;
 
 public class FrameCondition {
 	
