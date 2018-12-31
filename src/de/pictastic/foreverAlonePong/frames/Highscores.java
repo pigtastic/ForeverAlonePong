@@ -189,8 +189,8 @@ public class Highscores extends JPanel implements ActionListener {
 	//Getter and Setter
 	
 	/**
-	 * 
-	 * @return a list of Highscores
+	 * Return a list of highscores.
+	 * @return scores
 	 */
 	public List<Highscore> getScores() {
 		return scores;
