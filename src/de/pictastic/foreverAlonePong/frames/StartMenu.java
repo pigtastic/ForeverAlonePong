@@ -91,11 +91,13 @@ public class StartMenu extends DefaultJPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(playbtn)) {
 			cardLayout.show(panel, "Game");
+			MainFrame.setActivePane("Game");
 			playername = playerinput.getText();
 			Main.main.validate();
 		}
 		if (e.getSource().equals(highscoresbtn)) {
 			cardLayout.show(panel, "Highscores");
+			MainFrame.setActivePane("Highscores");
 			Main.main.validate();
 		}
 

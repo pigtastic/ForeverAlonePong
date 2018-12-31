@@ -21,7 +21,7 @@ import javax.swing.Timer;
 
 public class Game extends JPanel implements  ActionListener, KeyListener {
 	
-	private int height, width;
+	public int height, width;
 	private Timer t = new Timer(10, this);
 	private boolean first;
 	
@@ -37,7 +37,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 	private int inset = 10;
 	
 	// ball
-	private double ballX, ballY, velX = 1, velY = 1, ballSize = 20, ballSpeed=1;
+	Ball ball =new Ball();
 	
 	// score
 	private int  score;
@@ -62,8 +62,8 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 	protected void startPosition() {
 		if (first) {
 			PadX = width / 2 - padW / 2;
-			ballX = width / 2 - ballSize / 2;
-			ballY = 40 - ballSize / 2;
+			ball.setBallX(width/2);
+			ball.setBallY(100 - ball.getBallSize() / 2);
 			t.start();
 			first = false;
 			score = 0;
@@ -77,8 +77,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		height = getHeight();
 		width = getWidth();
 
-		// initial positioning
-		startPosition();
+		
 		
 		//  pad
 		Rectangle2D Pad = new Rectangle(PadX, height - padH - inset, padW, padH);
@@ -86,8 +85,10 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		
 		
 		// ball
-		Ellipse2D ball = new Ellipse2D.Double(ballX, ballY, ballSize, ballSize);
+		startPosition();
 		g2d.fill(ball);
+		// initial positioning
+		
 		
 		// score
 		String scoreTemp = new Integer(score).toString();
@@ -102,7 +103,13 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		
 	}
 	
-
+	/**
+	 * Method to get intersection of Ball and TriangleSide
+	 * @param x
+	 * @param y
+	 * @param side
+	 * @return
+	 */
 	private boolean intersection(double x, double y, Line2D side) {
 		//Startpunkt
 		double x1= side.getX1();
@@ -124,29 +131,29 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// side walls
-		if (ballX < 0 || ballX > width - ballSize) {
-			velX=-velX;
+		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
+			ball.changeDirectionX();
 
 			
 		}
 		//left triangle side
-		if(intersection(ballX,ballY,leftSide)&&velX<0) {
-			//winkel?
+		if(intersection(ball.getBallX(),ball.getBallY(),leftSide)&&ball.getVelX()<0) {
+			
 		}
 		//right triangle side
-		if(intersection(ballX+ballSize,ballY+ballSize,rightSide)&&velX>0) {
-			//winkel?
+		if(intersection(ball.getBallX()+ball.getBallSize(),ball.getBallY()+ball.getBallSize(),rightSide)&&ball.getVelX()>0) {
+
 		}
 		
 		// top wall
-		if (ballY < 0) {
-			velY = -velY;
+		if (ball.getBallY() < 0) {
+			ball.changeDirectionY();
 			
 		}
 		
 		
 		// down wall
-		if (ballY - ballSize > height) {
+		if (ball.getBallY() - ball.getBallSize() > height) {
 
 			gameLose();
 			
@@ -154,17 +161,16 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		
 		}
 		//  pad
-		if (ballY + ballSize >= height - padH - inset && ballY + ballSize <= height - padH - inset+1 && velY > 0)
-			if (ballX + ballSize >= PadX && ballX <= PadX + padW) {
-				velY = -velY;
+		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset && ball.getBallY() + ball.getBallSize() <= height - padH - inset+1 && ball.getVelY() > 0)
+			if (ball.getBallX() + ball.getBallSize() >= PadX && ball.getBallX() <= PadX + padW) {
+				ball.setVelY(ball.getVelY()*-1);
 				score++;
 				
 			}
 				
 
 
-		ballX += velX*ballSpeed;
-		ballY += velY*ballSpeed;
+		ball.move();
 		
 		// pressed keys
 		if (keys.size() == 1) {
