@@ -20,7 +20,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import de.pictastic.foreverAlonePong.classes.HighscoreReader;
@@ -83,7 +82,7 @@ public class Highscores extends JPanel implements ActionListener {
 		try {
 			scores = HighscoreReader.importScores();
 		} catch (NumberFormatException | IOException e) {
-			System.out.println("Higscore-Import fehlgeschlagen");
+			System.out.println("Highscore-Import fehlgeschlagen");
 			e.printStackTrace();
 		}
 		scores.forEach(a -> {
