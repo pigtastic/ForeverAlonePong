@@ -18,6 +18,8 @@ import java.util.HashSet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import de.pictastic.foreverAlonePong.helper.Vector;
+
 
 public class Game extends JPanel implements  ActionListener, KeyListener {
 	
@@ -98,6 +100,11 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 //		triangle
 		leftSide = new Line2D.Double(0,height,width/2,0);
 		rightSide = new Line2D.Double(width,height,width/2,0);
+		Vector leftVector= new Vector();
+		leftVector.calcVector(width/2,0, width,height);
+		Vector rightVector= new Vector();
+		rightVector.calcVector(width/2,0,width,height);
+		
 		g2d.draw(leftSide);
 		g2d.draw(rightSide);
 		
@@ -132,7 +139,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 		// side walls
 		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
-			ball.changeDirectionX();
+			ball.invertDirectionX();
 
 			
 		}
@@ -147,7 +154,7 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		
 		// top wall
 		if (ball.getBallY() < 0) {
-			ball.changeDirectionY();
+			ball.invertDirectionY();
 			
 		}
 		
@@ -163,14 +170,19 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		//  pad
 		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset && ball.getBallY() + ball.getBallSize() <= height - padH - inset+1 && ball.getVelY() > 0)
 			if (ball.getBallX() + ball.getBallSize() >= PadX && ball.getBallX() <= PadX + padW) {
-				ball.setVelY(ball.getVelY()*-1);
+				ball.invertDirectionY();
+				
 				score++;
+				if(score%5==0)
+					ball.faster();
 				
 			}
 				
 
 
 		ball.move();
+		System.out.println(ball.getVector().toString());
+		
 		
 		// pressed keys
 		if (keys.size() == 1) {
