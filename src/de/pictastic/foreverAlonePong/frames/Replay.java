@@ -17,6 +17,7 @@ import javax.swing.UIDefaults;
 
 //Panel nach GameOver  
 
+@SuppressWarnings("serial")
 public class Replay extends DefaultJPanel implements KeyListener {
 	
 	private CardLayout cardlayout;

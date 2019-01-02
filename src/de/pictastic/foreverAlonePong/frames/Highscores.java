@@ -28,6 +28,7 @@ import de.pictastic.foreverAlonePong.highscore.HighscoreReader;
 /**
  * Displays the highscores list on this system after the game.
  */
+@SuppressWarnings("serial")
 public class Highscores extends JPanel implements ActionListener {
 
 	// Panel and Layout
