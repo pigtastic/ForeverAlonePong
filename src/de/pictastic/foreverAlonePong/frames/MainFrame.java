@@ -10,7 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.text.StyleContext.SmallAttributeSet;
 
-import de.pictastic.foreverAlonePong.classes.HighscoreWriter;
+import de.pictastic.foreverAlonePong.highscore.Highscore;
+import de.pictastic.foreverAlonePong.highscore.HighscoreWriter;
 
 public class MainFrame extends JFrame {
 	private static String activePane;

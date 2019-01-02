@@ -22,7 +22,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import de.pictastic.foreverAlonePong.classes.HighscoreReader;
+import de.pictastic.foreverAlonePong.highscore.Highscore;
+import de.pictastic.foreverAlonePong.highscore.HighscoreReader;
 
 /**
  * Displays the highscores list on this system after the game.
