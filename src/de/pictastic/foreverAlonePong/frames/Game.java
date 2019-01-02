@@ -18,6 +18,7 @@ import java.util.HashSet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+@SuppressWarnings("serial")
 public class Game extends JPanel implements ActionListener, KeyListener {
 
 	private int height, width;
