@@ -17,6 +17,7 @@ import java.util.HashSet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import de.pictastic.foreverAlonePong.helper.Music;
 import de.pictastic.foreverAlonePong.helper.Vector;
 
 @SuppressWarnings("serial")
@@ -33,7 +34,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	private JPanel panel;
 
 	// pad
-	private int padSpeed = 2;
+	private double padSpeed = 2.0;
 	private int padH = 10, padW = 40;
 	private int PadX;
 	private int inset = 10;
@@ -168,8 +169,8 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 				ball.invertDirectionY();
 
 				score++;
-				if (score % 5 == 0)
 					ball.faster();
+					increasePadSpeed(0.2);
 
 			}
 		ball.move();
@@ -212,6 +213,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 			break;
 		case KeyEvent.VK_RIGHT:
 			keys.add("RIGHT");
+			//Music.playMusic("./AppData/Sounds/FAP_Right.wav");
 			break;
 		}
 	}
@@ -227,6 +229,10 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 			keys.remove("RIGHT");
 			break;
 		}
+	}
+	
+	private void increasePadSpeed(double speed) {
+		padSpeed += speed;
 	}
 
 	public int getScore() {
