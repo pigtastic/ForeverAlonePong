@@ -83,7 +83,6 @@ public class Ball extends Ellipse2D.Double{
 	
 	public void calcDirectionVector(double x1, double y1, double x2, double y2){
 		Vector vector = new Vector(x2-x1,y2-y1);
-		System.out.println(vector.toString());
 			this.vector=vector;
 	}
 	
