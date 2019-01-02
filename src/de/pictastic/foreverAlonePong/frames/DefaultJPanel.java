@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
 
@@ -80,4 +81,5 @@ public class DefaultJPanel extends JPanel{
 		gbl.setConstraints(comp, gbc);
 		this.add(comp);
 	}
+
 }
