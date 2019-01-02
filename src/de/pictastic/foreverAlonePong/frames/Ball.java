@@ -64,7 +64,7 @@ public class Ball extends Ellipse2D.Double{
 	public void move() {
 		double newBallX=getBallX()+getVelX()*ballspeed;
 		double newBallY=getBallY()+getVelY()*ballspeed;
-		calcDirectionVector(getBallX(), newBallX, getBallY(), newBallY);
+		calcDirectionVector(getBallX(), getBallY(),newBallX, newBallY);
 		setBallX(newBallX);
 		setBallY(newBallY);
 		
