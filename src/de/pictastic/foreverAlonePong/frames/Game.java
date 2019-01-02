@@ -151,9 +151,6 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 			if (ballX + ballSize >= PadX && ballX <= PadX + padW) {
 				velY = -velY;
 				score++;
-				increaseBallSpeed(0.25);
-				increasePadSpeed(1);
-
 			}
 
 		ballX += velX * ballpadSpeed;
@@ -212,14 +209,6 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 			keys.remove("RIGHT");
 			break;
 		}
-	}
-
-	public void increaseBallSpeed(double roc) {
-		ballpadSpeed += roc;
-	}
-
-	public void increasePadSpeed(double roc) {
-		padSpeed += roc;
 	}
 
 	public int getScore() {
