@@ -189,9 +189,9 @@ public class Game extends JPanel implements  ActionListener, KeyListener {
 		t.stop();
 		first=true;
 		cardlayout.show(panel, "Replay");
+		MainFrame.saveScore();
 		MainFrame.setActivePane("Replay");
 		Main.main.validate();
-		Main.condition.setCondition("AFTERGAME");
 	}
 	
 	

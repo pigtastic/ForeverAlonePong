@@ -4,12 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
-import de.pictastic.foreverAlonePong.classes.FrameCondition;
-
 
 public class Main {
 public static JFrame main;
-public static FrameCondition condition = new FrameCondition();
 	/**
 	 * @param args
 	 */
