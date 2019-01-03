@@ -43,6 +43,11 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	// ball
 	Ball ball =new Ball();
 	
+	
+	// triangle
+	Vector leftVector= new Vector();
+	Vector rightVector= new Vector();
+	
 
 
 	// score
@@ -104,10 +109,11 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
 		leftSide = new Line2D.Double(0,height,width/2,0);
 		rightSide = new Line2D.Double(width,height,width/2,0);
-		Vector leftVector= new Vector();
+		//calc Vector
 		leftVector.calcVector(width/2,0, width,height);
-		Vector rightVector= new Vector();
 		rightVector.calcVector(width/2,0,width,height);
+		
+		Vector.angle(new Vector(0,1), ball.getVector());
 		
 		leftSide = new Line2D.Double(0, height, width / 2, 0);
 		rightSide = new Line2D.Double(width, height, width / 2, 0);

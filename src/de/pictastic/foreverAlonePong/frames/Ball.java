@@ -9,7 +9,7 @@ import de.pictastic.foreverAlonePong.helper.Vector;
 public class Ball extends Ellipse2D.Double{
 	private final double BALLSIZE=20;
 	private double ballspeed=1;
-	private Vector vector;
+	private Vector vector=new Vector();
 	
 
 
@@ -69,9 +69,10 @@ public class Ball extends Ellipse2D.Double{
 	public void move() {
 		double newBallX=getBallX()+getVelX()*ballspeed;
 		double newBallY=getBallY()+getVelY()*ballspeed;
-		calcDirectionVector(getBallX(), getBallY(),newBallX, newBallY);
+		vector.calcVector(getBallX(), getBallY(),newBallX, newBallY);
 		setBallX(newBallX);
 		setBallY(newBallY);
+
 		
 	}
 	
@@ -94,18 +95,8 @@ public class Ball extends Ellipse2D.Double{
 		setVelX(-getVelX());
 	}
 	
-	/**
-	 * Calculates the Vector of the Ball from last Postion and new Position
-	 * 
-	 * @param x1
-	 * @param y1
-	 * @param x2
-	 * @param y2
-	 */
-	public void calcDirectionVector(double x1, double y1, double x2, double y2){
-		Vector vector = new Vector(x2-x1,y2-y1);
-			this.vector=vector;
-	}
+
+
 	
 	
 	
