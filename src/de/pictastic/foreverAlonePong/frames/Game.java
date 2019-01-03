@@ -17,6 +17,7 @@ import java.util.HashSet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import de.pictastic.foreverAlonePong.helper.Direction;
 import de.pictastic.foreverAlonePong.helper.Vector;
 
 
@@ -111,7 +112,21 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		leftVector.calcVector(width/2,0, width,height);
 		rightVector.calcVector(width/2,0,width,height);
 		
-		Vector.angle(new Vector(0,1), ball.getVector());
+		
+		
+		
+		//TESTING
+		double leftangle = Vector.angle(leftVector, ball.getVector());
+		double rightangle = Vector.angle(rightVector, ball.getVector());
+		if(ball.getDirectionY().equals(Direction.BOTTOM)) {}
+		System.out.println(leftangle);
+		System.out.println(rightangle);
+		System.out.println(ball.getVector().toString());
+		
+		
+		
+		//TESTING END
+		
 		
 		leftSide = new Line2D.Double(0, height, width / 2, 0);
 		rightSide = new Line2D.Double(width, height, width / 2, 0);
