@@ -41,7 +41,7 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 		setLayout(gbl);
 
 		// Start Music
-		MusicPlayer.playMusic("./AppData/Sounds/ForeverAloneSound.wav");
+		MusicPlayer.playMusicContinously("./AppData/Sounds/ForeverAloneSound.wav");
 
 		// Panel Components
 		JLabel headline1 = new JLabel("FOREVERALONE");
@@ -100,11 +100,14 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 			MainFrame.setActivePane("Game");
 			playername = playerinput.getText();
 			Main.main.validate();
+			MusicPlayer.stopMusic();
+			MusicPlayer.playMusic("./AppData/Sounds/ForeverAloneSound.wav");
 		}
 		if (e.getSource().equals(highscoresbtn)) {
 			cardLayout.show(panel, "Highscores");
 			MainFrame.setActivePane("Highscores");
 			Main.main.validate();
+			
 		}
 
 	}
