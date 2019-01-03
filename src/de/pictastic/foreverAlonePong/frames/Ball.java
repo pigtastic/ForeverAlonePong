@@ -2,7 +2,8 @@ package de.pictastic.foreverAlonePong.frames;
 
 import java.awt.geom.Ellipse2D;
 
-import de.pictastic.foreverAlonePong.helper.Direction;
+import com.sun.javafx.scene.traversal.Direction;
+
 import de.pictastic.foreverAlonePong.helper.Vector;
 
 
@@ -25,7 +26,7 @@ public class Ball extends Ellipse2D.Double{
 		this.height=BALLSIZE;
 		this.width=BALLSIZE;
 		directionX=Direction.RIGHT;
-		directionY=Direction.BOTTOM;
+		directionY=Direction.DOWN;
 	}
 	
 	//Getter and Setter
@@ -111,10 +112,10 @@ public class Ball extends Ellipse2D.Double{
 	public void invertDirectionY() {
 		setVelY(-getVelY());
 		if(getVelY()<0) {
-			directionY=Direction.TOP;
+			directionY=Direction.UP;
 		}
 		if(getVelY()>0) {
-			directionY=Direction.BOTTOM;
+			directionY=Direction.DOWN;
 		}
 	}
 	/*

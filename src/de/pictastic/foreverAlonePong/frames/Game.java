@@ -17,7 +17,6 @@ import java.util.HashSet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import de.pictastic.foreverAlonePong.helper.Direction;
 import de.pictastic.foreverAlonePong.helper.Vector;
 
 
