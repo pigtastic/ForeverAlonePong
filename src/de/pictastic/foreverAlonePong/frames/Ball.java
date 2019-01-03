@@ -11,14 +11,9 @@ public class Ball extends Ellipse2D.Double{
 	private double ballspeed=1;
 	private Vector vector;
 	
-	public Vector getVector() {
-		return vector;
-	}
-	public void setVector(Vector vector) {
-		this.vector = vector;
-	}
 
 
+//Constructor
 	private double ballX, ballY, velX = 1, velY = 1;
 	public Ball() {
 		this.x=ballX;
@@ -26,6 +21,8 @@ public class Ball extends Ellipse2D.Double{
 		this.height=BALLSIZE;
 		this.width=BALLSIZE;
 	}
+	
+	//Getter and Setter
 	public double getBallspeed() {
 		return ballspeed;
 	}
@@ -59,8 +56,16 @@ public class Ball extends Ellipse2D.Double{
 	public double getBallSize() {
 		return BALLSIZE;
 	}
+	public Vector getVector() {
+		return vector;
+	}
+	public void setVector(Vector vector) {
+		this.vector = vector;
+	}
 	
-	
+	/*
+	 * Starts the ball movement and calculates the Vector
+	 */
 	public void move() {
 		double newBallX=getBallX()+getVelX()*ballspeed;
 		double newBallY=getBallY()+getVelY()*ballspeed;
@@ -69,21 +74,36 @@ public class Ball extends Ellipse2D.Double{
 		setBallY(newBallY);
 		
 	}
+	
+	/**
+	 * Makes the ballmovement faster
+	 */
 	public void faster() {
 		this.ballspeed+=0.2;
 	}
-	
+	/*
+	 * Invertes the Y-Direction of the Ball
+	 */
 	public void invertDirectionY() {
 		setVelY(-getVelY());
 	}
+	/*
+	 * Invertes the X-Direction of the Ball
+	 */
 	public void invertDirectionX() {
 		setVelX(-getVelX());
 	}
 	
-	
+	/**
+	 * Calculates the Vector of the Ball from last Postion and new Position
+	 * 
+	 * @param x1
+	 * @param y1
+	 * @param x2
+	 * @param y2
+	 */
 	public void calcDirectionVector(double x1, double y1, double x2, double y2){
 		Vector vector = new Vector(x2-x1,y2-y1);
-		System.out.println(vector.toString());
 			this.vector=vector;
 	}
 	
