@@ -53,7 +53,6 @@ public class Vector {
 	 */
 	public static double scalarProdukt(Vector v1, Vector v2) {
 		double scalar =(v1.getX()*v2.getX())+(v1.getY()*v2.getY());
-		System.out.println("scalar"+scalar);
 		return scalar;
 		
 	}
@@ -63,14 +62,13 @@ public class Vector {
 	 */
 	public double length() {
 		double length=Math.sqrt(Math.pow(this.x, 2)+Math.pow(this.y, 2));
-		System.out.println("länge"+length);
 		return length;
 	}
 	
 	
 	public static double angle(Vector v1, Vector v2) {
 		double angle= Math.acos(scalarProdukt(v1, v2)/(v1.length()*v2.length()));
-		System.out.println(angle);
+		angle= angle * (180/Math.PI);
 		return angle;
 		
 	}

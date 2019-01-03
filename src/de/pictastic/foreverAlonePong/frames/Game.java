@@ -191,7 +191,6 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 				
 
 		ball.move();
-		System.out.println(ball.getVector().toString());
 		
 		
 
