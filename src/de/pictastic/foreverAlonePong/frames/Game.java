@@ -115,10 +115,11 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		
 		
 		
-		//TESTING
+		
 		double leftangle = Vector.angle(leftVector, ball.getVector());
 		double rightangle = Vector.angle(rightVector, ball.getVector());
-		if(ball.getDirectionY().equals(Direction.BOTTOM)) {}
+		
+		//TESTING
 		System.out.println(leftangle);
 		System.out.println(rightangle);
 		System.out.println(ball.getVector().toString());
