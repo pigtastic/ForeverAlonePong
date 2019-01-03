@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,10 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import de.pictastic.foreverAlonePong.helper.Music;
+
 //Panel zum Start des Spiels mit player namenseingabe für Highscore
 
 @SuppressWarnings("serial")
-public class StartMenu extends DefaultJPanel implements ActionListener {
+public class StartMenu extends DefaultJPanel implements ActionListener, KeyListener {
 
 	JPanel panel;
 	CardLayout cardLayout;
@@ -36,29 +40,33 @@ public class StartMenu extends DefaultJPanel implements ActionListener {
 		GridBagLayout gbl = new GridBagLayout();
 		setLayout(gbl);
 
+		// Start Music
+		Music.playMusic("./AppData/Sounds/ForeverAloneSound.wav");
+
 		// Panel Components
 		JLabel headline1 = new JLabel("FOREVERALONE");
 		headline1.setForeground(Color.WHITE);
 		headline1.setFont(new Font("Helvetica", Font.PLAIN, 20));
 		headline1.setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		JLabel headline2 = new JLabel("PONG");
 		headline2.setForeground(Color.WHITE);
 		headline2.setFont(new Font("Helvetica", Font.PLAIN, 70));
 		headline2.setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		JLabel player = new JLabel("Player");
 		player.setForeground(Color.WHITE);
 		player.setFont(new Font("Helvetica", Font.PLAIN, 20));
 		player.setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		fail.setForeground(Color.RED);
 		fail.setFont(new Font("Helvetica", Font.PLAIN, 16));
-		
+
 		playbtn.setBackground(Color.BLACK);
 		playbtn.setForeground(Color.WHITE);
 		playbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
-		
+		playbtn.setEnabled(false);
+
 		highscoresbtn.setBackground(Color.BLACK);
 		highscoresbtn.setForeground(Color.WHITE);
 		highscoresbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -80,13 +88,13 @@ public class StartMenu extends DefaultJPanel implements ActionListener {
 		// Add Listeners
 		playbtn.addActionListener(this);
 		highscoresbtn.addActionListener(this);
+		playerinput.addKeyListener(this);
 
 	}
 
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		if (e.getSource().equals(playbtn)) {
 			cardLayout.show(panel, "Game");
 			MainFrame.setActivePane("Game");
@@ -107,6 +115,26 @@ public class StartMenu extends DefaultJPanel implements ActionListener {
 
 	public void setPlayername(String playername) {
 		this.playername = playername;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (playerinput.getText().length()>0) {
+			playbtn.setEnabled(true);
+		} else {
+			playbtn.setEnabled(false);
+		}
 	}
 
 }

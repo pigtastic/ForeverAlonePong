@@ -6,6 +6,7 @@ import de.pictastic.foreverAlonePong.helper.Vector;
 
 
 
+@SuppressWarnings("serial")
 public class Ball extends Ellipse2D.Double{
 	private final double BALLSIZE=20;
 	private double ballspeed=1;

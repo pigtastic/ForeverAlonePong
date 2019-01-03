@@ -1,7 +1,6 @@
 package de.pictastic.foreverAlonePong.frames;
 
 import java.awt.Color;
-
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -80,4 +79,5 @@ public class DefaultJPanel extends JPanel{
 		gbl.setConstraints(comp, gbc);
 		this.add(comp);
 	}
+
 }

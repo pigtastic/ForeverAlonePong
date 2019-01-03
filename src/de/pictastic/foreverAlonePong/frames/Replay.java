@@ -22,7 +22,6 @@ import javax.swing.UIDefaults;
 
 @SuppressWarnings("serial")
 public class Replay extends DefaultJPanel implements KeyListener, ActionListener {
-	
 
 	private CardLayout cardlayout;
 	private JPanel panel;
@@ -83,7 +82,7 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		highscoresbtn.addActionListener(this);
 
 	}
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(backbtn)) {
 			cardlayout.show(panel, "Game");
