@@ -1,6 +1,8 @@
 package test.pong;
 import javax.swing.Timer;
 
+import de.pictastic.foreverAlonePong.helper.Direction;
+
 public class Player extends PongLine
 {
     /** Attributes */
@@ -17,7 +19,7 @@ public class Player extends PongLine
 
     /** Associations */
 
-    private Side direction;
+    private Direction direction;
 
     /**
      * 
@@ -27,7 +29,7 @@ public class Player extends PongLine
      * @param destY
      * @param position
      */
-    public Player(double startX, double startY, double destX, double destY, Side position)
+    public Player(double startX, double startY, double destX, double destY, Direction position)
     {
         super(startX, startY, destX, destY, position);
 
@@ -38,7 +40,7 @@ public class Player extends PongLine
      * starts to move the player
      * @param direction
      */
-    public void startMove(Side direction)
+    public void startMove(Direction direction)
     {
         throw new UnsupportedOperationException("not yet implemented");
     }

@@ -1,6 +1,8 @@
 package test.pong;
 import java.awt.geom.Line2D;
 
+import de.pictastic.foreverAlonePong.helper.Direction;
+
 public class PongLine extends Line2D.Double
 
 {
@@ -28,7 +30,7 @@ public class PongLine extends Line2D.Double
      * which side of the line (according to the direction Vector) is on the inside
      * of the playfield
      */
-    private Side inside;
+    private Direction inside;
 
     /**
      * Operation PongLine
@@ -40,7 +42,7 @@ public class PongLine extends Line2D.Double
      * @param position - depending on the direction vector the inside
      * @return
      */
-    public PongLine(double startX, double startY, double destX, double destY, Side position)
+    public PongLine(double startX, double startY, double destX, double destY, Direction position)
     {
         throw new UnsupportedOperationException("not yet implemented");
     }
