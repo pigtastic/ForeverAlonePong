@@ -1,12 +1,10 @@
-package de.pictastic.foreverAlonePong.classes;
+package de.pictastic.foreverAlonePong.highscore;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import de.pictastic.foreverAlonePong.frames.Highscore;
 
 
 public class HighscoreReader {

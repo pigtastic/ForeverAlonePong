@@ -2,11 +2,8 @@ package de.pictastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,6 +15,7 @@ import javax.swing.SwingConstants;
 
 //Panel zum Start des Spiels mit player namenseingabe für Highscore
 
+@SuppressWarnings("serial")
 public class StartMenu extends DefaultJPanel implements ActionListener {
 
 	JPanel panel;

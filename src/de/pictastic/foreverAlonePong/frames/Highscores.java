@@ -22,12 +22,16 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import de.pictastic.foreverAlonePong.classes.HighscoreReader;
+import de.pictastic.foreverAlonePong.highscore.Highscore;
+import de.pictastic.foreverAlonePong.highscore.HighscoreReader;
 
 /**
  * Displays the highscores list on this system after the game.
  */
+
+@SuppressWarnings("serial")
 public class Highscores extends DefaultJPanel implements ActionListener {
+
 
 	// Panel and Layout
 	private JPanel panel;
@@ -155,8 +159,8 @@ public class Highscores extends DefaultJPanel implements ActionListener {
 	//Getter and Setter
 	
 	/**
-	 * 
-	 * @return a list of Highscores
+	 * Return a list of highscores.
+	 * @return scores
 	 */
 	public List<Highscore> getScores() {
 		return scores;

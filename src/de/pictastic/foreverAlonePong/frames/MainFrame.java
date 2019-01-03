@@ -1,25 +1,23 @@
 package de.pictastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
-import de.pictastic.foreverAlonePong.classes.HighscoreWriter;
+import de.pictastic.foreverAlonePong.highscore.Highscore;
+import de.pictastic.foreverAlonePong.highscore.HighscoreWriter;
 
-public class MainFrame extends JFrame implements ActionListener {
+@SuppressWarnings("serial")
+public class MainFrame extends JFrame {
 	private static String activePane;
 	private CardLayout cardlayout;
 	private JPanel pnlMain = new JPanel();
-	private Highscores s;
-	private StartMenu sm;
-	private Game g;
+	private static Highscores s;
+	private static StartMenu sm;
+	private static Game g;
 	private Replay r;
-	private Timer t = new Timer(10, this);
 
 	public MainFrame() {
 		// Frame Settings
@@ -30,7 +28,6 @@ public class MainFrame extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setFocusable(true);
 		add(pnlMain);
-		t.start();
 
 		// Layout Settings Main Panel
 		cardlayout = new CardLayout();
@@ -49,7 +46,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		// show default Panel
 		cardlayout.show(pnlMain, "StartMenu");
-		setActivePane("StartMenu");
+		MainFrame.setActivePane("StartMenu");
 		validate();
 
 		// add Listeners
@@ -57,24 +54,23 @@ public class MainFrame extends JFrame implements ActionListener {
 		addKeyListener(r);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (Main.condition.getCondition().equals("AFTERGAME")) {
-			s.addNewScore(new Highscore(sm.getPlayername(), g.getScore()));
-			try {
-				HighscoreWriter.writeScores(s.getScores());
-			} catch (IOException e1) {
-				System.out.println("Scores konnten nicht gespeichert werden!");
-				e1.printStackTrace();
-			}
-			Main.condition.setCondition("BEFOREGAME");
+	public static void saveScore() {
+		s.addNewScore(new Highscore(sm.getPlayername(), g.getScore()));
+		try {
+			HighscoreWriter.writeScores(s.getScores());
+			System.out.println("Score gespeichert!");
+		} catch (IOException e1) {
+			System.out.println("Scores konnten nicht gespeichert werden!");
+			e1.printStackTrace();
 		}
+
 	}
-	
+
+
 	public static void setActivePane(String s) {
-		activePane=s;
+		activePane = s;
 	}
-	
+
 	public static String getActivePane() {
 		return activePane;
 	}

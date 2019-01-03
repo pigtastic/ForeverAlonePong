@@ -1,11 +1,9 @@
-package de.pictastic.foreverAlonePong.classes;
+package de.pictastic.foreverAlonePong.highscore;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-
-import de.pictastic.foreverAlonePong.frames.Highscore;
 
 public class HighscoreWriter {
 
