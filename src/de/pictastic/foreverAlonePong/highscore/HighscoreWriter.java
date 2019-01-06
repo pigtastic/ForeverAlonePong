@@ -13,7 +13,7 @@ public class HighscoreWriter {
 	public static void writeScores(List<Highscore> list) throws IOException {
 
 		makeDir();
-		FileWriter fileWriter = new FileWriter("./AppData/highscores.csv");
+		FileWriter fileWriter = new FileWriter("../AppData/highscores.csv");
 
 		for (Highscore score : list) {
 			fileWriter.append(score.getPlayerName());

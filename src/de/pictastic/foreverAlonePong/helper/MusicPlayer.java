@@ -19,6 +19,7 @@ public class MusicPlayer {
 			AudioPlayer.player.start(audios);
 
 		} catch (Exception e) { 
+			e.printStackTrace();
 			System.out.println("Wiedergabe fehlgeschlagen");
 			
 		}

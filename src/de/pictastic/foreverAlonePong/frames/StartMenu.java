@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import de.pictastic.foreverAlonePong.helper.MusicPlayer;
+
 //Panel zum Start des Spiels mit player namenseingabe für Highscore
 
 @SuppressWarnings("serial")
@@ -39,7 +41,7 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 		setLayout(gbl);
 
 		// Start Music
-		//MusicPlayer.playMusic("./AppData/Sounds/ForeverAloneSound.wav");
+		MusicPlayer.playMusic("../AppData/Sounds/ForeverAloneSound.wav");
 
 		// Panel Components
 		JLabel headline1 = new JLabel("FOREVERALONE");
