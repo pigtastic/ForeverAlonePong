@@ -19,7 +19,6 @@ import javax.swing.Timer;
 
 import de.pictastic.foreverAlonePong.helper.Vector;
 
-
 @SuppressWarnings("serial")
 public class Game extends JPanel implements ActionListener, KeyListener {
 
@@ -39,14 +38,11 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	private int inset = 10;
 
 	// ball
-	Ball ball =new Ball();
-	
-	
-	// triangle
-	Vector leftVector= new Vector();
-	Vector rightVector= new Vector();
-	
+	Ball ball = new Ball();
 
+	// triangle
+	Vector leftVector = new Vector();
+	Vector rightVector = new Vector();
 
 	// score
 	private int score;
@@ -71,7 +67,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	protected void startPosition() {
 		if (first) {
 			PadX = width / 2 - padW / 2;
-			ball.setBallX(width/2);
+			ball.setBallX(width / 2);
 			ball.setBallY(100 - ball.getBallSize() / 2);
 			t.start();
 			first = false;
@@ -96,8 +92,6 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		startPosition();
 		g2d.fill(ball);
 
-
-
 		// score
 		String scoreTemp = new Integer(score).toString();
 		g2d.setFont(new Font(g2d.getFont().getFontName(), Font.PLAIN, 80));
@@ -105,29 +99,22 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
 //		triangle
 
-		leftSide = new Line2D.Double(0,height,width/2,0);
-		rightSide = new Line2D.Double(width,height,width/2,0);
-		//calc Vector
-		leftVector.calcVector(width/2,0, width,height);
-		rightVector.calcVector(width/2,0,width,height);
-		
-		
-		
-		
-		
+		leftSide = new Line2D.Double(0, height, width / 2, 0);
+		rightSide = new Line2D.Double(width, height, width / 2, 0);
+		// calc Vector
+		leftVector.calcVector(width / 2, 0, width, height);
+		rightVector.calcVector(width / 2, 0, width, height);
+
 		double leftangle = Vector.angle(leftVector, ball.getVector());
 		double rightangle = Vector.angle(rightVector, ball.getVector());
-		
-		//TESTING
+
+		// TESTING
 		System.out.println(leftangle);
 		System.out.println(rightangle);
 		System.out.println(ball.getVector().toString());
-		
-		
-		
-		//TESTING END
-		
-		
+
+		// TESTING END
+
 		leftSide = new Line2D.Double(0, height, width / 2, 0);
 		rightSide = new Line2D.Double(width, height, width / 2, 0);
 		g2d.draw(leftSide);
@@ -135,9 +122,9 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
 	}
 
-	
 	/**
 	 * Method to get intersection of Ball and TriangleSide
+	 * 
 	 * @param x
 	 * @param y
 	 * @param side
@@ -200,15 +187,13 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 				ball.invertDirectionY();
 				
 				score++;
-				if(score%5==0)
 					ball.faster();
 			}
-				
 
 		ball.move();
 		
 		
-
+			
 		// pressed keys
 		if (keys.size() == 1) {
 			if (keys.contains("LEFT")) {
