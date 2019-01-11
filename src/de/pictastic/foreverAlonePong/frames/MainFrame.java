@@ -18,6 +18,7 @@ public class MainFrame extends JFrame {
 	private static StartMenu sm;
 	private static Game g;
 	private Replay r;
+	private GameWithBot gwb;
 
 	public MainFrame() {
 		// Frame Settings
@@ -38,9 +39,12 @@ public class MainFrame extends JFrame {
 		s = new Highscores(pnlMain, cardlayout);
 		sm = new StartMenu(pnlMain, cardlayout);
 		r = new Replay(pnlMain, cardlayout);
+		gwb = new  GameWithBot(pnlMain, cardlayout);
+		
 
 		pnlMain.add(sm, "StartMenu");
 		pnlMain.add(g, "Game");
+		pnlMain.add(gwb, "GameWithBot");
 		pnlMain.add(s, "Highscores");
 		pnlMain.add(r, "Replay");
 
@@ -52,6 +56,7 @@ public class MainFrame extends JFrame {
 		// add Listeners
 		addKeyListener(g);
 		addKeyListener(r);
+		addKeyListener(gwb);
 	}
 
 	public static void saveScore() {

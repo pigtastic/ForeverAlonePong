@@ -36,6 +36,9 @@ public class Ball extends Ellipse2D.Double{
 	public void setBallspeed(double ballspeed) {
 		this.ballspeed = ballspeed;
 	}
+	public void resetBallspeed() {
+		this.ballspeed=0.5;
+	}
 	public double getBallX() {
 		return this.x;
 	}
@@ -104,7 +107,7 @@ public class Ball extends Ellipse2D.Double{
 	 * Makes the ballmovement faster
 	 */
 	public void faster() {
-		this.ballspeed+=0.2;
+		this.ballspeed+=0.1;
 	}
 	/*
 	 * Invertes the Y-Direction of the Ball

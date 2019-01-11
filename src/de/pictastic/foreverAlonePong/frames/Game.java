@@ -24,7 +24,7 @@ import de.pictastic.foreverAlonePong.helper.Vector;
 public class Game extends JPanel implements ActionListener, KeyListener {
 
 	private int height, width;
-	private Timer t = new Timer(10, this);
+	private Timer t = new Timer(5, this);
 	private boolean first;
 
 	public HashSet<String> keys = new HashSet<String>();
