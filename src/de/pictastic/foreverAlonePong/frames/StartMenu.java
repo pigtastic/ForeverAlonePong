@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -29,6 +30,7 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 	JLabel fail = new JLabel("Hier werden nachher fails angezeigt");
 	JButton playbtn = new JButton("PLAY");
 	JButton highscoresbtn = new JButton("HIGHSCORES");
+	JCheckBox playWithBot = new JCheckBox();
 	private String playername;
 
 	// Constructor
@@ -96,8 +98,14 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource().equals(playbtn)) {
-			cardLayout.show(panel, "Game");
-			MainFrame.setActivePane("Game");
+			if(playWithBot.isSelected()) {
+			cardLayout.show(panel, "GameWithBot");
+			MainFrame.setActivePane("GameWithBot");
+			}
+			else {
+				cardLayout.show(panel, "Game");
+				MainFrame.setActivePane("Game");
+			}
 			playername = playerinput.getText();
 			Main.main.validate();
 		}
