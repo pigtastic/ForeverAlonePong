@@ -11,7 +11,6 @@ import sun.audio.AudioStream;
 
 public class MusicPlayer {
 
-	private static AudioStream audios;
 	private static AudioInputStream audioInputStream;
 	private static Clip clip; 
 
