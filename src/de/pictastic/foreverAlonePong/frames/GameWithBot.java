@@ -37,6 +37,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 	private int padH = 10, padW = 40;
 	private int bottomPadX, topPadX;;
 	private int inset = 10;
+	
 
 	// ball
 	Ball ball =new Ball();
