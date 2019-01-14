@@ -15,7 +15,7 @@ public class HighscoreReader {
 		
 		List<Highscore> scores = new ArrayList<Highscore>();
 
-		br = new BufferedReader(new FileReader("./AppData/Highscores.csv"));
+		br = new BufferedReader(new FileReader("../AppData/Highscores.csv"));
 		while ((line = br.readLine()) != null) {
 			String[] score = line.split(";");
 			score[1] = score[1].replaceAll(" ", "");
