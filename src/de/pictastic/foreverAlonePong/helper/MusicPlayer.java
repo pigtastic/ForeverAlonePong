@@ -12,9 +12,11 @@ import sun.audio.AudioStream;
 public class MusicPlayer {
 
 	private static AudioInputStream audioInputStream;
-	private static Clip clip; 
+	private static Clip clip;
+	private static boolean mute = false;
 
 	public static void playMusicContinously(String path) {
+	if (!mute) {
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(new File(path));
 			clip = AudioSystem.getClip();
@@ -28,19 +30,22 @@ public class MusicPlayer {
 	
 		}
 	}
+	}
 	
 	public static void playMusic(String path) {
-		try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File(path));
-			clip = AudioSystem.getClip();
-			clip.open(audioInputStream);
-			clip.start();
-			
+		if (!mute) {
+			try {
+				audioInputStream = AudioSystem.getAudioInputStream(new File(path));
+				clip = AudioSystem.getClip();
+				clip.open(audioInputStream);
+				clip.start();
+				
 
-		} catch (Exception e) { 
-			e.printStackTrace();
-			System.out.println("Wiedergabe fehlgeschlagen");
-	
+			} catch (Exception e) { 
+				e.printStackTrace();
+				System.out.println("Wiedergabe fehlgeschlagen");
+		
+			}
 		}
 	}
 
@@ -48,6 +53,15 @@ public class MusicPlayer {
 	public static void stopMusic() {
 		clip.close();
 	}
+	
+	public static void disableSound() {
+		clip.close();
+		mute = true;
+	}
+	public static void enableSound() {
+		mute = false;
+	}
+	
 }
 
 

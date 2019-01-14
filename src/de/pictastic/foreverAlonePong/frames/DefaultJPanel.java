@@ -68,7 +68,6 @@ public class DefaultJPanel extends JPanel{
 			double weighty, Insets inset) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.insets = new Insets(0, 20, 0, 20);
 		gbc.gridx = x;
 		gbc.gridy = y;
 		gbc.gridwidth = width;
