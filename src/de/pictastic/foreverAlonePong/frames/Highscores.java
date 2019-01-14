@@ -22,6 +22,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import de.pictastic.foreverAlonePong.helper.MusicPlayer;
 import de.pictastic.foreverAlonePong.highscore.Highscore;
 import de.pictastic.foreverAlonePong.highscore.HighscoreReader;
 
@@ -147,6 +148,7 @@ public class Highscores extends DefaultJPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(backbtn)) {
 			cardLayout.show(panel, "StartMenu");
+			MainFrame.setActivePane("StartMenu");
 			Main.main.validate();
 		}
 	}
@@ -166,27 +168,7 @@ public class Highscores extends DefaultJPanel implements ActionListener {
 		scores.forEach(a -> {
 			scoreModel.addElement(a.toString());
 		});
-//		JLabel topscorer;
-//		for (int i = 0; i < scores.size(); i++) {
-//			switch (i) {
-//			case 0:
-//				topscorer = new JLabel(scores.get(i).toString());
-//				topscorer.setFont(new Font("Helvetica", Font.PLAIN, 55));
-//				break;
-//			case 1:
-//				topscorer = new JLabel(scores.get(i).toString());
-//				topscorer.setFont(new Font("Helvetica", Font.PLAIN, 50));
-//				break;
-//			case 2:
-//				topscorer = new JLabel(scores.get(i).toString());
-//				topscorer.setFont(new Font("Helvetica", Font.PLAIN, 45));
-//				break;
-//			default:
-//				topscorer = new JLabel(scores.get(i).toString());
-//				break;
-//			}
-//			scoreModel.addElement(topscorer.toString());
-//	}
+
 		}
 
 	//Getter and Setter
