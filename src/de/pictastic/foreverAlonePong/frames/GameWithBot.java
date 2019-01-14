@@ -185,6 +185,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 	private void gameLose() {
 		t.stop();
 		first = true;
+		MusicPlayer.playMusic("../AppData/Sounds/LostGame.wav");
 		MainFrame.saveScore(score);
 		cardlayout.show(panel, "Replay");
 		MainFrame.setActivePane("Replay");
