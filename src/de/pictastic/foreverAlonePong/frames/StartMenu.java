@@ -43,11 +43,8 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 		setLayout(gbl);
 
 		// Start Music
-<<<<<<< HEAD
-		MusicPlayer.playMusic("../AppData/Sounds/ForeverAloneSound.wav");
-=======
+
 		MusicPlayer.playMusicContinously("./AppData/Sounds/ForeverAloneSound.wav");
->>>>>>> music
 
 		// Panel Components
 		JLabel headline1 = new JLabel("FOREVERALONE");
