@@ -11,15 +11,18 @@ import de.pictastic.foreverAlonePong.helper.Vector;
 @SuppressWarnings("serial")
 public class Ball extends Ellipse2D.Double{
 	private final double BALLSIZE=20;
-	private double ballspeed=0.5;
+	private double ballspeed=1;
 	private Vector vector=new Vector();
 	private Direction directionX;
 	private Direction directionY;
 	
+	double lastBallX=getBallX();
+	double lastBallY=getBallY();
+	
 
 
 //Constructor
-	private double ballX, ballY, velX = 1, velY = 1;
+	private double ballX, ballY, velX = -1, velY = 1;
 	public Ball() {
 		this.x=ballX;
 		this.y=ballY;
@@ -89,14 +92,36 @@ public class Ball extends Ellipse2D.Double{
 	public void setDirectionY(Direction directionY) {
 		this.directionY = directionY;
 	}
+	
+	
+
+	public double getLastBallX() {
+		return lastBallX;
+	}
+
+	public void setLastBallX(double lastBallX) {
+		this.lastBallX = lastBallX;
+	}
+
+	public double getLastBallY() {
+		return lastBallY;
+	}
+
+	public void setLastBallY(double lastBallY) {
+		this.lastBallY = lastBallY;
+	}
 
 	/*
 	 * Starts the ball movement and calculates the Vector
 	 */
 	public void move() {
-		double newBallX=getBallX()+getVelX()*ballspeed;
-		double newBallY=getBallY()+getVelY()*ballspeed;
-		vector.calcVector(getBallX(), getBallY(),newBallX, newBallY);
+		lastBallX=getBallX();
+		lastBallY=getBallY();
+		double newBallX=getBallX()+getVelX();
+		double newBallY=getBallY()+getVelY();
+//		vector.calcVector(getBallX(), getBallY(),newBallX, newBallY);
+		vector.calcVector(newBallX, newBallY,getBallX(), getBallY());
+		
 		setBallX(newBallX);
 		setBallY(newBallY);
 		

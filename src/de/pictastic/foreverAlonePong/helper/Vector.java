@@ -30,10 +30,10 @@ public class Vector {
 	/**
 	 * Calculates the Vector of the Ball from last Postion and new Position
 	 * 
-	 * @param x1
-	 * @param y1
-	 * @param x2
-	 * @param y2
+	 * @param x1 startpunkt
+	 * @param y1 startpunkt
+	 * @param x2 endpunkt
+	 * @param y2 endpunkt
 	 */
 	public void calcVector(double x1, double y1, double x2, double y2) {
 		this.x=x2-x1;

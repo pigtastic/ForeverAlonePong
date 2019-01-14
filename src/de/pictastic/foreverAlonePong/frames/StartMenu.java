@@ -100,7 +100,7 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 
 		if (e.getSource().equals(playbtn)) {
 			MusicPlayer.stopMusic();
-			if (!(playWithBro.isSelected())) {
+			if ((playWithBro.isSelected())) {
 				cardLayout.show(panel, "GameWithBot");
 				MainFrame.setActivePane("GameWithBot");
 			} else {
