@@ -17,7 +17,7 @@ public class MainFrame extends JFrame {
 	private static Highscores s;
 	private static StartMenu sm;
 	private static Game g;
-	private Replay r;
+	public static Replay r;
 	private GameWithBot gwb;
 
 	public MainFrame() {
@@ -39,8 +39,7 @@ public class MainFrame extends JFrame {
 		s = new Highscores(pnlMain, cardlayout);
 		sm = new StartMenu(pnlMain, cardlayout);
 		r = new Replay(pnlMain, cardlayout);
-		gwb = new  GameWithBot(pnlMain, cardlayout);
-		
+		gwb = new GameWithBot(pnlMain, cardlayout);
 
 		pnlMain.add(sm, "StartMenu");
 		pnlMain.add(g, "Game");
@@ -59,8 +58,9 @@ public class MainFrame extends JFrame {
 		addKeyListener(gwb);
 	}
 
-	public static void saveScore() {
-		s.addNewScore(new Highscore(sm.getPlayername(), g.getScore()));
+	public static void saveScore(int score) {
+		r.displayScore(score);
+		s.addNewScore(new Highscore(sm.getPlayername(), score));
 		try {
 			HighscoreWriter.writeScores(s.getScores());
 			System.out.println("Score gespeichert!");
@@ -70,7 +70,6 @@ public class MainFrame extends JFrame {
 		}
 
 	}
-
 
 	public static void setActivePane(String s) {
 		activePane = s;

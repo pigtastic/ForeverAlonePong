@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import de.pictastic.foreverAlonePong.helper.GameSoundPlayer;
 import de.pictastic.foreverAlonePong.helper.MusicPlayer;
 
 //Panel zum Start des Spiels mit player namenseingabe für Highscore
@@ -109,7 +110,7 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 			}
 			playername = playerinput.getText();
 			Main.main.validate();
-			MusicPlayer.playMusic("");
+			GameSoundPlayer.playSound(0, 1);
 		}
 		if (e.getSource().equals(highscoresbtn)) {
 			cardLayout.show(panel, "Highscores");

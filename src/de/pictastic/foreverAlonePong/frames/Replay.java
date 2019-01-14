@@ -17,17 +17,20 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIDefaults;
 
-//Panel nach GameOver  
+import de.pictastic.foreverAlonePong.helper.MusicPlayer;
 
+//Panel nach GameOver  
 
 @SuppressWarnings("serial")
 public class Replay extends DefaultJPanel implements KeyListener, ActionListener {
 
 	private CardLayout cardlayout;
 	private JPanel panel;
-
-	private JButton highscoresbtn = new JButton("HIGHSCORES");
-	private JButton backbtn = new JButton ("BACK TO STARTMENU");
+	
+	//Panel Components
+	private JLabel headline = new JLabel("GAME OVER");
+	private JEditorPane info = new JEditorPane();
+	private JButton backbtn = new JButton("BACK TO STARTMENU");
 
 	public Replay(JPanel pnlMain, CardLayout cardlayout) {
 
@@ -39,30 +42,27 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		setLayout(gbl);
 
 		// Panel Components
-		JLabel headline = new JLabel("GAME OVER");
 		headline.setForeground(Color.WHITE);
 		headline.setFont(new Font("Helvetica", Font.PLAIN, 50));
 		headline.setHorizontalAlignment(SwingConstants.CENTER);
 
-		JEditorPane info = new JEditorPane();
 		info.setBackground(Color.BLACK);
 		info.setForeground(Color.RED);
 		info.setOpaque(true);
-		info.setFont(new Font("Helvetica", Font.PLAIN, 20));
+		info.setFont(new Font("Helvetica", Font.PLAIN, 40));
 		info.setContentType("text/plain");
 		info.setEditable(false);
 		info.setEnabled(true);
-		info.setText("Hier kommt später info zum Highscore oder sonst was rein");
 		Color bgColor = new Color(0, 0, 0);
 		UIDefaults defaults = new UIDefaults();
 		defaults.put("EditorPane[Enabled].backgroundPainter", bgColor);
 		info.putClientProperty("Nimbus.Overrides", defaults);
 		info.putClientProperty("Nimbus.Overrides.InheritDefaults", true);
 		info.setBackground(bgColor);
-
-		highscoresbtn.setBackground(Color.BLACK);
-		highscoresbtn.setForeground(Color.WHITE);
-		highscoresbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
+		
+		backbtn.setBackground(Color.BLACK);
+		backbtn.setForeground(Color.WHITE);
+		backbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
 
 		JLabel replay = new JLabel("Press Space to Replay");
 		replay.setForeground(Color.WHITE);
@@ -74,28 +74,25 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		addComponent(gbl, new JLabel(""), 0, 2, 1, 1, 0.0, 0.5);
 		addComponent(gbl, info, 0, 3, 1, 1, 1.0, 0.0);
 		addComponent(gbl, new JLabel(""), 0, 4, 1, 1, 0.0, 0.5);
-		addComponent(gbl, highscoresbtn, 0, 5, 1, 1, 1.0, 0.0, new Insets(20, 0, 20, 0));
+		addComponent(gbl, backbtn, 0, 5, 1, 1, 1.0, 0.0, new Insets(20, 0, 20, 0));
 		addComponent(gbl, replay, 0, 6, 1, 1, 1.0, 0.0);
 		addComponent(gbl, new JLabel(""), 0, 7, 1, 1, 0.0, 1.0);
 		
 		//add listeners
-		highscoresbtn.addActionListener(this);
+		backbtn.addActionListener(this);
 
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(backbtn)) {
-			cardlayout.show(panel, "Game");
-			MainFrame.setActivePane("Game");
-			Main.main.validate();
-		}
-		if (e.getSource().equals(highscoresbtn)) {
-			cardlayout.show(panel, "Highscores");
-			MainFrame.setActivePane("Highscores");
+			cardlayout.show(panel, "StartMenu");
+			MainFrame.setActivePane("StartMenu");
+			MusicPlayer.playMusicContinously("../AppData/Sounds/FAPS2.wav");
 			Main.main.validate();
 		}
 
 	}
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -107,20 +104,27 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		if (MainFrame.getActivePane().equals("Replay")) {
 			int code = e.getKeyCode();
 			if (code == KeyEvent.VK_SPACE) {
-				cardlayout.show(panel, "Game");
+				cardlayout.show(panel, "GameWithBot");
 				Main.main.validate();
-				MainFrame.setActivePane("Game");
+				MainFrame.setActivePane("GameWithBot");
 			}
 
 		}
 
-
 	}
+	
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+	/**
+	 * Displays the score in ReplayPanel after game.
+	 * @param score
+	 */
+	public void displayScore(int score) {
+		info.setText("Your Score " + Integer.toString(score));
 	}
 
 }

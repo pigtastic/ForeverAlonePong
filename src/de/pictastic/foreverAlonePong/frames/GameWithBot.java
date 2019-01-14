@@ -17,6 +17,7 @@ import java.util.HashSet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import de.pictastic.foreverAlonePong.helper.GameSoundPlayer;
 import de.pictastic.foreverAlonePong.helper.MusicPlayer;
 import de.pictastic.foreverAlonePong.helper.Vector;
 
@@ -123,7 +124,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 
 		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
 			ball.invertDirectionX();
-
+			GameSoundPlayer.playSound(score, 0);
 
 		}
 
@@ -139,7 +140,6 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 
 		// down wall
 		if (ball.getBallY() - ball.getBallSize() > height) {
-
 			gameLose();
 
 		}
@@ -147,15 +147,15 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 		if (ball.getBallY() <= padH + inset && ball.getVelY() < 0)
 			if (ball.getBallX() + ball.getBallSize() >= topPadX && ball.getBallX() <= topPadX + padW)
 			{
-				MusicPlayer.playMusic("../AppData/Sounds/FAP_Right.wav");
+				GameSoundPlayer.playSound(score, 1);
 				ball.invertDirectionY();
 			}
 		//  bottompad
 		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset && ball.getBallY() + ball.getBallSize() <= height - padH - inset+1 && ball.getVelY() > 0)
 			if (ball.getBallX() + ball.getBallSize() >= bottomPadX && ball.getBallX() <= bottomPadX + padW) {
 				ball.invertDirectionY();
-				MusicPlayer.playMusic("../AppData/Sounds/FAP_Right.wav");
 				score++;
+				GameSoundPlayer.playSound(score, (-1));
 				ball.faster();
 			}
 				
@@ -185,8 +185,8 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 	private void gameLose() {
 		t.stop();
 		first = true;
+		MainFrame.saveScore(score);
 		cardlayout.show(panel, "Replay");
-		MainFrame.saveScore();
 		MainFrame.setActivePane("Replay");
 		Main.main.validate();
 	}
