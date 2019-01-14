@@ -147,14 +147,14 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 		if (ball.getBallY() <= padH + inset && ball.getVelY() < 0)
 			if (ball.getBallX() + ball.getBallSize() >= topPadX && ball.getBallX() <= topPadX + padW)
 			{
-				MusicPlayer.playMusic("./AppData/Sounds/FAP_Right.wav");
+				MusicPlayer.playMusic("../AppData/Sounds/FAP_Right.wav");
 				ball.invertDirectionY();
 			}
 		//  bottompad
 		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset && ball.getBallY() + ball.getBallSize() <= height - padH - inset+1 && ball.getVelY() > 0)
 			if (ball.getBallX() + ball.getBallSize() >= bottomPadX && ball.getBallX() <= bottomPadX + padW) {
 				ball.invertDirectionY();
-				MusicPlayer.playMusic("./AppData/Sounds/FAP_Right.wav");
+				MusicPlayer.playMusic("../AppData/Sounds/FAP_Right.wav");
 				score++;
 				ball.faster();
 			}
