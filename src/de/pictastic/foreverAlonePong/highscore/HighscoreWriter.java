@@ -29,8 +29,8 @@ public class HighscoreWriter {
 	private static void makeDir() throws IOException {
 		String fileName = "highscores.csv";
 		String dirName = "AppData";
-		File file = new File("./" + dirName + "/" + fileName);
-		File dir = new File("./" + dirName);
+		File file = new File("../" + dirName + "/" + fileName);
+		File dir = new File("../" + dirName);
 		dir.mkdir();
 		file.createNewFile();
 	}
