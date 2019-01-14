@@ -27,10 +27,10 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 	CardLayout cardLayout;
 
 	JTextField playerinput = new JTextField(10);
-	JLabel fail = new JLabel("Hier werden nachher fails angezeigt");
+	JLabel fail = new JLabel("");
 	JButton playbtn = new JButton("PLAY");
 	JButton highscoresbtn = new JButton("HIGHSCORES");
-	JCheckBox playWithBot = new JCheckBox();
+	JCheckBox playWithBro = new JCheckBox();
 	private String playername;
 
 	// Constructor
@@ -44,7 +44,7 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 
 		// Start Music
 
-		MusicPlayer.playMusicContinously("./AppData/Sounds/ForeverAloneSound.wav");
+		MusicPlayer.playMusicContinously("../AppData/Sounds/FAPS2.wav");
 
 		// Panel Components
 		JLabel headline1 = new JLabel("FOREVERALONE");
@@ -97,26 +97,25 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		if (e.getSource().equals(playbtn)) {
-			if(playWithBot.isSelected()) {
-			cardLayout.show(panel, "GameWithBot");
-			MainFrame.setActivePane("GameWithBot");
-			}
-			else {
+			MusicPlayer.stopMusic();
+			if (!(playWithBro.isSelected())) {
+				cardLayout.show(panel, "GameWithBot");
+				MainFrame.setActivePane("GameWithBot");
+			} else {
 				cardLayout.show(panel, "Game");
 				MainFrame.setActivePane("Game");
 			}
 			playername = playerinput.getText();
 			Main.main.validate();
-			MusicPlayer.stopMusic();
-			MusicPlayer.playMusic("./AppData/Sounds/ForeverAloneSound.wav");
+			MusicPlayer.playMusic("");
 		}
 		if (e.getSource().equals(highscoresbtn)) {
 			cardLayout.show(panel, "Highscores");
 			MainFrame.setActivePane("Highscores");
 			Main.main.validate();
-			
+
 		}
 
 	}
@@ -131,18 +130,18 @@ public class StartMenu extends DefaultJPanel implements ActionListener, KeyListe
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-	
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if (playerinput.getText().length()>0) {
+		if (playerinput.getText().length() > 0) {
 			playbtn.setEnabled(true);
 		} else {
 			playbtn.setEnabled(false);
