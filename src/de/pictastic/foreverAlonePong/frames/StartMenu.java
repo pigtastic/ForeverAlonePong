@@ -118,10 +118,8 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 
 		if (e.getSource().equals(playbtn)) {
 			MusicPlayer.stopMusic();
-
 			cardLayout.show(panel, "GameWithBot");
 			MainFrame.setActivePane("GameWithBot");
-
 			playername = playerinput.getText();
 			Main.main.validate();
 			GameSoundPlayer.playSound(0, 1);

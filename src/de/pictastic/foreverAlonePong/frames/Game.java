@@ -23,7 +23,7 @@ import de.pictastic.foreverAlonePong.helper.Vector;
 public class Game extends JPanel implements ActionListener, KeyListener {
 
 	private int height, width;
-	private Timer t = new Timer(5, this);
+	private Timer t = new Timer(1, this);
 	private boolean first;
 
 	public HashSet<String> keys = new HashSet<String>();
@@ -43,6 +43,8 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	// triangle
 	Vector leftVector = new Vector();
 	Vector rightVector = new Vector();
+	double leftangle;
+	double rightangle;
 
 	// score
 	private int score;
@@ -102,18 +104,12 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		leftSide = new Line2D.Double(0, height, width / 2, 0);
 		rightSide = new Line2D.Double(width, height, width / 2, 0);
 		// calc Vector
-		leftVector.calcVector(width / 2, 0, width, height);
+		leftVector.calcVector(0, height, width/2, 0);
 		rightVector.calcVector(width / 2, 0, width, height);
 
-		double leftangle = Vector.angle(leftVector, ball.getVector());
-		double rightangle = Vector.angle(rightVector, ball.getVector());
+		leftangle = Vector.angle(leftVector, ball.getVector());
+		rightangle = Vector.angle(rightVector, ball.getVector());
 
-		// TESTING
-		System.out.println(leftangle);
-		System.out.println(rightangle);
-		System.out.println(ball.getVector().toString());
-
-		// TESTING END
 
 		leftSide = new Line2D.Double(0, height, width / 2, 0);
 		rightSide = new Line2D.Double(width, height, width / 2, 0);
@@ -160,10 +156,23 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
 		//left triangle side
 		if(intersection(ball.getBallX(),ball.getBallY(),leftSide)&&ball.getVelX()<0) {
+			System.out.println(leftangle);
+			System.out.println(ball.getLastBallX());
+			System.out.println(ball.getLastBallY());
+			System.out.println(ball.getBallX());
+			System.out.println(ball.getBallY());
+			ball.setBallX((ball.getLastBallX()*Math.cos(leftangle/(180/Math.PI))-ball.getLastBallY()*Math.sin(leftangle/(180/Math.PI))));
+			ball.setBallY((ball.getLastBallX()*Math.sin(leftangle)+ball.getLastBallY()*Math.cos(leftangle)));
+			System.out.println(ball.getLastBallX()*Math.cos(leftangle)-ball.getLastBallY()*Math.sin(leftangle));
+			System.out.println(ball.getLastBallX()*Math.sin(leftangle)+ball.getLastBallY()*Math.cos(leftangle));
+			t.stop();
 			
 		}
 		//right triangle side
 		if(intersection(ball.getBallX()+ball.getBallSize(),ball.getBallY()+ball.getBallSize(),rightSide)&&ball.getVelX()>0) {
+		System.out.println(rightangle);
+
+
 		}
 
 
@@ -187,7 +196,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 				ball.invertDirectionY();
 				
 				score++;
-					ball.faster();
+					
 			}
 
 		ball.move();
@@ -217,6 +226,8 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		MainFrame.saveScore(score);
 		MainFrame.setActivePane("Replay");
 		Main.main.validate();
+		ball.setVelX(1);
+		ball.setVelY(1);
 	}
 
 	@Override
