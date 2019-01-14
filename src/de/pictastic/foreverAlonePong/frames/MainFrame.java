@@ -59,7 +59,7 @@ public class MainFrame extends JFrame {
 	}
 
 	public static void saveScore(int score) {
-		r.setScore(score);
+		r.displayScore(score);
 		s.addNewScore(new Highscore(sm.getPlayername(), score));
 		try {
 			HighscoreWriter.writeScores(s.getScores());
