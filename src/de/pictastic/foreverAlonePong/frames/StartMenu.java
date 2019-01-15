@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -18,7 +20,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -30,7 +31,7 @@ import de.pictastic.foreverAlonePong.helper.MusicPlayer;
 //Panel zum Start des Spiels mit player namenseingabe für Highscore
 
 @SuppressWarnings("serial")
-public class StartMenu extends DefaultJPanel implements MouseListener, ActionListener, KeyListener {
+public class StartMenu extends DefaultJPanel implements MouseListener, ActionListener, KeyListener, ComponentListener {
 
 	JPanel panel;
 	CardLayout cardLayout;
@@ -62,7 +63,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		enableMusic();
 
 		// Load Start Picture
-		loadStartPicture();
+		loadStartPicture("fap_small.png");
 
 		// Set default Game
 		playDef();
@@ -83,7 +84,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		player.setFont(new Font("Helvetica", Font.PLAIN, 20));
 		player.setHorizontalAlignment(SwingConstants.CENTER);
 
-		playWithBotLabel.setForeground(Color.RED);
+		playWithBotLabel.setForeground(Color.WHITE);
 		playWithBotLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
 
 		playbtn.setBackground(Color.BLACK);
@@ -119,6 +120,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		highscoresbtn.addActionListener(this);
 		playerinput.addKeyListener(this);
 		playWithBot.addMouseListener(this);
+		addComponentListener(this);
 
 	}
 
@@ -130,15 +132,14 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 				MainFrame.gwb.setPadW(120);
 			}
 			MusicPlayer.stopMusic();
-			if(def) {
+			if (def) {
 				cardLayout.show(panel, "Game");
 				MainFrame.setActivePane("Game");
 			} else {
 				cardLayout.show(panel, "GameWithBot");
 				MainFrame.setActivePane("GameWithBot");
 			}
-			
-			
+
 			playername = playerinput.getText();
 			Main.main.validate();
 			GameSoundPlayer.playSound(0, 1);
@@ -168,6 +169,22 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 				playDef();
 			}
 		}
+	}
+
+	@Override
+	public void componentResized(ComponentEvent l) {
+		int height = getHeight();
+		int width = getWidth();
+		String name;
+
+		if (height > 900 && width > 500) {
+			name = "fap.png";
+		} else {
+			name = "fap_small.png";
+		}
+
+		loadStartPicture(name);
+
 	}
 
 	@Override
@@ -219,10 +236,10 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	/**
 	 * Load the ForeverAlone Meme.
 	 */
-	private void loadStartPicture() {
+	private void loadStartPicture(String name) {
 		BufferedImage myPicture = null;
 		try {
-			myPicture = ImageIO.read(new File("../AppData/fap_small.png"));
+			myPicture = ImageIO.read(new File("../AppData/" + name));
 		} catch (IOException e) {
 			System.out.println("FA Icon nicht gefunden");
 			e.printStackTrace();
@@ -260,9 +277,8 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		playWithBot.setIcon(new ImageIcon(myPicture));
 	}
 
-	
-	//Getter and Setter
-	
+	// Getter and Setter
+
 	public String getPlayername() {
 		return playername;
 	}
@@ -270,7 +286,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	public void setPlayername(String playername) {
 		this.playername = playername;
 	}
-	
+
 	public static boolean isDef() {
 		return def;
 	}
@@ -310,6 +326,24 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void componentMoved(ComponentEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void componentShown(ComponentEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void componentHidden(ComponentEvent e) {
 		// TODO Auto-generated method stub
 
 	}
