@@ -11,7 +11,7 @@ import de.pictastic.foreverAlonePong.helper.Vector;
 @SuppressWarnings("serial")
 public class Ball extends Ellipse2D.Double{
 	private final double BALLSIZE=20;
-	private double ballspeed=1;
+	private double ballspeed=2;
 	private Vector vector=new Vector();
 	private Direction directionX;
 	private Direction directionY;
@@ -132,7 +132,7 @@ public class Ball extends Ellipse2D.Double{
 	 * Makes the ballmovement faster
 	 */
 	public void faster() {
-		this.ballspeed+=0.1;
+		this.ballspeed+=0.2;
 	}
 	/*
 	 * Invertes the Y-Direction of the Ball
