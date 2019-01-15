@@ -52,8 +52,8 @@ public class Highscores extends DefaultJPanel implements ActionListener {
 	 * @param panel
 	 * @param cardLayout
 	 * @param playedHighscore not used
-	 * @throws IOException 
-	 * @throws NumberFormatException 
+	 * @throws IOException
+	 * @throws NumberFormatException
 	 */
 	public Highscores(JPanel panel, CardLayout cardLayout) {
 		this.cardLayout = cardLayout;
@@ -99,49 +99,13 @@ public class Highscores extends DefaultJPanel implements ActionListener {
 		scoreList.setFont(new Font("Helvetica", Font.PLAIN, 30));
 
 		// add Component
-		addComponent(this, gbl, headline, 0, 1, 3, 1, 0.0, 0.0, new Insets(25, 20, 15, 20));
-		addComponent(this, gbl, scoreList, 0, 2, 3, 2, 0.0, 0.5);
-		addComponent(this, gbl, backbtn, 0, 4, 3, 1, 0.0, 0.0, new Insets(10, 20, 20, 20));
+		addComponent(gbl, headline, 0, 1, 3, 1, 0.0, 0.0, new Insets(25, 20, 15, 20));
+		addComponent(gbl, scoreList, 0, 2, 3, 2, 0.0, 0.5);
+		addComponent(gbl, backbtn, 0, 4, 3, 1, 0.0, 0.0, new Insets(10, 20, 20, 20));
 
 		// add Listeners
 		backbtn.addActionListener(this);
 
-	}
-
-	/*
-	 * Adds Components to an GridBagLayout
-	 */
-	static void addComponent(JPanel panel, GridBagLayout gbl, Component c, int x, int y, int width, int height,
-			double weightx, double weighty) {
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.insets = new Insets(0, 20, 0, 20);
-		gbc.gridx = x;
-		gbc.gridy = y;
-		gbc.gridwidth = width;
-		gbc.gridheight = height;
-		gbc.weightx = weightx;
-		gbc.weighty = weighty;
-		gbl.setConstraints(c, gbc);
-		panel.add(c);
-	}
-
-	/*
-	 * Adds Components to an GridBagLayout. Requires an Insets;
-	 */
-	static void addComponent(JPanel panel, GridBagLayout gbl, Component c, int x, int y, int width, int height,
-			double weightx, double weighty, Insets insets) {
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.insets = insets;
-		gbc.gridx = x;
-		gbc.gridy = y;
-		gbc.gridwidth = width;
-		gbc.gridheight = height;
-		gbc.weightx = weightx;
-		gbc.weighty = weighty;
-		gbl.setConstraints(c, gbc);
-		panel.add(c);
 	}
 
 	@Override
@@ -169,26 +133,26 @@ public class Highscores extends DefaultJPanel implements ActionListener {
 			scoreModel.addElement(a.toString());
 		});
 
-		}
+	}
 
-	//Getter and Setter
-	
+	// Getter and Setter
+
 	/**
 	 * Return a list of highscores.
+	 * 
 	 * @return scores
 	 */
 	public List<Highscore> getScores() {
 		return scores;
 	}
-	
+
 	/**
 	 * Set a List as Highscores.
+	 * 
 	 * @param scores
 	 */
 	public void setScores(List<Highscore> scores) {
 		this.scores = scores;
 	}
-	
-	
-	
-	}
+
+}

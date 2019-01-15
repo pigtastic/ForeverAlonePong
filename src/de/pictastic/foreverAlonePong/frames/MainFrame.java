@@ -2,10 +2,8 @@ package de.pictastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import de.pictastic.foreverAlonePong.highscore.Highscore;
 import de.pictastic.foreverAlonePong.highscore.HighscoreWriter;
 
@@ -18,12 +16,13 @@ public class MainFrame extends JFrame {
 	private static StartMenu sm;
 	private static Game g;
 	public static Replay r;
-	private GameWithBot gwb;
+	public static GameWithBot gwb;
 
-	public MainFrame() {
+	public MainFrame() throws IOException {
 		// Frame Settings
 		setTitle("Pong");
 		setSize(400, 700);
+		setLocationRelativeTo(null);
 		setResizable(true);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

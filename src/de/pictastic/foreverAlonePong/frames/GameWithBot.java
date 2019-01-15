@@ -36,7 +36,8 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 
 	// pad
 	private int padSpeed = 2;
-	private int padH = 10, padW = 40;
+	private static int padH = 10, padW = 40;
+	private static int botPadH = 10, botPadW = 40;
 	private int bottomPadX, topPadX;;
 	private int inset = 10;
 	
@@ -96,7 +97,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 		
 		
 		// top pad
-				Rectangle2D topPad = new Rectangle(topPadX, inset, padW, padH);
+				Rectangle2D topPad = new Rectangle(topPadX, inset, botPadW, botPadH);
 				g2d.fill(topPad);
 
 		// ball
@@ -226,7 +227,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 	public void neverlooseAI() {
 		double delta = ball.getBallX() - topPadX;
 		if (delta > 0) {
-			topPadX += (topPadX < width - padW) ? padSpeed : 0;
+			topPadX += (topPadX < width - botPadW) ? padSpeed : 0;
 		}
 		else if (delta < 0) {
 			topPadX -= (topPadX > 0) ? padSpeed : 0;
@@ -238,6 +239,12 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+	
+	//Change Game Settings
+	
+	public static void setPadW(int w) {
+		padW = w;
 	}
 
 }

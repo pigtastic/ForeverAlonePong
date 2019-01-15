@@ -26,10 +26,10 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 
 	private CardLayout cardlayout;
 	private JPanel panel;
-	
-	//Panel Components
+
+	// Panel Components
 	private JLabel headline = new JLabel("GAME OVER");
-	private JEditorPane info = new JEditorPane();
+	private JLabel info = new JLabel();
 	private JButton backbtn = new JButton("BACK TO STARTMENU");
 
 	public Replay(JPanel pnlMain, CardLayout cardlayout) {
@@ -49,9 +49,8 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		info.setBackground(Color.BLACK);
 		info.setForeground(Color.RED);
 		info.setOpaque(true);
+		info.setHorizontalAlignment(SwingConstants.CENTER);
 		info.setFont(new Font("Helvetica", Font.PLAIN, 40));
-		info.setContentType("text/plain");
-		info.setEditable(false);
 		info.setEnabled(true);
 		Color bgColor = new Color(0, 0, 0);
 		UIDefaults defaults = new UIDefaults();
@@ -59,7 +58,7 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		info.putClientProperty("Nimbus.Overrides", defaults);
 		info.putClientProperty("Nimbus.Overrides.InheritDefaults", true);
 		info.setBackground(bgColor);
-		
+
 		backbtn.setBackground(Color.BLACK);
 		backbtn.setForeground(Color.WHITE);
 		backbtn.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -77,10 +76,19 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		addComponent(gbl, backbtn, 0, 5, 1, 1, 1.0, 0.0, new Insets(20, 0, 20, 0));
 		addComponent(gbl, replay, 0, 6, 1, 1, 1.0, 0.0);
 		addComponent(gbl, new JLabel(""), 0, 7, 1, 1, 0.0, 1.0);
-		
-		//add listeners
+
+		// add listeners
 		backbtn.addActionListener(this);
 
+	}
+	
+	/**
+	 * Displays the score in ReplayPanel after game.
+	 * 
+	 * @param score
+	 */
+	public void displayScore(int score) {
+		info.setText("Your Score " + Integer.toString(score));
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -92,13 +100,7 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		}
 
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (MainFrame.getActivePane().equals("Replay")) {
@@ -112,19 +114,19 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		}
 
 	}
-	
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
 	}
-	/**
-	 * Displays the score in ReplayPanel after game.
-	 * @param score
-	 */
-	public void displayScore(int score) {
-		info.setText("Your Score " + Integer.toString(score));
-	}
+
 
 }
