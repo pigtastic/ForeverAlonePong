@@ -81,7 +81,7 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		backbtn.addActionListener(this);
 
 	}
-	
+
 	/**
 	 * Displays the score in ReplayPanel after game.
 	 * 
@@ -100,15 +100,21 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		}
 
 	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (MainFrame.getActivePane().equals("Replay")) {
 			int code = e.getKeyCode();
 			if (code == KeyEvent.VK_SPACE) {
-				cardlayout.show(panel, "GameWithBot");
+				if (MainFrame.sm.isDef()) {
+					cardlayout.show(panel, "Game");
+					MainFrame.setActivePane("Game");
+				} else {
+					cardlayout.show(panel, "GameWithBot");
+					MainFrame.setActivePane("GameWithBot");
+				}
+
 				Main.main.validate();
-				MainFrame.setActivePane("GameWithBot");
 			}
 
 		}
@@ -121,12 +127,10 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 
 	}
 
-
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
 	}
-
 
 }

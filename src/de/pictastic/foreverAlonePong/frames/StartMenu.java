@@ -38,15 +38,16 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	// Components
 	private JLabel picLabel = new JLabel();
 	private JTextField playerinput = new JTextField(10);
-	private JLabel fail = new JLabel("");
+	private JLabel playWithBotLabel = new JLabel("Play with Bot");
 	private JButton playbtn = new JButton("PLAY");
 	private JButton highscoresbtn = new JButton("HIGHSCORES");
-	private JCheckBox playWithBro = new JCheckBox();
+	private JLabel playWithBot = new JLabel();
 	private JLabel foreverAlone = new JLabel("", SwingConstants.CENTER);
 
 	// variables
 	private String playername;
 	private boolean mute = false;
+	private static boolean def = true;
 
 	// Constructor
 	public StartMenu(JPanel panel, CardLayout cardLayout) {
@@ -63,6 +64,9 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		// Load Start Picture
 		loadStartPicture();
 
+		// Set default Game
+		playDef();
+
 		// Panel Components
 		JLabel headline1 = new JLabel("FOREVERALONE");
 		headline1.setForeground(Color.WHITE);
@@ -74,13 +78,13 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		headline2.setFont(new Font("Helvetica", Font.PLAIN, 70));
 		headline2.setHorizontalAlignment(SwingConstants.CENTER);
 
-		JLabel player = new JLabel("Player");
+		JLabel player = new JLabel("Playername");
 		player.setForeground(Color.WHITE);
 		player.setFont(new Font("Helvetica", Font.PLAIN, 20));
 		player.setHorizontalAlignment(SwingConstants.CENTER);
 
-		fail.setForeground(Color.RED);
-		fail.setFont(new Font("Helvetica", Font.PLAIN, 16));
+		playWithBotLabel.setForeground(Color.RED);
+		playWithBotLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
 
 		playbtn.setBackground(Color.BLACK);
 		playbtn.setForeground(Color.WHITE);
@@ -101,7 +105,8 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		addComponent(gbl, foreverAlone, 0, 3, 3, 1, 0.0, 0.5);
 		addComponent(gbl, player, 0, 4, 1, 1, 0.0, 0.0);
 		addComponent(gbl, playerinput, 1, 4, 1, 1, 0.0, 0.0);
-		addComponent(gbl, fail, 0, 5, 3, 1, 0.0, 0.0);
+		addComponent(gbl, playWithBotLabel, 0, 5, 3, 1, 0.0, 0.2);
+		addComponent(gbl, playWithBot, 1, 5, 3, 1, 0.0, 0.2);
 		addComponent(gbl, new JLabel(""), 0, 6, 3, 1, 0.0, 0.2);
 		addComponent(gbl, playbtn, 0, 7, 3, 1, 0.0, 0.0);
 		addComponent(gbl, new JLabel(""), 0, 8, 3, 1, 0.0, 0.2);
@@ -113,7 +118,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		playbtn.addActionListener(this);
 		highscoresbtn.addActionListener(this);
 		playerinput.addKeyListener(this);
-//		picLabel.addActionListener(this);
+		playWithBot.addMouseListener(this);
 
 	}
 
@@ -124,10 +129,16 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 			if (playerinput.getText().contains("long dong") || playerinput.getText().contains("longdong")) {
 				MainFrame.gwb.setPadW(120);
 			}
-
 			MusicPlayer.stopMusic();
-			cardLayout.show(panel, "GameWithBot");
-			MainFrame.setActivePane("GameWithBot");
+			if(def) {
+				cardLayout.show(panel, "Game");
+				MainFrame.setActivePane("Game");
+			} else {
+				cardLayout.show(panel, "GameWithBot");
+				MainFrame.setActivePane("GameWithBot");
+			}
+			
+			
 			playername = playerinput.getText();
 			Main.main.validate();
 			GameSoundPlayer.playSound(0, 1);
@@ -139,6 +150,33 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 
 		}
 
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (e.getSource().equals(picLabel)) {
+			if (mute) {
+				enableMusic();
+			} else {
+				disableMusic();
+			}
+		}
+		if (e.getSource().equals(playWithBot)) {
+			if (def) {
+				playBot();
+			} else {
+				playDef();
+			}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (playerinput.getText().length() > 0) {
+			playbtn.setEnabled(true);
+		} else {
+			playbtn.setEnabled(false);
+		}
 	}
 
 	/**
@@ -178,6 +216,9 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		picLabel.setIcon(new ImageIcon(myPicture));
 	}
 
+	/**
+	 * Load the ForeverAlone Meme.
+	 */
 	private void loadStartPicture() {
 		BufferedImage myPicture = null;
 		try {
@@ -189,12 +230,53 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		foreverAlone.setIcon(new ImageIcon(myPicture));
 	}
 
+	/**
+	 * Set Default Triangle Game.
+	 */
+	private void playDef() {
+		def = true;
+		BufferedImage myPicture = null;
+		try {
+			myPicture = ImageIO.read(new File("../AppData/uncheckedbox.png"));
+		} catch (IOException e) {
+			System.out.println("Unchecked Icon nicht gefunden");
+			e.printStackTrace();
+		}
+		playWithBot.setIcon(new ImageIcon(myPicture));
+	}
+
+	/**
+	 * Set Bot Game.
+	 */
+	private void playBot() {
+		def = false;
+		BufferedImage myPicture = null;
+		try {
+			myPicture = ImageIO.read(new File("../AppData/checkbox.png"));
+		} catch (IOException e) {
+			System.out.println("Checked Icon nicht gefunden");
+			e.printStackTrace();
+		}
+		playWithBot.setIcon(new ImageIcon(myPicture));
+	}
+
+	
+	//Getter and Setter
+	
 	public String getPlayername() {
 		return playername;
 	}
 
 	public void setPlayername(String playername) {
 		this.playername = playername;
+	}
+	
+	public static boolean isDef() {
+		return def;
+	}
+
+	public static void setDef(boolean def) {
+		StartMenu.def = def;
 	}
 
 	@Override
@@ -205,27 +287,6 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if (playerinput.getText().length() > 0) {
-			playbtn.setEnabled(true);
-		} else {
-			playbtn.setEnabled(false);
-		}
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (e.getSource().equals(picLabel)) {
-			if (mute) {
-				enableMusic();
-			} else {
-				disableMusic();
-			}
-		}
 
 	}
 

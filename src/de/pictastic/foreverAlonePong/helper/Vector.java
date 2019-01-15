@@ -68,7 +68,6 @@ public class Vector {
 	
 	public static double angle(Vector v1, Vector v2) {
 		double angle= Math.acos(scalarProdukt(v1, v2)/(v1.length()*v2.length()));
-		angle= angle * (180/Math.PI);
 		return angle;
 		
 	}

@@ -2,7 +2,7 @@ package de.pictastic.foreverAlonePong.frames;
 
 import java.awt.geom.Ellipse2D;
 
-import com.sun.javafx.scene.traversal.Direction;
+import de.pictastic.foreverAlonePong.helper.Direction;
 
 import de.pictastic.foreverAlonePong.helper.Vector;
 
@@ -11,7 +11,7 @@ import de.pictastic.foreverAlonePong.helper.Vector;
 @SuppressWarnings("serial")
 public class Ball extends Ellipse2D.Double{
 	private final double BALLSIZE=20;
-	private double ballspeed=2;
+	private double ballspeed=1.0;
 	private Vector vector=new Vector();
 	private Direction directionX;
 	private Direction directionY;
@@ -22,14 +22,14 @@ public class Ball extends Ellipse2D.Double{
 
 
 //Constructor
-	private double ballX, ballY, velX = -1, velY = 1;
+	private double ballX, ballY, velX = 1, velY = 1;
 	public Ball() {
 		this.x=ballX;
 		this.y=ballY;
 		this.height=BALLSIZE;
 		this.width=BALLSIZE;
 		directionX=Direction.RIGHT;
-		directionY=Direction.DOWN;
+		directionY=Direction.BOTTOM;
 	}
 	
 	//Getter and Setter
@@ -117,9 +117,8 @@ public class Ball extends Ellipse2D.Double{
 	public void move() {
 		lastBallX=getBallX();
 		lastBallY=getBallY();
-		double newBallX=getBallX()+getVelX();
-		double newBallY=getBallY()+getVelY();
-//		vector.calcVector(getBallX(), getBallY(),newBallX, newBallY);
+		double newBallX=getBallX()+getVelX()*ballspeed;
+		double newBallY=getBallY()+getVelY()*ballspeed;
 		vector.calcVector(newBallX, newBallY,getBallX(), getBallY());
 		
 		setBallX(newBallX);
@@ -140,10 +139,10 @@ public class Ball extends Ellipse2D.Double{
 	public void invertDirectionY() {
 		setVelY(-getVelY());
 		if(getVelY()<0) {
-			directionY=Direction.UP;
+			directionY=Direction.TOP;
 		}
 		if(getVelY()>0) {
-			directionY=Direction.DOWN;
+			directionY=Direction.BOTTOM;
 		}
 	}
 	/*

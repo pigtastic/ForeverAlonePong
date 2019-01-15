@@ -17,13 +17,15 @@ import java.util.HashSet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import de.pictastic.foreverAlonePong.helper.GameSoundPlayer;
+import de.pictastic.foreverAlonePong.helper.MusicPlayer;
 import de.pictastic.foreverAlonePong.helper.Vector;
 
 @SuppressWarnings("serial")
 public class Game extends JPanel implements ActionListener, KeyListener {
 
 	private int height, width;
-	private Timer t = new Timer(1, this);
+	private Timer t = new Timer(10, this);
 	private boolean first;
 
 	public HashSet<String> keys = new HashSet<String>();
@@ -104,12 +106,11 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		leftSide = new Line2D.Double(0, height, width / 2, 0);
 		rightSide = new Line2D.Double(width, height, width / 2, 0);
 		// calc Vector
-		leftVector.calcVector(0, height, width/2, 0);
+		leftVector.calcVector(0, height, width / 2, 0);
 		rightVector.calcVector(width / 2, 0, width, height);
 
 		leftangle = Vector.angle(leftVector, ball.getVector());
 		rightangle = Vector.angle(rightVector, ball.getVector());
-
 
 		leftSide = new Line2D.Double(0, height, width / 2, 0);
 		rightSide = new Line2D.Double(width, height, width / 2, 0);
@@ -138,7 +139,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		double m = (y2 - y1) / (x2 - x1);
 		// Geradengleichung
 		double linearEquation = m * (x - x1) + y1;
-		if (linearEquation - y < 3 && linearEquation - y > -3) {
+		if (linearEquation - y < 5 && linearEquation - y > -5) {
 			return true;
 		} else
 			return false;
@@ -146,41 +147,70 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// side walls
 
 		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
 			ball.invertDirectionX();
 
-
 		}
 
-		//left triangle side
-		if(intersection(ball.getBallX(),ball.getBallY(),leftSide)&&ball.getVelX()<0) {
-			System.out.println(leftangle);
-			System.out.println(ball.getLastBallX());
-			System.out.println(ball.getLastBallY());
-			System.out.println(ball.getBallX());
-			System.out.println(ball.getBallY());
-			ball.setBallX((ball.getLastBallX()*Math.cos(leftangle/(180/Math.PI))-ball.getLastBallY()*Math.sin(leftangle/(180/Math.PI))));
-			ball.setBallY((ball.getLastBallX()*Math.sin(leftangle)+ball.getLastBallY()*Math.cos(leftangle)));
-			System.out.println(ball.getLastBallX()*Math.cos(leftangle)-ball.getLastBallY()*Math.sin(leftangle));
-			System.out.println(ball.getLastBallX()*Math.sin(leftangle)+ball.getLastBallY()*Math.cos(leftangle));
-			t.stop();
-			
+		// left triangle side
+		if (intersection(ball.getBallX(), ball.getBallY(), leftSide) && ball.getVelX() <= 0) {
+			GameSoundPlayer.playSound(score, 1);
+
+			// hilfsvektor
+			double xWert = ball.getBallX() - ball.getLastBallX();
+			double yWert = ball.getBallY() - ball.getLastBallY();
+
+			if (leftangle * 2 > Math.PI) {
+				leftangle = 2 * (Math.PI - leftangle);
+
+			} else {
+				leftangle *= -2;
+			}
+			double turnx = xWert * Math.cos((leftangle)) - yWert * Math.sin((leftangle));
+			double turny = xWert * Math.sin((leftangle)) + yWert * Math.cos((leftangle));
+
+			double newxWert = turnx + ball.getBallX();
+			double newyWert = turny + ball.getBallY();
+			double newVelx = newxWert - ball.getBallX();
+			double newVely = newyWert - ball.getBallY();
+			ball.setVelX(newVelx);
+			ball.setVelY(newVely);
+
 		}
-		//right triangle side
-		if(intersection(ball.getBallX()+ball.getBallSize(),ball.getBallY()+ball.getBallSize(),rightSide)&&ball.getVelX()>0) {
-		System.out.println(rightangle);
+		// right triangle side
+		if (intersection(ball.getBallX() + ball.getBallSize(), ball.getBallY(), rightSide) && ball.getVelX() >= 0) {
+			GameSoundPlayer.playSound(score, 0);
 
+			//
+			double xWert = ball.getBallX() - ball.getLastBallX();
+			double yWert = ball.getBallY() - ball.getLastBallY();
+
+			if (rightangle * 2 > Math.PI) {
+				rightangle = 2 * (Math.PI - rightangle);
+			} else {
+				rightangle *= -2;
+			}
+
+			double turnx = xWert * Math.cos((rightangle)) - yWert * Math.sin((rightangle));
+			double turny = xWert * Math.sin((rightangle)) + yWert * Math.cos((rightangle));
+
+			double newxWert = turnx + ball.getBallX();
+			double newyWert = turny + ball.getBallY();
+			double newVelx = newxWert - ball.getBallX();
+			double newVely = newyWert - ball.getBallY();
+
+			ball.setVelX(newVelx);
+			ball.setVelY(newVely);
 
 		}
-
 
 		// top wall
 
 		if (ball.getBallY() < 0) {
+			GameSoundPlayer.playSound(score, 1);
 			ball.invertDirectionY();
-			
+
 		}
 
 		// down wall
@@ -190,19 +220,19 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
 		}
 
-		//  pad
-		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset && ball.getBallY() + ball.getBallSize() <= height - padH - inset+1 && ball.getVelY() > 0)
+		// pad
+		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset
+				&& ball.getBallY() + ball.getBallSize() <= height - padH - inset + 3 && ball.getVelY() > 0)
 			if (ball.getBallX() + ball.getBallSize() >= PadX && ball.getBallX() <= PadX + padW) {
+				GameSoundPlayer.playSound(score, -1);
 				ball.invertDirectionY();
-				
+				faster();
 				score++;
-					
+
 			}
 
 		ball.move();
-		
-		
-			
+
 		// pressed keys
 		if (keys.size() == 1) {
 			if (keys.contains("LEFT")) {
@@ -213,7 +243,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		}
 
 		repaint();
-		
+
 	}
 
 	/**
@@ -222,6 +252,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	private void gameLose() {
 		t.stop();
 		first = true;
+		MusicPlayer.playMusic("../AppData/Sounds/LostGame.wav");
 		cardlayout.show(panel, "Replay");
 		MainFrame.saveScore(score);
 		MainFrame.setActivePane("Replay");
@@ -259,7 +290,12 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 			break;
 		}
 	}
-
+	
+	private void faster() {
+		//
+	}
+	
+	//Getter and Setter	
 	public int getScore() {
 		return score;
 	}

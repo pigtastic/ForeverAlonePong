@@ -13,7 +13,7 @@ public class MainFrame extends JFrame {
 	private CardLayout cardlayout;
 	private JPanel pnlMain = new JPanel();
 	private static Highscores s;
-	private static StartMenu sm;
+	public static StartMenu sm;
 	private static Game g;
 	public static Replay r;
 	public static GameWithBot gwb;
