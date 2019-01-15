@@ -26,7 +26,7 @@ import de.pictastic.foreverAlonePong.helper.Vector;
 public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 
 	private int height, width;
-	private Timer t = new Timer(8d, this);
+	private Timer t = new Timer(8, this);
 	private boolean first;
 
 	public HashSet<String> keys = new HashSet<String>();
@@ -90,6 +90,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 		Graphics2D g2d = (Graphics2D) g;
 		height = getHeight();
 		width = getWidth();
+		
 
 		// bottom pad
 		Rectangle2D bottomPad = new Rectangle(bottomPadX, height - padH - inset, padW, padH);

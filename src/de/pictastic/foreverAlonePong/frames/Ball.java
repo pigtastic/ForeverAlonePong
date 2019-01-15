@@ -10,7 +10,7 @@ import de.pictastic.foreverAlonePong.helper.Vector;
 
 @SuppressWarnings("serial")
 public class Ball extends Ellipse2D.Double{
-	private final double BALLSIZE=20;
+	private double ballsize=20;
 	private double ballspeed=1.0;
 	private Vector vector=new Vector();
 	private Direction directionX;
@@ -26,8 +26,8 @@ public class Ball extends Ellipse2D.Double{
 	public Ball() {
 		this.x=ballX;
 		this.y=ballY;
-		this.height=BALLSIZE;
-		this.width=BALLSIZE;
+		this.height=ballsize;
+		this.width=ballsize;
 		directionX=Direction.RIGHT;
 		directionY=Direction.BOTTOM;
 	}
@@ -67,8 +67,13 @@ public class Ball extends Ellipse2D.Double{
 		this.velY = velY;
 	}
 	public double getBallSize() {
-		return BALLSIZE;
+		return ballsize;
 	}
+
+	public void setBallSize(double ballsize) {
+		this.ballsize = ballsize;
+	}
+
 	public Vector getVector() {
 		return vector;
 	}

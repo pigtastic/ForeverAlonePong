@@ -127,8 +127,19 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		if (e.getSource().equals(highscoresbtn)) {
+			cardLayout.show(panel, "Highscores");
+			MainFrame.setActivePane("Highscores");
+			Main.main.validate();
+
+		}
 		if (e.getSource().equals(playbtn)) {
-			if (playerinput.getText().contains("long dong") || playerinput.getText().contains("longdong")) {
+			if (playerinput.getText().toLowerCase().replaceAll(" ", "").contains("bigballs")) {
+				MainFrame.gwb.ball.setBallSize(60);
+				System.out.println(MainFrame.gwb.ball.getBallSize());
+				System.out.println("BALLS");
+			}
+			if (playerinput.getText().toLowerCase().replaceAll(" ", "").contains("longdong")) {
 				MainFrame.gwb.setPadW(120);
 			}
 			MusicPlayer.stopMusic();
@@ -144,13 +155,6 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 			Main.main.validate();
 			GameSoundPlayer.playSound(0, 1);
 		}
-		if (e.getSource().equals(highscoresbtn)) {
-			cardLayout.show(panel, "Highscores");
-			MainFrame.setActivePane("Highscores");
-			Main.main.validate();
-
-		}
-
 	}
 
 	@Override
