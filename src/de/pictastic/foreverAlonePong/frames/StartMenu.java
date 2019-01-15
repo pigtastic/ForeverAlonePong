@@ -36,12 +36,13 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	CardLayout cardLayout;
 
 	// Components
-	JLabel picLabel = new JLabel();
-	JTextField playerinput = new JTextField(10);
-	JLabel fail = new JLabel("");
-	JButton playbtn = new JButton("PLAY");
-	JButton highscoresbtn = new JButton("HIGHSCORES");
-	JCheckBox playWithBro = new JCheckBox();
+	private JLabel picLabel = new JLabel();
+	private JTextField playerinput = new JTextField(10);
+	private JLabel fail = new JLabel("");
+	private JButton playbtn = new JButton("PLAY");
+	private JButton highscoresbtn = new JButton("HIGHSCORES");
+	private JCheckBox playWithBro = new JCheckBox();
+	private JLabel foreverAlone = new JLabel("", SwingConstants.CENTER);
 
 	// variables
 	private String playername;
@@ -58,6 +59,9 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 
 		// Start Music
 		enableMusic();
+
+		// Load Start Picture
+		loadStartPicture();
 
 		// Panel Components
 		JLabel headline1 = new JLabel("FOREVERALONE");
@@ -94,7 +98,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		addComponent(gbl, new JLabel(""), 0, 0, 3, 1, 0.0, 0.5);
 		addComponent(gbl, headline1, 0, 1, 3, 1, 0.0, 0.0);
 		addComponent(gbl, headline2, 0, 2, 3, 1, 0.0, 0.0);
-		addComponent(gbl, new JLabel(""), 0, 3, 3, 1, 0.0, 1.0);
+		addComponent(gbl, foreverAlone, 0, 3, 3, 1, 0.0, 0.5);
 		addComponent(gbl, player, 0, 4, 1, 1, 0.0, 0.0);
 		addComponent(gbl, playerinput, 1, 4, 1, 1, 0.0, 0.0);
 		addComponent(gbl, fail, 0, 5, 3, 1, 0.0, 0.0);
@@ -117,6 +121,10 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource().equals(playbtn)) {
+			if (playerinput.getText().contains("long dong") || playerinput.getText().contains("longdong")) {
+				MainFrame.gwb.setPadW(120);
+			}
+
 			MusicPlayer.stopMusic();
 			cardLayout.show(panel, "GameWithBot");
 			MainFrame.setActivePane("GameWithBot");
@@ -164,10 +172,21 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		try {
 			myPicture = ImageIO.read(new File("../AppData/notmute.png"));
 		} catch (IOException e) {
-			System.out.println("Mute Icon nicht gefunden");
+			System.out.println("NotMute Icon nicht gefunden");
 			e.printStackTrace();
 		}
 		picLabel.setIcon(new ImageIcon(myPicture));
+	}
+
+	private void loadStartPicture() {
+		BufferedImage myPicture = null;
+		try {
+			myPicture = ImageIO.read(new File("../AppData/fap_small.png"));
+		} catch (IOException e) {
+			System.out.println("FA Icon nicht gefunden");
+			e.printStackTrace();
+		}
+		foreverAlone.setIcon(new ImageIcon(myPicture));
 	}
 
 	public String getPlayername() {

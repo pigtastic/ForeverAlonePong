@@ -22,8 +22,6 @@ public class DefaultJPanel extends JPanel{
 
 		}
 	
-	
-	
 	/**
 	 * Add Components to GridBagLayout
 	 * 
