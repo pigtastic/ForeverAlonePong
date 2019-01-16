@@ -136,8 +136,6 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		if (e.getSource().equals(playbtn)) {
 			if (playerinput.getText().toLowerCase().replaceAll(" ", "").contains("bigballs")) {
 				MainFrame.gwb.ball.setBallSize(60);
-				System.out.println(MainFrame.gwb.ball.getBallSize());
-				System.out.println("BALLS");
 			}
 			if (playerinput.getText().toLowerCase().replaceAll(" ", "").contains("longdong")) {
 				MainFrame.gwb.setPadW(120);
