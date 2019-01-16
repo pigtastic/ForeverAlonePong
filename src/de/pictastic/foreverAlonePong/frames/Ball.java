@@ -72,6 +72,8 @@ public class Ball extends Ellipse2D.Double{
 
 	public void setBallSize(double ballsize) {
 		this.ballsize = ballsize;
+		this.height=ballsize;
+		this.width=ballsize;
 	}
 
 	public Vector getVector() {

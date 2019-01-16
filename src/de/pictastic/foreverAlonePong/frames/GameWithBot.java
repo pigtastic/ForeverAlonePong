@@ -103,8 +103,10 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 
 		// ball
 		// initial positioning
+				ball.setBallSize(40);
 		startPosition();
 		g2d.fill(ball);
+
 
 
 
