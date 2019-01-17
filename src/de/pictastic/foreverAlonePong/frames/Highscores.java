@@ -86,7 +86,7 @@ public class Highscores extends DefaultJPanel implements ActionListener {
 		try {
 			scores = HighscoreReader.importScores();
 		} catch (NumberFormatException | IOException e) {
-			System.out.println("Fehlender Score, wird beim nöchsten Spiel erstellt.");
+			System.out.println("Fehlender Score, wird beim nächsten Spiel erstellt.");
 		}
 		scores.forEach(a -> {
 			scoreModel.addElement(a.toString());
