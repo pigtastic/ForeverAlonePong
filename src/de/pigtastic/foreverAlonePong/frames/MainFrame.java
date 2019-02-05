@@ -1,11 +1,11 @@
-package de.pictastic.foreverAlonePong.frames;
+package de.pigtastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import de.pictastic.foreverAlonePong.highscore.Highscore;
-import de.pictastic.foreverAlonePong.highscore.HighscoreWriter;
+import de.pigtastic.foreverAlonePong.highscore.Highscore;
+import de.pigtastic.foreverAlonePong.highscore.HighscoreWriter;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {

@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong.helper;
+package de.pigtastic.foreverAlonePong.helper;
 
 import java.io.File;
 import java.io.IOException;

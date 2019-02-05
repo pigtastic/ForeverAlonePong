@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong.frames;
+package de.pigtastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -17,9 +17,9 @@ import java.util.HashSet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import de.pictastic.foreverAlonePong.helper.GameSoundPlayer;
-import de.pictastic.foreverAlonePong.helper.MusicPlayer;
-import de.pictastic.foreverAlonePong.helper.Vector;
+import de.pigtastic.foreverAlonePong.helper.GameSoundPlayer;
+import de.pigtastic.foreverAlonePong.helper.MusicPlayer;
+import de.pigtastic.foreverAlonePong.helper.Vector;
 
 @SuppressWarnings("serial")
 public class Game extends JPanel implements ActionListener, KeyListener {

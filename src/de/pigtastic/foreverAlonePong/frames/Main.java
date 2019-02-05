@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong.frames;
+package de.pigtastic.foreverAlonePong.frames;
 
 import java.io.IOException;
 

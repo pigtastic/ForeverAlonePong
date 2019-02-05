@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong.frames;
+package de.pigtastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -22,9 +22,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import de.pictastic.foreverAlonePong.helper.MusicPlayer;
-import de.pictastic.foreverAlonePong.highscore.Highscore;
-import de.pictastic.foreverAlonePong.highscore.HighscoreReader;
+import de.pigtastic.foreverAlonePong.highscore.Highscore;
+import de.pigtastic.foreverAlonePong.highscore.HighscoreReader;
+import de.pigtastic.foreverAlonePong.helper.MusicPlayer;
 
 /**
  * Displays the highscores list on this system after the game.

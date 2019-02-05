@@ -1,10 +1,10 @@
-package de.pictastic.foreverAlonePong.frames;
+package de.pigtastic.foreverAlonePong.frames;
 
 import java.awt.geom.Ellipse2D;
 
-import de.pictastic.foreverAlonePong.helper.Direction;
+import de.pigtastic.foreverAlonePong.helper.Direction;
 
-import de.pictastic.foreverAlonePong.helper.Vector;
+import de.pigtastic.foreverAlonePong.helper.Vector;
 
 
 

@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong.highscore;
+package de.pigtastic.foreverAlonePong.highscore;
 
 public class Highscore implements Comparable<Highscore> {
 	private final String playerName;

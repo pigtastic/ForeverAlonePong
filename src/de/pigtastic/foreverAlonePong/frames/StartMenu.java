@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong.frames;
+package de.pigtastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -25,8 +25,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import de.pictastic.foreverAlonePong.helper.GameSoundPlayer;
-import de.pictastic.foreverAlonePong.helper.MusicPlayer;
+import de.pigtastic.foreverAlonePong.helper.GameSoundPlayer;
+import de.pigtastic.foreverAlonePong.helper.MusicPlayer;
 
 //Panel zum Start des Spiels mit player namenseingabe für Highscore
 

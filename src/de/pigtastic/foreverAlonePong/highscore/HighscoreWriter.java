@@ -1,4 +1,4 @@
-package de.pictastic.foreverAlonePong.highscore;
+package de.pigtastic.foreverAlonePong.highscore;
 
 import java.io.File;
 import java.io.FileWriter;
