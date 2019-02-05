@@ -65,7 +65,6 @@ public class MainFrame extends JFrame {
 			System.out.println("Score gespeichert!");
 		} catch (IOException e1) {
 			System.out.println("Scores konnten nicht gespeichert werden!");
-			e1.printStackTrace();
 		}
 
 	}

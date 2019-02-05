@@ -292,7 +292,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	}
 	
 	private void faster() {
-		//
+		ball.faster();
 	}
 	
 	//Getter and Setter	

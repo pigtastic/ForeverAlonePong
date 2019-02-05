@@ -21,6 +21,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -211,7 +212,6 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 			myPicture = ImageIO.read(new File("../AppData/mute.png"));
 		} catch (IOException e) {
 			System.out.println("Mute Icon nicht gefunden");
-			e.printStackTrace();
 		}
 		picLabel.setIcon(new ImageIcon(myPicture));
 
@@ -230,7 +230,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 			myPicture = ImageIO.read(new File("../AppData/notmute.png"));
 		} catch (IOException e) {
 			System.out.println("NotMute Icon nicht gefunden");
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Fehlende Assets, bitte AppData ein Verzeichnis oberhalb des geöffeneten Projekt-Pfades. Alternativ öffne das Projekt aus dem src Ordner.");
 		}
 		picLabel.setIcon(new ImageIcon(myPicture));
 	}
@@ -244,7 +244,6 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 			myPicture = ImageIO.read(new File("../AppData/" + name));
 		} catch (IOException e) {
 			System.out.println("FA Icon nicht gefunden");
-			e.printStackTrace();
 		}
 		foreverAlone.setIcon(new ImageIcon(myPicture));
 	}
@@ -259,7 +258,6 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 			myPicture = ImageIO.read(new File("../AppData/uncheckedbox.png"));
 		} catch (IOException e) {
 			System.out.println("Unchecked Icon nicht gefunden");
-			e.printStackTrace();
 		}
 		playWithBot.setIcon(new ImageIcon(myPicture));
 	}
@@ -274,7 +272,6 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 			myPicture = ImageIO.read(new File("../AppData/checkbox.png"));
 		} catch (IOException e) {
 			System.out.println("Checked Icon nicht gefunden");
-			e.printStackTrace();
 		}
 		playWithBot.setIcon(new ImageIcon(myPicture));
 	}

@@ -42,7 +42,6 @@ public class MusicPlayer {
 				
 
 			} catch (Exception e) { 
-				e.printStackTrace();
 				System.out.println("Wiedergabe fehlgeschlagen");
 		
 			}
@@ -51,11 +50,25 @@ public class MusicPlayer {
 
 	
 	public static void stopMusic() {
-		clip.close();
+		try
+		{
+			clip.close();
+		}
+		catch (Exception e)
+		{
+			System.err.println("music bug^^");
+		}
 	}
 	
 	public static void disableSound() {
-		clip.close();
+		try
+		{
+			clip.close();
+		}
+		catch (Exception e)
+		{
+			System.err.println("music bug^^");
+		}
 		mute = true;
 	}
 	public static void enableSound() {
