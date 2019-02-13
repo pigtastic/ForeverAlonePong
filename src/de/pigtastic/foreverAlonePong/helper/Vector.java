@@ -65,11 +65,22 @@ public class Vector {
 		return length;
 	}
 	
-	
+	/**
+	 * Angle between two Vectors
+	 */
 	public static double angle(Vector v1, Vector v2) {
 		double angle= Math.acos(scalarProdukt(v1, v2)/(v1.length()*v2.length()));
 		return angle;
 		
+	}
+	
+	/**
+	 * change the length of the vector to One.
+	 */
+	public void toUnitVector() {
+		double scalar = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
+		this.x=x/scalar;
+		this.y=y/scalar;
 	}
 	
 	

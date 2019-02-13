@@ -122,12 +122,14 @@ public class Ball extends Ellipse2D.Double{
 	 * Starts the ball movement and calculates the Vector
 	 */
 	public void move() {
+		//aktuellen Punkt für Vector setzen
 		lastBallX=getBallX();
 		lastBallY=getBallY();
+		//neuen Punkt berechnen
 		double newBallX=getBallX()+getVelX()*ballspeed;
 		double newBallY=getBallY()+getVelY()*ballspeed;
 		vector.calcVector(newBallX, newBallY,getBallX(), getBallY());
-		
+
 		setBallX(newBallX);
 		setBallY(newBallY);
 		

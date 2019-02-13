@@ -167,22 +167,26 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 			} else {
 				leftangle *= -2;
 			}
+			//Drehung um den Ursprung
 			double turnx = xWert * Math.cos((leftangle)) - yWert * Math.sin((leftangle));
 			double turny = xWert * Math.sin((leftangle)) + yWert * Math.cos((leftangle));
-
+			//Punkt an richtige Stelle verschieben
 			double newxWert = turnx + ball.getBallX();
 			double newyWert = turny + ball.getBallY();
-			double newVelx = newxWert - ball.getBallX();
-			double newVely = newyWert - ball.getBallY();
-			ball.setVelX(newVelx);
-			ball.setVelY(newVely);
+			//neuer Richtungsvektor
+			Vector moveVector = new Vector();
+			moveVector.setX(newxWert - ball.getBallX());
+			moveVector.setY(newyWert - ball.getBallY());
+			moveVector.toUnitVector();
+			ball.setVelX(moveVector.getX());
+			ball.setVelY(moveVector.getY());
 
 		}
 		// right triangle side
 		if (intersection(ball.getBallX() + ball.getBallSize(), ball.getBallY(), rightSide) && ball.getVelX() >= 0) {
 			GameSoundPlayer.playSound(score, 0);
 
-			//
+			
 			double xWert = ball.getBallX() - ball.getLastBallX();
 			double yWert = ball.getBallY() - ball.getLastBallY();
 
@@ -191,17 +195,19 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 			} else {
 				rightangle *= -2;
 			}
-
+			//Drehung um den Ursprung
 			double turnx = xWert * Math.cos((rightangle)) - yWert * Math.sin((rightangle));
 			double turny = xWert * Math.sin((rightangle)) + yWert * Math.cos((rightangle));
-
+			//Punkt an richtige Stelle verschieben
 			double newxWert = turnx + ball.getBallX();
 			double newyWert = turny + ball.getBallY();
-			double newVelx = newxWert - ball.getBallX();
-			double newVely = newyWert - ball.getBallY();
-
-			ball.setVelX(newVelx);
-			ball.setVelY(newVely);
+			//neuer Richtungsvektor
+			Vector moveVector = new Vector();
+			moveVector.setX(newxWert - ball.getBallX());
+			moveVector.setY(newyWert - ball.getBallY());
+			moveVector.toUnitVector();
+			ball.setVelX(moveVector.getX());
+			ball.setVelY(moveVector.getY());
 
 		}
 
