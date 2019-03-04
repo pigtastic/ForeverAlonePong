@@ -125,43 +125,6 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener, 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		/*
-		// side walls
-
-		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
-			ball.invertDirectionX();
-			sound.playSound(score, 0);
-
-		}
-
-		// top wall
-
-		if (ball.getBallY() < 0) {
-			ball.invertDirectionY();
-			
-		}
-
-		// down wall
-		if (ball.getBallY() - ball.getBallSize() > height) {
-			gameLose();
-
-		}
-		// top Pad
-		if (ball.getBallY() <= padH + inset && ball.getVelY() < 0)
-			if (ball.getBallX() + ball.getBallSize() >= topPadX && ball.getBallX() <= topPadX + padW)
-			{
-				sound.playSound(score, 1);
-				ball.invertDirectionY();
-			}
-		//  bottompad
-		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset && ball.getBallY() + ball.getBallSize() <= height - padH - inset+1 && ball.getVelY() > 0)
-			if (ball.getBallX() + ball.getBallSize() >= bottomPadX && ball.getBallX() <= bottomPadX + padW) {
-				ball.invertDirectionY();
-				score++;
-				sound.playSound(score, (-1));
-				ball.faster();
-			}
-		*/
 
 		ball.move();
 		
