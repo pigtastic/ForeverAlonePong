@@ -15,7 +15,8 @@ public class Ball extends Ellipse2D.Double{
 	private Vector vector=new Vector();
 	private Direction directionX;
 	private Direction directionY;
-	
+	private CollisionCheck parent;
+
 	double lastBallX=getBallX();
 	double lastBallY=getBallY();
 	
@@ -23,7 +24,8 @@ public class Ball extends Ellipse2D.Double{
 
 //Constructor
 	private double ballX, ballY, velX = 1, velY = 1;
-	public Ball() {
+	public Ball(CollisionCheck parent) {
+		this.parent = parent;
 		this.x=ballX;
 		this.y=ballY;
 		this.height=ballsize;
