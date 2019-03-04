@@ -13,7 +13,7 @@ public class HighscoreWriter {
 	public static void writeScores(List<Highscore> list) throws IOException {
 
 		makeDir();
-		FileWriter fileWriter = new FileWriter("../AppData/highscores.csv");
+		FileWriter fileWriter = new FileWriter("../scores/highscores.csv");
 
 		for (Highscore score : list) {
 			fileWriter.append(score.getPlayerName());
@@ -28,7 +28,7 @@ public class HighscoreWriter {
 
 	private static void makeDir() throws IOException {
 		String fileName = "highscores.csv";
-		String dirName = "AppData";
+		String dirName = "scores";
 		File file = new File("../" + dirName + "/" + fileName);
 		File dir = new File("../" + dirName);
 		dir.mkdir();

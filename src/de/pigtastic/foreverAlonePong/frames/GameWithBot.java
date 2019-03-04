@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 
@@ -28,6 +27,9 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 	private int height, width;
 	private Timer t = new Timer(8, this);
 	private boolean first;
+	
+	// music player
+	private GameSoundPlayer sound = new GameSoundPlayer();
 
 	public HashSet<String> keys = new HashSet<String>();
 
@@ -127,7 +129,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 
 		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
 			ball.invertDirectionX();
-			GameSoundPlayer.playSound(score, 0);
+			sound.playSound(score, 0);
 
 		}
 
@@ -147,7 +149,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 		if (ball.getBallY() <= padH + inset && ball.getVelY() < 0)
 			if (ball.getBallX() + ball.getBallSize() >= topPadX && ball.getBallX() <= topPadX + padW)
 			{
-				GameSoundPlayer.playSound(score, 1);
+				sound.playSound(score, 1);
 				ball.invertDirectionY();
 			}
 		//  bottompad
@@ -155,7 +157,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 			if (ball.getBallX() + ball.getBallSize() >= bottomPadX && ball.getBallX() <= bottomPadX + padW) {
 				ball.invertDirectionY();
 				score++;
-				GameSoundPlayer.playSound(score, (-1));
+				sound.playSound(score, (-1));
 				ball.faster();
 			}
 				
@@ -185,7 +187,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 	private void gameLose() {
 		t.stop();
 		first = true;
-		MusicPlayer.playMusic("../AppData/Sounds/LostGame.wav");
+		MusicPlayer.playMusicContinously(getClass().getResource("../resources/sounds/LostGame.wav"));
 		MainFrame.saveScore(score);
 		cardlayout.show(panel, "Replay");
 		MainFrame.setActivePane("Replay");

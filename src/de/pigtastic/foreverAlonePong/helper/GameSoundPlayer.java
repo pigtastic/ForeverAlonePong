@@ -2,8 +2,7 @@ package de.pigtastic.foreverAlonePong.helper;
 
 public class GameSoundPlayer {
 	
-	private static String path = "../AppData/Sounds/";
-	private static String note;
+	private String note;
 
 	/**
 	 * Starts specific soundeffect. -1 for Bottom, 0 for Wall and 1 for Top.
@@ -11,7 +10,7 @@ public class GameSoundPlayer {
 	 * @param score
 	 * @param place
 	 */
-	public static void playSound(int score, int place) {
+	public void playSound(int score, int place) {
 
 		if (score < 3) {
 			switch (place) {
@@ -116,7 +115,7 @@ public class GameSoundPlayer {
 			}
 
 		}
-		MusicPlayer.playMusic(getClass().getResource(note + ".wav"));
+		MusicPlayer.playMusic(getClass().getResource("../resources/sounds/" + note + ".wav"));
 
 	}
 }

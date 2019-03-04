@@ -4,7 +4,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,11 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -27,7 +22,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import de.pigtastic.foreverAlonePong.helper.GameSoundPlayer;
 import de.pigtastic.foreverAlonePong.helper.MusicPlayer;
 
 //Panel zum Start des Spiels mit player namenseingabe für Highscore
@@ -140,7 +134,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 				MainFrame.gwb.ball.setBallSize(60);
 			}
 			if (playerinput.getText().toLowerCase().replaceAll(" ", "").contains("longdong")) {
-				MainFrame.gwb.setPadW(120);
+				GameWithBot.setPadW(120);
 			}
 			MusicPlayer.stopMusic();
 			if (def) {
@@ -153,7 +147,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 
 			playername = playerinput.getText();
 			Main.main.validate();
-			GameSoundPlayer.playSound(0, 1);
+			MusicPlayer.playMusic(getClass().getResource("../resources/sounds/C.wav"));
 		}
 	}
 
@@ -224,7 +218,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	private void enableMusic() {
 		MusicPlayer.enableSound();
 		mute = false;
-		MusicPlayer.playMusic(getClass().getResource("../resources/sounds/FAPS2.wav"));
+		MusicPlayer.playMusicContinously(getClass().getResource("../resources/sounds/FAPS2.wav"));
 
 		ImageIcon myPicture = null;
 		try {

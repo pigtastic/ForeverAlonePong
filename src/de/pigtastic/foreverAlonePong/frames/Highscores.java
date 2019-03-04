@@ -2,9 +2,7 @@ package de.pigtastic.foreverAlonePong.frames;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -24,7 +22,6 @@ import javax.swing.SwingConstants;
 
 import de.pigtastic.foreverAlonePong.highscore.Highscore;
 import de.pigtastic.foreverAlonePong.highscore.HighscoreReader;
-import de.pigtastic.foreverAlonePong.helper.MusicPlayer;
 
 /**
  * Displays the highscores list on this system after the game.

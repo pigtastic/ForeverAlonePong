@@ -11,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
-import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -95,7 +94,7 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		if (e.getSource().equals(backbtn)) {
 			cardlayout.show(panel, "StartMenu");
 			MainFrame.setActivePane("StartMenu");
-			MusicPlayer.playMusicContinously("../AppData/Sounds/FAPS2.wav");
+			MusicPlayer.playMusicContinously(getClass().getResource("../resources/sounds/FAPS2.wav"));
 			Main.main.validate();
 		}
 
@@ -106,7 +105,7 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		if (MainFrame.getActivePane().equals("Replay")) {
 			int code = e.getKeyCode();
 			if (code == KeyEvent.VK_SPACE) {
-				if (MainFrame.sm.isDef()) {
+				if (StartMenu.isDef()) {
 					cardlayout.show(panel, "Game");
 					MainFrame.setActivePane("Game");
 				} else {

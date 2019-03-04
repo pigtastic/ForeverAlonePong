@@ -27,6 +27,9 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	private int height, width;
 	private Timer t = new Timer(10, this);
 	private boolean first;
+	
+	// music player
+	private GameSoundPlayer sound = new GameSoundPlayer();
 
 	public HashSet<String> keys = new HashSet<String>();
 
@@ -155,7 +158,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
 		// left triangle side
 		if (intersection(ball.getBallX(), ball.getBallY(), leftSide) && ball.getVelX() <= 0) {
-			GameSoundPlayer.playSound(score, 1);
+			sound.playSound(score, 1);
 
 			// hilfsvektor
 			double xWert = ball.getBallX() - ball.getLastBallX();
@@ -184,7 +187,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		}
 		// right triangle side
 		if (intersection(ball.getBallX() + ball.getBallSize(), ball.getBallY(), rightSide) && ball.getVelX() >= 0) {
-			GameSoundPlayer.playSound(score, 0);
+			sound.playSound(score, 0);
 
 			
 			double xWert = ball.getBallX() - ball.getLastBallX();
@@ -214,7 +217,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		// top wall
 
 		if (ball.getBallY() < 0) {
-			GameSoundPlayer.playSound(score, 1);
+			sound.playSound(score, 1);
 			ball.invertDirectionY();
 
 		}
@@ -230,7 +233,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset
 				&& ball.getBallY() + ball.getBallSize() <= height - padH - inset + 3 && ball.getVelY() > 0)
 			if (ball.getBallX() + ball.getBallSize() >= PadX && ball.getBallX() <= PadX + padW) {
-				GameSoundPlayer.playSound(score, -1);
+				sound.playSound(score, -1);
 				ball.invertDirectionY();
 				faster();
 				score++;
