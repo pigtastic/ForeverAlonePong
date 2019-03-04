@@ -22,7 +22,7 @@ import de.pigtastic.foreverAlonePong.helper.MusicPlayer;
 import de.pigtastic.foreverAlonePong.helper.Vector;
 
 @SuppressWarnings("serial")
-public class Game extends JPanel implements ActionListener, KeyListener {
+public class Game extends JPanel implements ActionListener, KeyListener, CollisionCheck {
 
 	private int height, width;
 	private Timer t = new Timer(10, this);
@@ -43,7 +43,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	private int inset = 10;
 
 	// ball
-	Ball ball = new Ball();
+	Ball ball = new Ball(((CollisionCheck) this));
 
 	// triangle
 	Vector leftVector = new Vector();
@@ -313,6 +313,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		this.score = score;
 	}
 
+	@Override
 	public void checkCollision() {
 		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
 			ball.invertDirectionX();
