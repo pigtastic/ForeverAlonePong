@@ -125,6 +125,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener, 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		/*
 		// side walls
 
 		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
@@ -160,7 +161,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener, 
 				sound.playSound(score, (-1));
 				ball.faster();
 			}
-				
+		*/
 
 		ball.move();
 		

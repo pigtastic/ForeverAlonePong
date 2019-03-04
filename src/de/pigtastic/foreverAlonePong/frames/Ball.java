@@ -135,7 +135,7 @@ public class Ball extends Ellipse2D.Double{
 		setBallX(newBallX);
 		setBallY(newBallY);
 		
-		
+		parent.checkCollision();
 	}
 	
 	/**

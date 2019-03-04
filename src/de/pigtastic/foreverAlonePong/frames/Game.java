@@ -150,6 +150,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, Collisi
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		/*
 
 		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
 			ball.invertDirectionX();
@@ -239,6 +240,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, Collisi
 				score++;
 
 			}
+		*/
 
 		ball.move();
 
