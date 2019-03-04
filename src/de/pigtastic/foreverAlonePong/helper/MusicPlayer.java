@@ -1,13 +1,11 @@
 package de.pigtastic.foreverAlonePong.helper;
 
 import java.io.File;
-import java.io.IOException;
+import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-
-import sun.audio.AudioStream;
 
 public class MusicPlayer {
 
@@ -15,10 +13,10 @@ public class MusicPlayer {
 	private static Clip clip;
 	private static boolean mute = false;
 
-	public static void playMusicContinously(String path) {
+	public static void playMusicContinously(URL path) {
 	if (!mute) {
 		try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File(path));
+			audioInputStream = AudioSystem.getAudioInputStream(new File(path.toString()));
 			clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -32,10 +30,10 @@ public class MusicPlayer {
 	}
 	}
 	
-	public static void playMusic(String path) {
+	public static void playMusic(URL path) {
 		if (!mute) {
 			try {
-				audioInputStream = AudioSystem.getAudioInputStream(new File(path));
+				audioInputStream = AudioSystem.getAudioInputStream(new File(path.toString()));
 				clip = AudioSystem.getClip();
 				clip.open(audioInputStream);
 				clip.start();

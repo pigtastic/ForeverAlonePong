@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -207,13 +208,13 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		mute = true;
 		MusicPlayer.stopMusic();
 
-		BufferedImage myPicture = null;
+		ImageIcon myPicture = null;
 		try {
-			myPicture = ImageIO.read(new File("../AppData/mute.png"));
-		} catch (IOException e) {
+			myPicture = new ImageIcon(getClass().getResource("../resources/mute.png"));
+		} catch (Exception e) {
 			System.out.println("Mute Icon nicht gefunden");
 		}
-		picLabel.setIcon(new ImageIcon(myPicture));
+		picLabel.setIcon(myPicture);
 
 	}
 
@@ -223,29 +224,29 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	private void enableMusic() {
 		MusicPlayer.enableSound();
 		mute = false;
-		MusicPlayer.playMusic("../AppData/Sounds/FAPS2.wav");
+		MusicPlayer.playMusic(getClass().getResource("../resources/sounds/FAPS2.wav"));
 
-		BufferedImage myPicture = null;
+		ImageIcon myPicture = null;
 		try {
-			myPicture = ImageIO.read(new File("../AppData/notmute.png"));
-		} catch (IOException e) {
+			myPicture = new ImageIcon(getClass().getResource("../resources/notmute.png"));
+		} catch (Exception e) {
 			System.out.println("NotMute Icon nicht gefunden");
 			JOptionPane.showMessageDialog(null, "Fehlende Assets, bitte AppData ein Verzeichnis oberhalb des geöffeneten Projekt-Pfades. Alternativ öffne das Projekt aus dem src Ordner.");
 		}
-		picLabel.setIcon(new ImageIcon(myPicture));
+		picLabel.setIcon(myPicture);
 	}
 
 	/**
 	 * Load the ForeverAlone Meme.
 	 */
 	private void loadStartPicture(String name) {
-		BufferedImage myPicture = null;
+		ImageIcon fapIcon = null;
 		try {
-			myPicture = ImageIO.read(new File("../AppData/" + name));
-		} catch (IOException e) {
+			fapIcon = new ImageIcon(getClass().getResource("../resources/" + name));
+		} catch (Exception e) {
 			System.out.println("FA Icon nicht gefunden");
 		}
-		foreverAlone.setIcon(new ImageIcon(myPicture));
+		foreverAlone.setIcon(fapIcon);
 	}
 
 	/**
@@ -253,13 +254,13 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	 */
 	private void playDef() {
 		def = true;
-		BufferedImage myPicture = null;
+		ImageIcon myPicture = null;
 		try {
-			myPicture = ImageIO.read(new File("../AppData/uncheckedbox.png"));
-		} catch (IOException e) {
+			myPicture = new ImageIcon(getClass().getResource("../resources/uncheckedbox.png"));
+		} catch (Exception e) {
 			System.out.println("Unchecked Icon nicht gefunden");
 		}
-		playWithBot.setIcon(new ImageIcon(myPicture));
+		playWithBot.setIcon(myPicture);
 	}
 
 	/**
@@ -267,13 +268,13 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	 */
 	private void playBot() {
 		def = false;
-		BufferedImage myPicture = null;
+		ImageIcon myPicture = null;
 		try {
-			myPicture = ImageIO.read(new File("../AppData/checkbox.png"));
-		} catch (IOException e) {
+			myPicture = new ImageIcon(getClass().getResource("../resources/checkbox.png"));
+		} catch (Exception e) {
 			System.out.println("Checked Icon nicht gefunden");
 		}
-		playWithBot.setIcon(new ImageIcon(myPicture));
+		playWithBot.setIcon(myPicture);
 	}
 
 	// Getter and Setter

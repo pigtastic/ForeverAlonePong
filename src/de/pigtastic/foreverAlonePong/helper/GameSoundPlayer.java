@@ -1,7 +1,7 @@
 package de.pigtastic.foreverAlonePong.helper;
 
 public class GameSoundPlayer {
-
+	
 	private static String path = "../AppData/Sounds/";
 	private static String note;
 
@@ -116,7 +116,7 @@ public class GameSoundPlayer {
 			}
 
 		}
-		MusicPlayer.playMusic(path + note + ".wav");
+		MusicPlayer.playMusic(getClass().getResource(note + ".wav"));
 
 	}
 }
