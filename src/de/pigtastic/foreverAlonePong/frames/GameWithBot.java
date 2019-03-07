@@ -151,7 +151,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener, 
 	private void gameLose() {
 		t.stop();
 		first = true;
-		MusicPlayer.playMusicContinously(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/sounds/LostGame.wav"));
+		MusicPlayer.playMusic(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/sounds/LostGame.wav"));
 		MainFrame.saveScore(score);
 		cardlayout.show(panel, "Replay");
 		MainFrame.setActivePane("Replay");
