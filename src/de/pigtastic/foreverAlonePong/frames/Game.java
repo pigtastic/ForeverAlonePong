@@ -79,6 +79,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, Collisi
 			t.start();
 			first = false;
 			score = 0;
+			ball.resetBallspeed();
 		}
 
 	}
@@ -172,7 +173,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, Collisi
 	private void gameLose() {
 		t.stop();
 		first = true;
-		MusicPlayer.playMusic(getClass().getResource("../resources/sounds/LostGame.wav"));
+		MusicPlayer.playMusic(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/sounds/LostGame.wav"));
 		cardlayout.show(panel, "Replay");
 		MainFrame.saveScore(score);
 		MainFrame.setActivePane("Replay");

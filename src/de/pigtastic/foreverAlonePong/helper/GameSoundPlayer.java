@@ -115,7 +115,7 @@ public class GameSoundPlayer {
 			}
 
 		}
-		MusicPlayer.playMusic(getClass().getResource("../resources/sounds/" + note + ".wav"));
+		MusicPlayer.playMusic(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/sounds/" + note + ".wav"));
 
 	}
 }

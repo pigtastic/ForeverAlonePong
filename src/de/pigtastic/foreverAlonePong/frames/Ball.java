@@ -42,7 +42,7 @@ public class Ball extends Ellipse2D.Double{
 		this.ballspeed = ballspeed;
 	}
 	public void resetBallspeed() {
-		this.ballspeed=0.5;
+		this.ballspeed=1.0;
 	}
 	public double getBallX() {
 		return this.x;

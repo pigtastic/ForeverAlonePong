@@ -147,7 +147,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 
 			playername = playerinput.getText();
 			Main.main.validate();
-			MusicPlayer.playMusic(getClass().getResource("../resources/sounds/C.wav"));
+			MusicPlayer.playMusic(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/sounds/C.wav"));
 		}
 	}
 
@@ -204,7 +204,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 
 		ImageIcon myPicture = null;
 		try {
-			myPicture = new ImageIcon(getClass().getResource("../resources/mute.png"));
+			myPicture = new ImageIcon(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/mute.png"));
 		} catch (Exception e) {
 			System.out.println("Mute Icon nicht gefunden");
 		}
@@ -218,11 +218,11 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	private void enableMusic() {
 		MusicPlayer.enableSound();
 		mute = false;
-		MusicPlayer.playMusicContinously(getClass().getResource("../resources/sounds/FAPS2.wav"));
+		MusicPlayer.playMusicContinously(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/sounds/FAPS2.wav"));
 
 		ImageIcon myPicture = null;
 		try {
-			myPicture = new ImageIcon(getClass().getResource("../resources/notmute.png"));
+			myPicture = new ImageIcon(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/notmute.png"));
 		} catch (Exception e) {
 			System.out.println("NotMute Icon nicht gefunden");
 			JOptionPane.showMessageDialog(null, "Fehlende Assets, bitte AppData ein Verzeichnis oberhalb des geöffeneten Projekt-Pfades. Alternativ öffne das Projekt aus dem src Ordner.");
@@ -236,7 +236,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 	private void loadStartPicture(String name) {
 		ImageIcon fapIcon = null;
 		try {
-			fapIcon = new ImageIcon(getClass().getResource("../resources/" + name));
+			fapIcon = new ImageIcon(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/" + name));
 		} catch (Exception e) {
 			System.out.println("FA Icon nicht gefunden");
 		}
@@ -250,7 +250,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		def = true;
 		ImageIcon myPicture = null;
 		try {
-			myPicture = new ImageIcon(getClass().getResource("../resources/uncheckedbox.png"));
+			myPicture = new ImageIcon(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/uncheckedbox.png"));
 		} catch (Exception e) {
 			System.out.println("Unchecked Icon nicht gefunden");
 		}
@@ -264,7 +264,7 @@ public class StartMenu extends DefaultJPanel implements MouseListener, ActionLis
 		def = false;
 		ImageIcon myPicture = null;
 		try {
-			myPicture = new ImageIcon(getClass().getResource("../resources/checkbox.png"));
+			myPicture = new ImageIcon(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/checkbox.png"));
 		} catch (Exception e) {
 			System.out.println("Checked Icon nicht gefunden");
 		}

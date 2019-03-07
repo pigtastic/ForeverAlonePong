@@ -94,7 +94,7 @@ public class Replay extends DefaultJPanel implements KeyListener, ActionListener
 		if (e.getSource().equals(backbtn)) {
 			cardlayout.show(panel, "StartMenu");
 			MainFrame.setActivePane("StartMenu");
-			MusicPlayer.playMusicContinously(getClass().getResource("../resources/sounds/FAPS2.wav"));
+			MusicPlayer.playMusicContinously(getClass().getResource("/de/pigtastic/foreverAlonePong/resources/sounds/FAPS2.wav"));
 			Main.main.validate();
 		}
 
