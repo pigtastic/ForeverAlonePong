@@ -22,7 +22,7 @@ import de.pigtastic.foreverAlonePong.helper.MusicPlayer;
 import de.pigtastic.foreverAlonePong.helper.Vector;
 
 @SuppressWarnings("serial")
-public class Game extends JPanel implements ActionListener, KeyListener {
+public class Game extends JPanel implements ActionListener, KeyListener, CollisionCheck {
 
 	private int height, width;
 	private Timer t = new Timer(10, this);
@@ -43,7 +43,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	private int inset = 10;
 
 	// ball
-	Ball ball = new Ball();
+	Ball ball = new Ball(((CollisionCheck) this));
 
 	// triangle
 	Vector leftVector = new Vector();
@@ -151,95 +151,6 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
-			ball.invertDirectionX();
-
-		}
-
-		// left triangle side
-		if (intersection(ball.getBallX(), ball.getBallY(), leftSide) && ball.getVelX() <= 0) {
-			sound.playSound(score, 1);
-
-			// hilfsvektor
-			double xWert = ball.getBallX() - ball.getLastBallX();
-			double yWert = ball.getBallY() - ball.getLastBallY();
-
-			if (leftangle * 2 > Math.PI) {
-				leftangle = 2 * (Math.PI - leftangle);
-
-			} else {
-				leftangle *= -2;
-			}
-			//Drehung um den Ursprung
-			double turnx = xWert * Math.cos((leftangle)) - yWert * Math.sin((leftangle));
-			double turny = xWert * Math.sin((leftangle)) + yWert * Math.cos((leftangle));
-			//Punkt an richtige Stelle verschieben
-			double newxWert = turnx + ball.getBallX();
-			double newyWert = turny + ball.getBallY();
-			//neuer Richtungsvektor
-			Vector moveVector = new Vector();
-			moveVector.setX(newxWert - ball.getBallX());
-			moveVector.setY(newyWert - ball.getBallY());
-			moveVector.toUnitVector();
-			ball.setVelX(moveVector.getX());
-			ball.setVelY(moveVector.getY());
-
-		}
-		// right triangle side
-		if (intersection(ball.getBallX() + ball.getBallSize(), ball.getBallY(), rightSide) && ball.getVelX() >= 0) {
-			sound.playSound(score, 0);
-
-			
-			double xWert = ball.getBallX() - ball.getLastBallX();
-			double yWert = ball.getBallY() - ball.getLastBallY();
-
-			if (rightangle * 2 > Math.PI) {
-				rightangle = 2 * (Math.PI - rightangle);
-			} else {
-				rightangle *= -2;
-			}
-			//Drehung um den Ursprung
-			double turnx = xWert * Math.cos((rightangle)) - yWert * Math.sin((rightangle));
-			double turny = xWert * Math.sin((rightangle)) + yWert * Math.cos((rightangle));
-			//Punkt an richtige Stelle verschieben
-			double newxWert = turnx + ball.getBallX();
-			double newyWert = turny + ball.getBallY();
-			//neuer Richtungsvektor
-			Vector moveVector = new Vector();
-			moveVector.setX(newxWert - ball.getBallX());
-			moveVector.setY(newyWert - ball.getBallY());
-			moveVector.toUnitVector();
-			ball.setVelX(moveVector.getX());
-			ball.setVelY(moveVector.getY());
-
-		}
-
-		// top wall
-
-		if (ball.getBallY() < 0) {
-			sound.playSound(score, 1);
-			ball.invertDirectionY();
-
-		}
-
-		// down wall
-		if (ball.getBallY() - ball.getBallSize() > height) {
-
-			gameLose();
-
-		}
-
-		// pad
-		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset
-				&& ball.getBallY() + ball.getBallSize() <= height - padH - inset + 3 && ball.getVelY() > 0)
-			if (ball.getBallX() + ball.getBallSize() >= PadX && ball.getBallX() <= PadX + padW) {
-				sound.playSound(score, -1);
-				ball.invertDirectionY();
-				faster();
-				score++;
-
-			}
-
 		ball.move();
 
 		// pressed keys
@@ -313,4 +224,89 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 		this.score = score;
 	}
 
+	@Override
+	public void checkCollision() {
+		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
+			ball.invertDirectionX();
+		}
+
+		// left triangle side
+		if (intersection(ball.getBallX(), ball.getBallY(), leftSide) && ball.getVelX() <= 0) {
+			sound.playSound(score, 1);
+
+			// hilfsvektor
+			double xWert = ball.getBallX() - ball.getLastBallX();
+			double yWert = ball.getBallY() - ball.getLastBallY();
+
+			if (leftangle * 2 > Math.PI) {
+				leftangle = 2 * (Math.PI - leftangle);
+
+			} else {
+				leftangle *= -2;
+			}
+			//Drehung um den Ursprung
+			double turnx = xWert * Math.cos((leftangle)) - yWert * Math.sin((leftangle));
+			double turny = xWert * Math.sin((leftangle)) + yWert * Math.cos((leftangle));
+			//Punkt an richtige Stelle verschieben
+			double newxWert = turnx + ball.getBallX();
+			double newyWert = turny + ball.getBallY();
+			//neuer Richtungsvektor
+			Vector moveVector = new Vector();
+			moveVector.setX(newxWert - ball.getBallX());
+			moveVector.setY(newyWert - ball.getBallY());
+			moveVector.toUnitVector();
+			ball.setVelX(moveVector.getX());
+			ball.setVelY(moveVector.getY());
+
+		}
+		// right triangle side
+		if (intersection(ball.getBallX() + ball.getBallSize(), ball.getBallY(), rightSide) && ball.getVelX() >= 0) {
+			sound.playSound(score, 0);
+
+			double xWert = ball.getBallX() - ball.getLastBallX();
+			double yWert = ball.getBallY() - ball.getLastBallY();
+
+			if (rightangle * 2 > Math.PI) {
+				rightangle = 2 * (Math.PI - rightangle);
+			} else {
+				rightangle *= -2;
+			}
+			//Drehung um den Ursprung
+			double turnx = xWert * Math.cos((rightangle)) - yWert * Math.sin((rightangle));
+			double turny = xWert * Math.sin((rightangle)) + yWert * Math.cos((rightangle));
+			//Punkt an richtige Stelle verschieben
+			double newxWert = turnx + ball.getBallX();
+			double newyWert = turny + ball.getBallY();
+			//neuer Richtungsvektor
+			Vector moveVector = new Vector();
+			moveVector.setX(newxWert - ball.getBallX());
+			moveVector.setY(newyWert - ball.getBallY());
+			moveVector.toUnitVector();
+			ball.setVelX(moveVector.getX());
+			ball.setVelY(moveVector.getY());
+		}
+
+		// top wall
+
+		if (ball.getBallY() < 0) {
+			sound.playSound(score, 1);
+			ball.invertDirectionY();
+		}
+
+		// down wall
+		if (ball.getBallY() - ball.getBallSize() > height) {
+			gameLose();
+		}
+
+		// pad
+		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset
+				&& ball.getBallY() + ball.getBallSize() <= height - padH - inset + 3 && ball.getVelY() > 0) {
+			if (ball.getBallX() + ball.getBallSize() >= PadX && ball.getBallX() <= PadX + padW) {
+				sound.playSound(score, -1);
+				ball.invertDirectionY();
+				faster();
+				score++;
+			}
+		}
+	}
 }

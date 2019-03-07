@@ -15,7 +15,8 @@ public class Ball extends Ellipse2D.Double{
 	private Vector vector=new Vector();
 	private Direction directionX;
 	private Direction directionY;
-	
+	private CollisionCheck parent;
+
 	double lastBallX=getBallX();
 	double lastBallY=getBallY();
 	
@@ -23,7 +24,8 @@ public class Ball extends Ellipse2D.Double{
 
 //Constructor
 	private double ballX, ballY, velX = 1, velY = 1;
-	public Ball() {
+	public Ball(CollisionCheck parent) {
+		this.parent = parent;
 		this.x=ballX;
 		this.y=ballY;
 		this.height=ballsize;
@@ -122,18 +124,34 @@ public class Ball extends Ellipse2D.Double{
 	 * Starts the ball movement and calculates the Vector
 	 */
 	public void move() {
-		//aktuellen Punkt für Vector setzen
-		lastBallX=getBallX();
-		lastBallY=getBallY();
-		//neuen Punkt berechnen
-		double newBallX=getBallX()+getVelX()*ballspeed;
-		double newBallY=getBallY()+getVelY()*ballspeed;
-		vector.calcVector(newBallX, newBallY,getBallX(), getBallY());
+		int speed = (int) ballspeed;
+		double localSpeedMultiplier = ((((ballspeed *10) % 10) + 10) / 10.0);
+		for (int i=0; i < speed; i++)
+		{
+			//aktuellen Punkt für Vector setzen
+			lastBallX=getBallX();
+			lastBallY=getBallY();
+			//neuen Punkt berechnen
 
-		setBallX(newBallX);
-		setBallY(newBallY);
-		
-		
+			double newBallX;
+			double newBallY;
+			if ((i+1) == speed)
+			{
+				newBallX=getBallX()+getVelX() * localSpeedMultiplier;
+				newBallY=getBallY()+getVelY() * localSpeedMultiplier;
+			}
+			else
+			{
+				newBallX=getBallX()+getVelX();
+				newBallY=getBallY()+getVelY();
+			}
+			vector.calcVector(newBallX, newBallY,getBallX(), getBallY());
+
+			setBallX(newBallX);
+			setBallY(newBallY);
+
+			parent.checkCollision();
+		}
 	}
 	
 	/**

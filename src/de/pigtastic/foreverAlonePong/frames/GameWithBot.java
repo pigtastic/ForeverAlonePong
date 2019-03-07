@@ -22,7 +22,7 @@ import de.pigtastic.foreverAlonePong.helper.Vector;
 
 
 @SuppressWarnings("serial")
-public class GameWithBot extends JPanel implements ActionListener, KeyListener {
+public class GameWithBot extends JPanel implements ActionListener, KeyListener, CollisionCheck {
 
 	private int height, width;
 	private Timer t = new Timer(8, this);
@@ -45,7 +45,7 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 	
 
 	// ball
-	Ball ball =new Ball();
+	Ball ball =new Ball(((CollisionCheck) this));
 	
 	
 	// triangle
@@ -125,42 +125,6 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// side walls
-
-		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
-			ball.invertDirectionX();
-			sound.playSound(score, 0);
-
-		}
-
-		// top wall
-
-		if (ball.getBallY() < 0) {
-			ball.invertDirectionY();
-			
-		}
-
-		// down wall
-		if (ball.getBallY() - ball.getBallSize() > height) {
-			gameLose();
-
-		}
-		// top Pad
-		if (ball.getBallY() <= padH + inset && ball.getVelY() < 0)
-			if (ball.getBallX() + ball.getBallSize() >= topPadX && ball.getBallX() <= topPadX + padW)
-			{
-				sound.playSound(score, 1);
-				ball.invertDirectionY();
-			}
-		//  bottompad
-		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset && ball.getBallY() + ball.getBallSize() <= height - padH - inset+1 && ball.getVelY() > 0)
-			if (ball.getBallX() + ball.getBallSize() >= bottomPadX && ball.getBallX() <= bottomPadX + padW) {
-				ball.invertDirectionY();
-				score++;
-				sound.playSound(score, (-1));
-				ball.faster();
-			}
-				
 
 		ball.move();
 		
@@ -248,4 +212,43 @@ public class GameWithBot extends JPanel implements ActionListener, KeyListener {
 		padW = w;
 	}
 
+	@Override
+	public void checkCollision()
+	{
+		// side walls
+
+		if (ball.getBallX() < 0 || ball.getBallX() > width - ball.getBallSize()) {
+			ball.invertDirectionX();
+			sound.playSound(score, 0);
+
+		}
+
+		// top wall
+
+		if (ball.getBallY() < 0) {
+			ball.invertDirectionY();
+
+		}
+
+		// down wall
+		if (ball.getBallY() - ball.getBallSize() > height) {
+			gameLose();
+
+		}
+		// top Pad
+		if (ball.getBallY() <= padH + inset && ball.getVelY() < 0)
+			if (ball.getBallX() + ball.getBallSize() >= topPadX && ball.getBallX() <= topPadX + padW)
+			{
+				sound.playSound(score, 1);
+				ball.invertDirectionY();
+			}
+		//  bottompad
+		if (ball.getBallY() + ball.getBallSize() >= height - padH - inset && ball.getBallY() + ball.getBallSize() <= height - padH - inset+1 && ball.getVelY() > 0)
+			if (ball.getBallX() + ball.getBallSize() >= bottomPadX && ball.getBallX() <= bottomPadX + padW) {
+				ball.invertDirectionY();
+				score++;
+				sound.playSound(score, (-1));
+				ball.faster();
+			}
+	}
 }
